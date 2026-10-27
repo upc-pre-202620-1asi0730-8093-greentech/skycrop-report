@@ -3520,9 +3520,24 @@ En conclusión, las herramientas de GitHub facilitaron el monitoreo de las contr
 
 ### 5.2.3. Sprint 3 
 
-
 #### 5.2.3.1. Spring Planning 3. 
 
+El sprint 3 se enfocará en el desarrollo del backend de SkyCrop así como su integración al frontend.
+
+| **Sprint #** | Sprint 3 |
+| :--- | :--- |
+| **Sprint Planning Background** | |
+| **Date** | 2026-10-19 |
+| **Time** | 13:00 PM |
+| **Location** | Reunión virtual mediante Discord |
+| **Prepared By** | Landa Sanchez, Sunio Danilo |
+| **Attendees (to planning meeting)** | Landa Sanchez, Sunio Danilo / Cano Gomez, Yam Antony Gabriel / Jonseck Choque, Oliver / Rubio Ortiz, Luis Sebastián / Pumahualcca Garcia, Diego Rodrigo |
+| **Sprint 2 Review Summary** | Durante el Sprint 2 se desarrolló y desplegó la primera versión del frontend de la aplicación SkyCrop y la redirección del landing page a esta. Entre los aspectos a mejorar destaca la implementación de las secciones faltantes en la aplicación y la mejor distribución del trabajo. |
+| **Sprint 2 Retrospective Summary** | Luego de haber completado el sprint 2, los integrantes del grupo coordinaron en realizar el proximo avance del proyecto con mayor antelación. Además, se pusieron de acuerdo en distribuir el trabajo de una manera más equilibrada para que se evidencie el trabajo en equipo y el desarrollo de cada integrante. |
+| **Sprint Goal & User Stories** | |
+| **Sprint 3 Goal** | **Nuestro enfoque está en** desarrollar e implementar la primera versión del backend de SkyCrop, permitiendo que la aplicación frontend pueda acceder a información de contextos como parcelas, drones o diagnosticos mediante una API RESTful. <br>**Creemos que esto entrega** una base solida para que los desarrolladores de la plataforma SkyCrop puedan crear y acceder a operaciones dentro del sistema y de la base de datos como la consulta o el registro de información. <br>**Esto será confirmado cuando** los desarrolladores creen endpoints que realicen operaciones dentro la plataforma mediante peticiones HTTP y la aplicación frontend pueda acceder a los endpoints implementados para mostrar la información necesaria. |
+| **Sprint 3 Velocity** | 24 |
+| **Sum of Story Points** | |
 
 #### 5.2.3.2. Aspect Leaders and Collaborators. 
 
