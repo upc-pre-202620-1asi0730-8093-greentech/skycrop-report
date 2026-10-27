@@ -122,6 +122,9 @@ El registro reúne las modificaciones principales del informe. La autoría del d
 | 26 | 2026-10-09 | Equipo GreenTech | Documentación de servicios y evidencias de ejecución del Sprint 2; actualización de Student Outcome y conclusiones para TB1. |
 | 27 | 2026-10-09 | Equipo GreenTech | Corrección de la planificación y trazabilidad del Sprint 2, referencias de repositorios y publicación, redacción académica, enlaces internos e incorporación de formularios en las evidencias de ejecución. |
 | 28 | 2026-10-09 | Equipo GreenTech | Registro de la actualización de la landing page para TB1 y ampliación de las evidencias de ejecución con la confirmación de registro de parcela, los detalles del dron y el resultado de un diagnóstico simulado. |
+| 29 | 2026-10-16 | Sunio Landa     | Correcciones al formato del informe |
+| 30 | 2026-10-19 | Sebastián Rubio | Correcciones a las observaciones registradas en el TB1 |
+| 31 | 2026-10-26 | Sunio Landa     | Registro del Sprint planning 3 y la matriz de liderazgo y colaboración |
 
 <div style="page-break-after: always;"></div>
 
