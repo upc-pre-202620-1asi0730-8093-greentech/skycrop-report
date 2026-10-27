@@ -3541,6 +3541,15 @@ El sprint 3 se enfocará en el desarrollo del backend de SkyCrop así como su in
 
 #### 5.2.3.2. Aspect Leaders and Collaborators. 
 
+A continuación, se detalla la matriz de liderazgo y colaboración (LACX) para los aspectos clave abordados durante el sprint 3.
+
+| Team Member | GitHub Username | Reports<br>Leader (L) / Collaborator (C) | Plots<br>Leader (L) / Collaborator (C)  | Drones<br>Leader (L) / Collaborator (C)  | IAM & Notifications<br>Leader (L) / Collaborator (C) | Diagnoses<br>Leader (L) / Collaborator (C) | Project Documentation<br>Leader (L) / Collaborator (C) | Software deployment<br>Leader (L) / Collaborator (C)|
+| :--- | :--- | :---: | :---: | :---: | :----:| :----:| :----:| :----:| 
+| Landa Sanchez, Sunio Danilo  | DanLandio | L | C | C | C | L | C | C |
+| Cano Gomez, Yam Antony  | Yam-1CG  | C | L | C | C | C | C | C | 
+| Jonseck Choque, Oliver | Olizzy-upc| C | C | C | L | C | C | C |
+| Rubio Ortiz, Luis Sebastián | notoriussxd | C | C | L | C | C | C | L |
+| Pumahualcca Garcia, Diego Rodrigo | DiegoPumahualcca | C | C | C | C | L | C | C |
 
 #### 5.2.3.3. Sprint Backlog 3. 
 
