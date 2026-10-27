@@ -122,6 +122,9 @@ El registro reúne las modificaciones principales del informe. La autoría del d
 | 26 | 2026-10-09 | Equipo GreenTech | Documentación de servicios y evidencias de ejecución del Sprint 2; actualización de Student Outcome y conclusiones para TB1. |
 | 27 | 2026-10-09 | Equipo GreenTech | Corrección de la planificación y trazabilidad del Sprint 2, referencias de repositorios y publicación, redacción académica, enlaces internos e incorporación de formularios en las evidencias de ejecución. |
 | 28 | 2026-10-09 | Equipo GreenTech | Registro de la actualización de la landing page para TB1 y ampliación de las evidencias de ejecución con la confirmación de registro de parcela, los detalles del dron y el resultado de un diagnóstico simulado. |
+| 29 | 2026-10-16 | Sunio Landa     | Correcciones al formato del informe |
+| 30 | 2026-10-19 | Sebastián Rubio | Correcciones a las observaciones registradas en el TB1 |
+| 31 | 2026-10-26 | Sunio Landa     | Registro del Sprint planning 3 y la matriz de liderazgo y colaboración |
 
 <div style="page-break-after: always;"></div>
 
@@ -166,7 +169,7 @@ La captura corresponde al historial mostrado en `main`; no representa un conteo 
 - [Project Report Collaboration Insights](#project-report-collaboration-insights)
 - [Contenido](#contenido)
   - [Tabla de contenidos](#tabla-de-contenidos)
-- [Student Outcome 5](#student-outcome-5)
+- [Student Outcome](#student-outcome)
 - [Capítulo I: Introducción](#capítulo-i-introducción)
   - [1.1. Startup Profile](#11-startup-profile)
     - [1.1.1. Descripción de la Startup](#111-descripción-de-la-startup)
@@ -198,7 +201,6 @@ La captura corresponde al historial mostrado en `main`; no representa un conteo 
   - [3.1. User Stories](#31-user-stories)
   - [3.2. Impact Mapping.](#32-impact-mapping)
   - [3.3. Product Backlog.](#33-product-backlog)
-    - [Technical Stories](#technical-stories)
 - [Capítulo IV: Product Design](#capítulo-iv-product-design)
   - [4.1. Style Guidelines.](#41-style-guidelines)
     - [4.1.1. General Style Guidelines.](#411-general-style-guidelines)
@@ -217,17 +219,14 @@ La captura corresponde al historial mostrado en `main`; no representa un conteo 
     - [4.4.2. Web Applications Wireflow Diagrams.](#442-web-applications-wireflow-diagrams)
     - [4.4.3. Web Applications Mock-ups.](#443-web-applications-mock-ups)
     - [4.4.4. Web Applications User Flow Diagrams.](#444-web-applications-user-flow-diagrams)
-      - [Asignación de un dron al vuelo de una parcela](#asignación-de-un-dron-al-vuelo-de-una-parcela)
   - [4.5. Web Applications Prototyping.](#45-web-applications-prototyping)
   - [4.6. Domain-Driven Software Architecture.](#46-domain-driven-software-architecture)
     - [4.6.1. Design-Level EventStorming.](#461-design-level-eventstorming)
-    - [Catálogo de Bounded Contexts](#catálogo-de-bounded-contexts)
     - [4.6.2. Software Architecture Context Diagram.](#462-software-architecture-context-diagram)
     - [4.6.3. Software Architecture Container Diagrams.](#463-software-architecture-container-diagrams)
     - [4.6.4. Software Architecture Components Diagrams.](#464-software-architecture-components-diagrams)
   - [4.7. Software Object-Oriented Design.](#47-software-object-oriented-design)
     - [4.7.1. Class Diagrams.](#471-class-diagrams)
-      - [Diseño de clases por capas](#diseño-de-clases-por-capas)
   - [4.8. Database Design.](#48-database-design)
     - [4.8.1. Database Diagrams.](#481-database-diagrams)
 - [Capítulo V: Product Implementation, Validation \& Deployment](#capítulo-v-product-implementation-validation--deployment)
@@ -251,11 +250,24 @@ La captura corresponde al historial mostrado en `main`; no representa un conteo 
       - [5.2.2.2. Aspect Leaders and Collaborators.](#5222-aspect-leaders-and-collaborators)
       - [5.2.2.3. Sprint Backlog 2.](#5223-sprint-backlog-2)
       - [5.2.2.4. Development Evidence for Sprint Review.](#5224-development-evidence-for-sprint-review)
-      - [5.2.2.4. Development Evidence for Sprint Review](#5224-development-evidence-for-sprint-review)
       - [5.2.2.5. Execution Evidence for Sprint Review.](#5225-execution-evidence-for-sprint-review)
       - [5.2.2.6. Services Documentation Evidence for Sprint Review.](#5226-services-documentation-evidence-for-sprint-review)
       - [5.2.2.7. Software Deployment Evidence for Sprint Review.](#5227-software-deployment-evidence-for-sprint-review)
       - [5.2.2.8. Team Collaboration Insights during Sprint.](#5228-team-collaboration-insights-during-sprint)
+    - [5.2.3. Sprint 3](#523-sprint-3)
+      - [5.2.3.1. Spring Planning 3.](#5231-spring-planning-3)
+      - [5.2.3.2. Aspect Leaders and Collaborators.](#5232-aspect-leaders-and-collaborators)
+      - [5.2.3.3. Sprint Backlog 3.](#5233-sprint-backlog-3)
+      - [5.2.3.4. Development Evidence for Sprint Review.](#5234-development-evidence-for-sprint-review)
+      - [5.2.3.5. Execution Evidence for Sprint Review.](#5235-execution-evidence-for-sprint-review)
+      - [5.2.3.6. Services Documentation Evidence for Sprint Review.](#5236-services-documentation-evidence-for-sprint-review)
+      - [5.2.3.7. Software Deployment Evidence for Sprint Review.](#5237-software-deployment-evidence-for-sprint-review)
+      - [5.2.3.8. Team Collaboration Insights during Sprint.](#5238-team-collaboration-insights-during-sprint)
+  - [5.3. Validation Interviews.](#53-validation-interviews)
+  - [5.3.1. Diseño de Entrevistas.](#531-diseño-de-entrevistas)
+  - [5.3.2. Registro de Entrevistas.](#532-registro-de-entrevistas)
+  - [5.3.3. Evaluaciones según heurísticas.](#533-evaluaciones-según-heurísticas)
+  - [5.4. Video About-the-Product.](#54-video-about-the-product)
 - [Conclusiones](#conclusiones)
 - [Bibliografía](#bibliografía)
 - [Anexos](#anexos)
@@ -1458,7 +1470,7 @@ Enlace al tablero: [Product Backlog en Trello](https://trello.com/b/L5lihF6B)
 | 49 | US-42 | Navegación rápida por la Landing Page | El visitante requiere contar con una barra de navegación fija para acceder rápidamente a las diferentes secciones. | 2 |
 | 50 | US-43 | Pie de página informativo | El visitante requiere ver un footer con información institucional, términos y medios de contacto. | 2 |
 
-### Technical Stories
+**Technical Stories**
 
 Las siguientes Technical Stories complementan las funcionalidades del producto mediante la RESTful API. La columna de orden remite a su posición en la tabla principal y sigue el mismo orden de contextos. Las estimaciones corresponden a las registradas en la tabla principal del Product Backlog.
 
@@ -1931,48 +1943,6 @@ Userflow 5: Lectura de diagnósticos
 <img src="resources/imgs/chapter_4/userflow-5.png" alt="Wireflow 5" width="600">
 </div>
 
-#### Asignación de un dron al vuelo de una parcela
-
-**Objetivo del usuario:** seleccionar un dron para ejecutar el plan de monitoreo de una parcela y consultar la relación antes de iniciar el vuelo.
-
-La propuesta utiliza una sección de vuelos dentro del detalle de la parcela. La acción de asignación presenta el plan y los drones disponibles en el mismo contexto de navegación. El usuario selecciona el dispositivo, revisa su estado y confirma la operación. La selección registra un vuelo planificado; la confirmación no inicia el dispositivo. Esta interacción complementa US-18 y se relaciona con la conexión del dron de US-17 y la parametrización de US-20.
-
-**Sustento de la propuesta**
-
-| Decisión | Sustento | Alcance |
-|---|---|---|
-| Seleccionar el dron desde la parcela y su plan. | A1 y A2 describen interés en recorridos automatizados; G1 y G2 aportan necesidades de seguimiento de varias parcelas. US-18 contempla la gestión de la rutina de vuelo. | La relación se establece para el vuelo planificado, sin atribuir a las entrevistas una preferencia por esta distribución de pantalla. |
-| Presentar estado y disponibilidad del dispositivo. | US-17 contempla la conexión; US-20, la configuración. El modelo de `Drone` incluye estado y batería. | La selección requiere un dispositivo disponible y accesible; los valores de operación dependen de su configuración. |
-| Relacionar parcela, plan y dron mediante identificadores. | `FlightPlan.plotId`, `Flight.flightPlanId` y `Flight.droneId` forman parte del modelo del dominio. | No se necesita una entidad adicional para una asignación permanente entre parcela y dron. |
-| Evitar un máximo fijo de drones por parcela. | Los registros de entrevistas no especifican ese límite. | El diseño no impone una cantidad máxima por terreno ni presupone vuelos simultáneos. |
-
-**Reglas de la operación**
-
-| Regla | Comportamiento |
-|---|---|
-| Acceso | El usuario debe tener permiso para gestionar vuelos de la parcela y utilizar el dron seleccionado. |
-| Plan | El plan seleccionado debe pertenecer a la parcela y encontrarse válido para la operación. |
-| Disponibilidad | El estado del dron se consulta al seleccionar y se verifica nuevamente al confirmar. Un dispositivo no disponible no permite registrar la asignación. |
-| Referencias | El vuelo conserva `flightPlanId` y `droneId`; la parcela se obtiene mediante `FlightPlan.plotId`. |
-| Confirmación | La operación registra un vuelo en estado `PLANNED`. El inicio del vuelo constituye una acción distinta. |
-| Cancelación | Cerrar o cancelar la selección no registra un vuelo ni modifica el plan. |
-| Error de guardado | La interfaz conserva los datos seleccionados e informa el error, sin mostrar una confirmación exitosa. |
-
-**Wireframe de la interacción propuesta**
-
-El esquema muestra la selección dentro del detalle de la parcela. Los elementos de la lista representan la estructura de información, sin utilizar datos de dispositivos reales. Cuando no existen drones disponibles, la lista se sustituye por un mensaje y la confirmación permanece deshabilitada. Si ocurre un error de consulta, se ofrece una acción para volver a consultar.
-
-<div align="center">
-<img src="resources/imgs/chapter_4/drone-plot-assignment-wireframe.svg" alt="Wireframe de selección de dron para el vuelo de una parcela" width="700">
-</div>
-
-**Flujo de interacción**
-
-El recorrido incluye la confirmación, la cancelación y los casos sin permisos, sin plan válido o sin drones disponibles. La validación al confirmar evita utilizar un estado del dispositivo que haya cambiado durante la selección.
-
-<div align="center">
-<img src="resources/imgs/chapter_4/drone-plot-assignment-flow.png" alt="Flujo de asignación de un dron al vuelo de una parcela" width="650">
-</div>
 
 ## 4.5. Web Applications Prototyping. 
 
@@ -2034,7 +2004,7 @@ Paso 7: Juntar reglas de negocio (Aggregates)
 <img src="resources/imgs/chapter_4/design-level-eventstorming-7.png" alt="Eventstorming paso 7" width="600">
 </div>
 
-### Catálogo de Bounded Contexts
+**Catálogo de Bounded Contexts**
 
 El refinamiento distingue las responsabilidades del dominio y ordena su presentación por importancia para el negocio: primero los contextos core, después los de soporte y finalmente los genéricos. Esta clasificación es una decisión de diseño de SkyCrop basada en su propuesta de monitoreo agrícola; no representa una validación de todas las reglas de negocio ni un orden obligatorio de implementación.
 
@@ -2307,7 +2277,7 @@ Esta vista muestra a `Diagnosis` como raíz del agregado que contiene los result
 <img src="resources/imgs/Diagrams/ClassDiagram1-updated.png" alt="Agregados de suscripciones, perfiles e IAM" width="600">
 </div>
 
-#### Diseño de clases por capas
+**Diseño de clases por capas**
 
 Las siguientes vistas representan el diseño propuesto para el backend RESTful API en ASP.NET Core. Cada diagrama presenta un caso de uso de su Bounded Context y complementa el detalle de entidades y objetos de valor de los diagramas de dominio. Las clases de infraestructura implementan los contratos de repositorio y de integración; el dominio mantiene sus reglas sin depender de Entity Framework Core ni de proveedores externos.
 
@@ -3551,6 +3521,108 @@ En conclusión, las herramientas de GitHub facilitaron el monitoreo de las contr
 
 <div style="page-break-after: always;"></div>
 
+### 5.2.3. Sprint 3 
+
+#### 5.2.3.1. Spring Planning 3. 
+
+El sprint 3 se enfocará en el desarrollo del backend de SkyCrop así como su integración al frontend.
+
+| **Sprint #** | Sprint 3 |
+| :--- | :--- |
+| **Sprint Planning Background** | |
+| **Date** | 2026-10-19 |
+| **Time** | 13:00 PM |
+| **Location** | Reunión virtual mediante Discord |
+| **Prepared By** | Landa Sanchez, Sunio Danilo |
+| **Attendees (to planning meeting)** | Landa Sanchez, Sunio Danilo / Cano Gomez, Yam Antony Gabriel / Jonseck Choque, Oliver / Rubio Ortiz, Luis Sebastián / Pumahualcca Garcia, Diego Rodrigo |
+| **Sprint 2 Review Summary** | Durante el Sprint 2 se desarrolló y desplegó la primera versión del frontend de la aplicación SkyCrop y la redirección del landing page a esta. Entre los aspectos a mejorar destaca la implementación de las secciones faltantes en la aplicación y la mejor distribución del trabajo. |
+| **Sprint 2 Retrospective Summary** | Luego de haber completado el sprint 2, los integrantes del grupo coordinaron en realizar el proximo avance del proyecto con mayor antelación. Además, se pusieron de acuerdo en distribuir el trabajo de una manera más equilibrada para que se evidencie el trabajo en equipo y el desarrollo de cada integrante. |
+| **Sprint Goal & User Stories** | |
+| **Sprint 3 Goal** | **Nuestro enfoque está en** desarrollar e implementar la primera versión del backend de SkyCrop, permitiendo que la aplicación frontend pueda acceder a información de contextos como parcelas, drones o diagnosticos mediante una API RESTful. <br>**Creemos que esto entrega** una base solida para que los desarrolladores de la plataforma SkyCrop puedan crear y acceder a operaciones dentro del sistema y de la base de datos como la consulta o el registro de información. <br>**Esto será confirmado cuando** los desarrolladores creen endpoints que realicen operaciones dentro la plataforma mediante peticiones HTTP y la aplicación frontend pueda acceder a los endpoints implementados para mostrar la información necesaria. |
+| **Sprint 3 Velocity** | 24 |
+| **Sum of Story Points** | |
+
+#### 5.2.3.2. Aspect Leaders and Collaborators. 
+
+A continuación, se detalla la matriz de liderazgo y colaboración (LACX) para los aspectos clave abordados durante el sprint 3.
+
+| Team Member | GitHub Username | Reports<br>Leader (L) / Collaborator (C) | Plots<br>Leader (L) / Collaborator (C)  | Drones<br>Leader (L) / Collaborator (C)  | IAM & Notifications<br>Leader (L) / Collaborator (C) | Diagnoses<br>Leader (L) / Collaborator (C) | Project Documentation<br>Leader (L) / Collaborator (C) | Software deployment<br>Leader (L) / Collaborator (C)|
+| :--- | :--- | :---: | :---: | :---: | :----:| :----:| :----:| :----:| 
+| Landa Sanchez, Sunio Danilo  | DanLandio | L | C | C | C | L | C | C |
+| Cano Gomez, Yam Antony  | Yam-1CG  | C | L | C | C | C | C | C | 
+| Jonseck Choque, Oliver | Olizzy-upc| C | C | C | L | C | C | C |
+| Rubio Ortiz, Luis Sebastián | notoriussxd | C | C | L | C | C | C | L |
+| Pumahualcca Garcia, Diego Rodrigo | DiegoPumahualcca | C | C | C | C | L | C | C |
+
+#### 5.2.3.3. Sprint Backlog 3. 
+
+El sprint backlog 3 muestra las tareas que el equipo va a realizar para el desarrollo del backend de SkyCrop, incluyendo la creación de endpoints para acceder y registrar información de parcelas, drones, reportes, cultivos o diagnosticos.
+
+Enlace al tablero en Trello del Sprint Backlog 3: [https://trello.com/b/VkrnAQuf](https://trello.com/b/VkrnAQuf)
+
+A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacionada a las technical stories.
+
+<div align="center">
+<table border="1">
+  <tr>
+    <th>Sprint #</th>
+    <th colspan="7">Sprint 3</th>
+  </tr>
+
+  <tr>
+    <th colspan="2">User Story</th>
+    <th colspan="6">Work Item / Task</th>
+  </tr>
+
+  <tr>
+    <th>Story ID</th>
+    <th>Story Title</th>
+    <th>Task ID</th>
+    <th>Task Title</th>
+    <th>Task Description</th>
+    <th>Estimation (hours)</th>
+    <th>Assigned To</th>
+    <th>Status</th>
+  </tr>
+
+
+
+</table>
+</div>
+
+#### 5.2.3.4. Development Evidence for Sprint Review. 
+
+
+#### 5.2.3.5. Execution Evidence for Sprint Review. 
+
+
+#### 5.2.3.6. Services Documentation Evidence for Sprint Review. 
+
+
+#### 5.2.3.7. Software Deployment Evidence for Sprint Review. 
+
+
+#### 5.2.3.8. Team Collaboration Insights during Sprint.
+
+
+
+## 5.3. Validation Interviews. 
+
+
+## 5.3.1. Diseño de Entrevistas. 
+
+
+## 5.3.2. Registro de Entrevistas. 
+
+
+## 5.3.3. Evaluaciones según heurísticas. 
+
+
+## 5.4. Video About-the-Product. 
+
+
+<div style="page-break-after: always;"></div>
+
 # Conclusiones 
 
 Las entrevistas identificaron dificultades relacionadas con el tiempo y esfuerzo necesarios para supervisar parcelas y obtener información del estado de los cultivos. Los registros aportaron sustento a necesidades de planificación de vuelos, visualización mediante mapas, seguimiento histórico y colaboración, así como operación ante conectividad limitada, con distinto respaldo entre participantes. Estos hallazgos permiten relacionar los problemas y supuestos iniciales con las historias de usuario de SkyCrop, sin generalizar los resultados a toda la población agrícola ni considerar validadas las funcionalidades propuestas.
@@ -3593,12 +3665,31 @@ Vue.js. (s. f.). *[Style guide](https://vuejs.org/style-guide/)*. Recuperado el 
 
 ## Anexo A
 
-**Enlaces**
+**Enlaces importantes**
 
-Enlace al video de navegación al prototipo: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDnRI9W8acKTphuXimXgKQZAZwHkoPGAoMBGMpwR7lqt9Y?e=Dd7Czn&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D 
+Enlace a la organización de GitHub: [https://github.com/upc-pre-202620-1asi0730-8093-greentech](https://github.com/upc-pre-202620-1asi0730-8093-greentech)
 
-Enlace al video de entrevistas: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O
+Enlace al prototipo de la aplicación realizado en Figma: [https://www.figma.com/proto/1nlenowk3dSY0qdNiG6hYD/Dise%C3%B1o-UX-UI---SkyCrop?node-id=85-266&p=f&t=3mUFit5D9c68mFrX-1&scaling=min-zoom&content-scaling=fixed&page-id=5%3A2&starting-point-node-id=85%3A266](https://www.figma.com/proto/1nlenowk3dSY0qdNiG6hYD/Dise%C3%B1o-UX-UI---SkyCrop?node-id=85-266&p=f&t=3mUFit5D9c68mFrX-1&scaling=min-zoom&content-scaling=fixed&page-id=5%3A2&starting-point-node-id=85%3A266)
 
-Enlace al Sprint Navigation 2: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr
+Enlace a la landing page publicada en GitHub pages: [https://upc-pre-202620-1asi0730-8093-greentech.github.io/skycrop-website/](https://upc-pre-202620-1asi0730-8093-greentech.github.io/skycrop-website/)
 
-Enlace al video de exposición: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQC7-9lfjgHpQ4bt-_6qzEckAakmUPUCAoJjSVcUw-FifaQ?e=XQGhZZ
+Enlace al frontend web application de SkyCrop desplegado en Vercel: [https://skycrop-website.vercel.app/home](https://skycrop-website.vercel.app/home)
+
+Enlace al video de entrevistas de Needfinding: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O)
+
+Enlace al video de prototype navigation: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDnRI9W8acKTphuXimXgKQZAZwHkoPGAoMBGMpwR7lqt9Y?e=Dd7Czn&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDnRI9W8acKTphuXimXgKQZAZwHkoPGAoMBGMpwR7lqt9Y?e=Dd7Czn&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) 
+
+Enlace al video de product navigation del Sprint 2: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr)
+
+
+
+
+<div style="page-break-after: always;"></div>
+
+## Anexo B
+
+**Videos de exposiciones**
+
+Enlace al video de exposición AV1: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDCsoPNGUqFRprILkG3WFMaAQpymOwlq8gjK6qwOCvKCbo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5zRtRI](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDCsoPNGUqFRprILkG3WFMaAQpymOwlq8gjK6qwOCvKCbo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5zRtRI)
+
+Enlace al video de exposición TB1: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQC7-9lfjgHpQ4bt-_6qzEckAakmUPUCAoJjSVcUw-FifaQ?e=XQGhZZ](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQC7-9lfjgHpQ4bt-_6qzEckAakmUPUCAoJjSVcUw-FifaQ?e=XQGhZZ)
