@@ -3553,6 +3553,39 @@ A continuación, se detalla la matriz de liderazgo y colaboración (LACX) para l
 
 #### 5.2.3.3. Sprint Backlog 3. 
 
+El sprint backlog 3 muestra las tareas que el equipo va a realizar para el desarrollo del backend de SkyCrop, incluyendo la creación de endpoints para acceder y registrar información de parcelas, drones, reportes, cultivos o diagnosticos.
+
+Enlace al tablero en Trello del Sprint Backlog 3: [https://trello.com/b/VkrnAQuf](https://trello.com/b/VkrnAQuf)
+
+A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacionada a las technical stories.
+
+<div align="center">
+<table border="1">
+  <tr>
+    <th>Sprint #</th>
+    <th colspan="7">Sprint 2</th>
+  </tr>
+
+  <tr>
+    <th colspan="2">User Story</th>
+    <th colspan="6">Work Item / Task</th>
+  </tr>
+
+  <tr>
+    <th>Story ID</th>
+    <th>Story Title</th>
+    <th>Task ID</th>
+    <th>Task Title</th>
+    <th>Task Description</th>
+    <th>Estimation (hours)</th>
+    <th>Assigned To</th>
+    <th>Status</th>
+  </tr>
+
+
+
+</table>
+</div>
 
 #### 5.2.3.4. Development Evidence for Sprint Review. 
 
