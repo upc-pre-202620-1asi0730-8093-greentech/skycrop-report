@@ -3563,7 +3563,7 @@ A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacio
 <table border="1">
   <tr>
     <th>Sprint #</th>
-    <th colspan="7">Sprint 2</th>
+    <th colspan="7">Sprint 3</th>
   </tr>
 
   <tr>
@@ -3662,12 +3662,31 @@ Vue.js. (s. f.). *[Style guide](https://vuejs.org/style-guide/)*. Recuperado el 
 
 ## Anexo A
 
-**Enlaces**
+**Enlaces importantes**
 
-Enlace al video de navegación al prototipo: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDnRI9W8acKTphuXimXgKQZAZwHkoPGAoMBGMpwR7lqt9Y?e=Dd7Czn&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D 
+Enlace a la organización de GitHub: [https://github.com/upc-pre-202620-1asi0730-8093-greentech](https://github.com/upc-pre-202620-1asi0730-8093-greentech)
 
-Enlace al video de entrevistas: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O
+Enlace al prototipo de la aplicación realizado en Figma: [https://www.figma.com/proto/1nlenowk3dSY0qdNiG6hYD/Dise%C3%B1o-UX-UI---SkyCrop?node-id=85-266&p=f&t=3mUFit5D9c68mFrX-1&scaling=min-zoom&content-scaling=fixed&page-id=5%3A2&starting-point-node-id=85%3A266](https://www.figma.com/proto/1nlenowk3dSY0qdNiG6hYD/Dise%C3%B1o-UX-UI---SkyCrop?node-id=85-266&p=f&t=3mUFit5D9c68mFrX-1&scaling=min-zoom&content-scaling=fixed&page-id=5%3A2&starting-point-node-id=85%3A266)
 
-Enlace al Sprint Navigation 2: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr
+Enlace a la landing page publicada en GitHub pages: [https://upc-pre-202620-1asi0730-8093-greentech.github.io/skycrop-website/](https://upc-pre-202620-1asi0730-8093-greentech.github.io/skycrop-website/)
 
-Enlace al video de exposición: https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQC7-9lfjgHpQ4bt-_6qzEckAakmUPUCAoJjSVcUw-FifaQ?e=XQGhZZ
+Enlace al frontend web application de SkyCrop desplegado en Vercel: [https://skycrop-website.vercel.app/home](https://skycrop-website.vercel.app/home)
+
+Enlace al video de entrevistas de Needfinding: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O)
+
+Enlace al video de prototype navigation: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDnRI9W8acKTphuXimXgKQZAZwHkoPGAoMBGMpwR7lqt9Y?e=Dd7Czn&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDnRI9W8acKTphuXimXgKQZAZwHkoPGAoMBGMpwR7lqt9Y?e=Dd7Czn&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) 
+
+Enlace al video de product navigation del Sprint 2: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr)
+
+
+
+
+<div style="page-break-after: always;"></div>
+
+## Anexo B
+
+**Videos de exposiciones**
+
+Enlace al video de exposición AV1: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDCsoPNGUqFRprILkG3WFMaAQpymOwlq8gjK6qwOCvKCbo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5zRtRI](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDCsoPNGUqFRprILkG3WFMaAQpymOwlq8gjK6qwOCvKCbo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=5zRtRI)
+
+Enlace al video de exposición TB1: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQC7-9lfjgHpQ4bt-_6qzEckAakmUPUCAoJjSVcUw-FifaQ?e=XQGhZZ](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQC7-9lfjgHpQ4bt-_6qzEckAakmUPUCAoJjSVcUw-FifaQ?e=XQGhZZ)
