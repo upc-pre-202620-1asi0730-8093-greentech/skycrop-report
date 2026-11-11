@@ -1,92 +1,55 @@
-<div align="center" style="margin-top: -5px; font-size: 18pt;">
-
-<img src="resources/imgs/UPC_logo_transparente.png"
-alt="UPC_logo_transparente"
-style="width: 15%; height: auto;">
-
-<br>
-Universidad Peruana de Ciencias Aplicadas
-
-Carrera de Ingeniería de Software
-
-**1ASI0730**
-
-**Aplicaciones Web**
-
-NRC
-
-**8093**
-
-**Informe del Trabajo Final**
-
-Docente
-
-**Bautista Ubillús, Efrain Ricardo**
-
-Equipo
-
-**GreenTech**
-
-Proyecto
-
-**SkyCrop**
-
-
-**Integrantes**
-
-<table style="border: none; border-collapse: collapse;">
-<tr>
-<td style="border: none;">
-  <strong>Código</strong>
-</td>
-<td style="border: none;">
-  <strong>Apellidos y Nombres</strong>
-</td>
-</tr>
-
-<tr>
-<td style="border: none;">U202423973
-</td>
-<td style="border: none;">Landa Sánchez, Sunio Danilo
-</td>
-</tr>
-
-<tr>
-<td style="border: none;">U202423775
-</td>
-<td style="border: none;">Cano Gomez, Yam Antony
-</td>
-</tr>
-
-<tr>
-<td style="border: none;">U202312912
-</td>
-<td style="border: none;">Jonseck Choque, Oliver
-</td>
-</tr>
-
-<tr>
-<td style="border: none;">U202310349
-</td>
-<td style="border: none;">Rubio Ortiz, Luis Sebastián
-</td>
-</tr>
-
-<tr>
-<td style="border: none;">U202219266
-</td>
-<td style="border: none;">Pumahualcca Garcia, Diego Rodrigo
-</td>
-</tr>
-</table>
-
-**Período 202620**
-
-**Octubre 2026**
-
+<div align="center" style="font-family: Arial, sans-serif; color: #000; font-size: 11pt; line-height: 1.3; text-align: center; margin: 0; padding-top: 24px; break-inside: avoid; page-break-inside: avoid;">
+  <img src="resources/imgs/UPC_logo_transparente.png" alt="Logo UPC" style="display: block; width: 75px; height: auto; margin: 0 auto 22px;">
+  <div style="margin-bottom: 10px;">Universidad Peruana de Ciencias Aplicadas</div>
+  <div style="margin-bottom: 34px;">Carrera de Ingeniería de Software</div>
+  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 12px;">1ASI0730</div>
+  <div style="font-size: 14pt; font-weight: bold; margin-bottom: 12px;">Aplicaciones Web</div>
+  <div style="margin-bottom: 10px;">NRC</div>
+  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 14px;">8093</div>
+  <div style="font-size: 16pt; font-weight: bold; margin-bottom: 14px;">Informe del Trabajo Final</div>
+  <div style="margin-bottom: 10px;">Docente</div>
+  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 34px;">Bautista Ubillús, Efrain Ricardo</div>
+  <div style="margin-bottom: 10px;">Equipo</div>
+  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 12px;">GreenTech</div>
+  <div style="margin-bottom: 10px;">Proyecto</div>
+  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 32px;">SkyCrop</div>
+  <div style="font-size: 11pt; font-weight: bold; margin-bottom: 8px;">Integrantes</div>
+  <table align="center" style="display: table; width: auto; margin: 0 auto 30px; border: none; border-collapse: collapse; table-layout: auto; color: #000; font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.3;">
+    <thead>
+      <tr style="border: none; background: transparent;">
+        <th style="border: none; background: transparent; color: #000; padding: 4px 14px 8px 0; text-align: left; font-weight: bold;">Código</th>
+        <th style="border: none; background: transparent; color: #000; padding: 4px 0 8px; text-align: left; font-weight: bold;">Apellidos y Nombres</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border: none; background: transparent;">
+        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202423973</td>
+        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Landa Sánchez, Sunio Danilo</td>
+      </tr>
+      <tr style="border: none; background: transparent;">
+        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202423775</td>
+        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Cano Gomez, Yam Antony Gabriel</td>
+      </tr>
+      <tr style="border: none; background: transparent;">
+        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202312912</td>
+        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Jonseck Choque, Oliver</td>
+      </tr>
+      <tr style="border: none; background: transparent;">
+        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202310349</td>
+        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Rubio Ortiz, Luis Sebastián</td>
+      </tr>
+      <tr style="border: none; background: transparent;">
+        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202219266</td>
+        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Pumahualcca Garcia, Diego Rodrigo</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font-weight: bold; margin-bottom: 30px;">Período 202620</div>
+  <div style="font-weight: bold;">Octubre 2026</div>
 </div>
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always; break-after: page;"></div>
+
 
 # Registro de Versiones del Informe
 
