@@ -2046,7 +2046,7 @@ Los componentes organizan la navegación, las funcionalidades y beneficios, los 
 
 **Frontend Web Application: vista general**
 
-La vista general organiza el frontend en Presentation, Application, Domain e Infrastructure. Presentation reúne el layout y las vistas de los ocho contextos, en el orden del catálogo del dominio. Los stores de Application coordinan las acciones y el estado; los modelos de Domain representan los datos del cliente; los clientes del API, assemblers y el cliente HTTP pertenecen a Infrastructure. La propuesta utiliza Vue, JavaScript y PrimeVue, con soporte para inglés y español, diseño adaptable y atributos ARIA.
+La vista general organiza el frontend en Presentation, Application, Domain e Infrastructure. Presentation reúne el layout y las vistas de los ocho contextos, en el orden del catálogo del dominio. Los stores de Application coordinan las acciones y el estado; los modelos de Domain representan los datos del cliente; los clientes del API, assemblers y el cliente HTTP pertenecen a Infrastructure. La propuesta utiliza Vue, JavaScript y PrimeVue, con soporte para inglés y español, diseño adaptable y atributos ARIA. La vista agrupa los componentes de cada capa en core, soporte y genéricos; Crops pertenece a Agricultural Plot Management y Shared reúne componentes transversales, sin constituir un Bounded Context. El API RESTful representa el destino de la arquitectura propuesta; la implementación actual del frontend consume la mock API.
 
 <img src="resources/imgs/Software Architecture Diagram/Components-Frontend.png" alt="C4: vista general de componentes del frontend de SkyCrop">
 
@@ -2067,7 +2067,7 @@ Las vistas individuales agrupan los componentes por capa dentro de cada Bounded 
 | Domain | Modelos de datos utilizados por el cliente. | Agregados, entidades, objetos de valor, reglas y contratos de repositorio. |
 | Infrastructure | Clientes del API, assemblers y transporte HTTP compartido. | Repositorios con Entity Framework Core y adaptadores externos. |
 
-En el frontend, las vistas delegan las acciones al store del contexto. El cliente del API utiliza el transporte HTTP compartido y el assembler construye los modelos a partir de las respuestas. Estos modelos facilitan la interacción del cliente; las reglas de negocio y su validación autoritativa permanecen en el backend.
+En el frontend, las vistas delegan las acciones al store del contexto. El store invoca el cliente del API y solicita al assembler la conversión de los recursos de entrada y salida. El cliente del API utiliza el transporte HTTP compartido; el assembler construye los modelos sin efectuar solicitudes HTTP. Estos modelos facilitan la interacción del cliente; las reglas de negocio y su validación autoritativa permanecen en el backend.
 
 En el backend, los servicios de aplicación utilizan contratos de repositorio e integración, cuyas implementaciones pertenecen a Infrastructure. El dominio no depende de Entity Framework Core ni de los proveedores externos. Las vistas describen la arquitectura propuesta y complementan el diseño de clases de la sección 4.7.1.
 

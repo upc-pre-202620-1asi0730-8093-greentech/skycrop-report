@@ -42,7 +42,7 @@ view2 --> state : Reads state / requests actions
 state --> apiclient : Invokes operations
 state --> model : Manages client data
 assembler --> model : Builds models
-apiclient --> assembler : Transforms responses
+state --> assembler : Maps request / response resources
 apiclient --> http : Sends requests
 http --> api : REST [HTTPS / JSON]
 legend bottom
