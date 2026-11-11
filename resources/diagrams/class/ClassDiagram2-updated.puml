@@ -73,7 +73,7 @@ class Drone <<aggregate root>> {
 -ownerId: Long
 -id: Long
 -serialNumber: DroneSerialNumber
--model: String
+-model: Name
 -batteryLevel: Percentage
 -range: Distance
 -status: DroneStatus
@@ -93,9 +93,9 @@ interface DroneController  {
 }
 class DroneConfiguration  {
 -id: Long
--connectionSettings: String
--flightSettings: String
--securitySettings: String
+-connectionSettings: ConnectionSettings
+-flightSettings: FlightParameters
+-securitySettings: SecuritySettings
 +configure(): void
 +updateSettings(): void
 +applyToDrone(droneId: Long): void
@@ -290,4 +290,37 @@ AerialImage "1" *-- "1" ImageResolution : resolution
 AerialImage "1" *-- "1" ResourceUrl : fileUrl
 PlotMap "1" *-- "1" ResourceUrl : mapUrl
 CloudStorageService ..> ResourceUrl : file location
+class FlightParameters <<value object>> {
+-altitude: Altitude {readOnly}
+-speed: Speed {readOnly}
+}
+note right of FlightParameters
+Positive altitude in meters and speed in meters per second.
+Device limits are checked by the flight planning policy.
+Equality compares altitude and speed; updates replace both values.
+end note
+class ConnectionSettings <<value object>> {
+-endpoint: String {readOnly}
+-protocol: String {readOnly}
+}
+note right of ConnectionSettings
+Non-empty absolute endpoint and a supported protocol.
+The device adapter validates protocol and endpoint compatibility.
+Equality compares both values; credentials are not embedded.
+end note
+class SecuritySettings <<value object>> {
+-requiresAuthentication: boolean {readOnly}
+-requiresEncryptedTransport: boolean {readOnly}
+}
+note right of SecuritySettings
+Explicit device authentication and transport requirements.
+The connection policy rejects unsupported combinations.
+Stores no password or secret; equality compares both flags.
+end note
+Drone "1" *-- "1" Name : model
+DroneConfiguration "1" *-- "1" ConnectionSettings : connectionSettings
+DroneConfiguration "1" *-- "1" FlightParameters : flightSettings
+DroneConfiguration "1" *-- "1" SecuritySettings : securitySettings
+FlightParameters "1" *-- "1" Altitude : altitude
+FlightParameters "1" *-- "1" Speed : speed
 @enduml

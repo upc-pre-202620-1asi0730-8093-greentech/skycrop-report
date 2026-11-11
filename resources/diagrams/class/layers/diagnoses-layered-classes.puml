@@ -5,9 +5,9 @@ skinparam classAttributeIconSize 0
 skinparam dpi 120
 scale max 2800 width
 hide empty members
-top to bottom direction
+left to right direction
 title SkyCrop - Diagnoses Generation - Layered Class Design
-package "Interfaces / Presentation" {
+package "Interfaces / Presentation" as interfacesLayer {
 class DiagnosisController <<controller>> {
 -service: IDiagnosisApplicationService
 +generate(request: GenerateDiagnosisRequest): DiagnosisResource
@@ -24,7 +24,7 @@ class DiagnosisResourceAssembler <<assembler>> {
 +toResource(entity: Diagnosis): DiagnosisResource
 }
 }
-package "Application" {
+package "Application" as applicationLayer {
 class GenerateDiagnosisCommand <<command>> {
 -plotId: Long
 -imageIds: List<Long>
@@ -39,7 +39,7 @@ class DiagnosisApplicationService <<application service>> {
 +getById(id: Long): DiagnosisResource
 }
 }
-package "Domain" {
+package "Domain" as domainLayer {
 class Diagnosis <<aggregate root>> {
 -id: Long
 -generatedAt: Timestamp
@@ -51,7 +51,7 @@ interface IDiagnosisRepository <<repository contract>> {
 +save(entity: Diagnosis): void
 }
 }
-package "Infrastructure" {
+package "Infrastructure" as infrastructureLayer {
 class DiagnosisRepository <<repository>> {
 -dbContext: SkyCropDbContext
 +findById(id: Long): Diagnosis [0..1]
@@ -75,12 +75,12 @@ DiagnosisResourceAssembler ..> DiagnosisResource : produces
 DiagnosisRepository ..|> IDiagnosisRepository
 IDiagnosisRepository ..> Diagnosis : persistence contract
 DiagnosisRepository --> SkyCropDbContext : data access
-package "Application" {
+package "Application" as applicationLayer {
 interface IImageAnalysis <<integration contract>> {
 +analyze(imageIds: List<Long>): String
 }
 }
-package "Infrastructure" {
+package "Infrastructure" as infrastructureLayer {
 class ImageAnalysisAdapter <<adapter>> {
 +analyze(imageIds: List<Long>): String
 }
@@ -99,4 +99,23 @@ The view shows a context use case and retrieval by identifier.
 Aggregate attributes are detailed in the domain views.
 Infrastructure dependencies implement internal contracts.
 endlegend
+package "Domain" as domainLayer {
+class TerrainData <<entity>> {
+-id: Long
+-pH: PhLevel
+}
+class PhLevel <<value object>> {
+-value: Decimal {readOnly}
+}
+note right of PhLevel
+Finite dimensionless value in [0, 14] for the soil model.
+Equality compares the numeric value; updates create a new value.
+Crop-specific thresholds belong to AgronomicRule.
+end note
+}
+Diagnosis "1" *-- "0..1" TerrainData : analyzed
+TerrainData "1" *-- "1" PhLevel : pH
+interfacesLayer -[hidden]down-> applicationLayer
+applicationLayer -[hidden]down-> domainLayer
+domainLayer -[hidden]down-> infrastructureLayer
 @enduml

@@ -74,8 +74,8 @@ interface PaymentProcessor  {
 class Account <<aggregate root>> {
 -userId: Long
 -id: Long
--username: String
--passwordHash: String
+-username: Username
+-passwordHash: PasswordHash
 -status: AccountStatus
 +create(): void
 +authenticate(): boolean
@@ -228,4 +228,23 @@ note bottom of TwoFactorAuthentication
 verifiedAt may be absent before verification.
 RecoveryCode expires when now >= expiresAt.
 end note
+class Username <<value object>> {
+-value: String {readOnly}
+}
+note right of Username
+Non-empty text after trimming outer whitespace.
+Preserves case; equality compares the stored value.
+Account uniqueness follows the identity policy.
+end note
+class PasswordHash <<value object>> {
+-encodedValue: String {readOnly}
+}
+note right of PasswordHash
+Non-empty encoded output of the credential hasher.
+Contains the algorithm parameters required by the verifier.
+Never stores plaintext or appears in HTTP responses.
+Equality compares the encoded representation.
+end note
+Account "1" *-- "1" Username : username
+Account "1" *-- "1" PasswordHash : passwordHash
 @enduml

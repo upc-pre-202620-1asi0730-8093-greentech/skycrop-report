@@ -1,5 +1,38 @@
 @startuml
-skinparam monochrome true
+' C4 palette: people, systems, containers, components and external systems.
+skinparam monochrome false
+skinparam backgroundColor #ffffff
+skinparam actorStyle rectangle
+skinparam actor {
+  BackgroundColor #08427b
+  BorderColor #08427b
+  FontColor #ffffff
+}
+skinparam component {
+  BackgroundColor #85bbf0
+  BorderColor #5b8bb1
+  FontColor #000000
+  BackgroundColor<<container>> #438dd5
+  BorderColor<<container>> #2e6295
+  FontColor<<container>> #ffffff
+  BackgroundColor<<external>> #999999
+  BorderColor<<external>> #777777
+  FontColor<<external>> #ffffff
+  BackgroundColor<<system>> #1168bd
+  BorderColor<<system>> #0b4884
+  FontColor<<system>> #ffffff
+}
+skinparam database {
+  BackgroundColor #438dd5
+  BorderColor #2e6295
+  FontColor #ffffff
+}
+skinparam rectangle {
+  BackgroundColor #ffffff
+  BorderColor #777777
+  FontColor #000000
+}
+skinparam ArrowColor #555555
 skinparam shadowing false
 skinparam dpi 120
 skinparam defaultFontName SansSerif
@@ -9,7 +42,7 @@ skinparam nodesep 35
 skinparam ranksep 45
 top to bottom direction
 title SkyCrop - C4 - Profiles and Preferences Management - backend
-component "Frontend Web Application\n[Container: Vue]\n\nRequests context operations." as web
+component "Frontend Web Application\n[Container: Vue]\n\nRequests context operations." as web <<container>>
 rectangle "Backend RESTful API\n[Container: C# / ASP.NET Core]" {
 rectangle "Profiles and Preferences Management" {
 rectangle "Interfaces / Presentation" {

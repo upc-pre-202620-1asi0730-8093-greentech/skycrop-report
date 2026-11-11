@@ -5,9 +5,9 @@ skinparam classAttributeIconSize 0
 skinparam dpi 120
 scale max 2800 width
 hide empty members
-top to bottom direction
+left to right direction
 title SkyCrop - IAM — Identity and Access Management - Layered Class Design
-package "Interfaces / Presentation" {
+package "Interfaces / Presentation" as interfacesLayer {
 class AccountController <<controller>> {
 -service: IAccountApplicationService
 +authenticate(request: AuthenticateRequest): AccessTokenResource
@@ -24,7 +24,7 @@ class AccessTokenIssuer <<token issuer>> {
 +issue(accountId: Long): AccessTokenResource
 }
 }
-package "Application" {
+package "Application" as applicationLayer {
 class AuthenticateCommand <<command>> {
 -username: String
 -password: String
@@ -37,23 +37,23 @@ class AccountApplicationService <<application service>> {
 +authenticate(command: AuthenticateCommand): AccessTokenResource
 }
 }
-package "Domain" {
+package "Domain" as domainLayer {
 class Account <<aggregate root>> {
 -id: Long
--username: String
--passwordHash: String
+-username: Username
+-passwordHash: PasswordHash
 -status: AccountStatus
 +authenticate(): boolean
 }
 interface IAccountRepository <<repository contract>> {
-+findByUsername(username: String): Account [0..1]
++findByUsername(username: Username): Account [0..1]
 +save(entity: Account): void
 }
 }
-package "Infrastructure" {
+package "Infrastructure" as infrastructureLayer {
 class AccountRepository <<repository>> {
 -dbContext: SkyCropDbContext
-+findByUsername(username: String): Account [0..1]
++findByUsername(username: Username): Account [0..1]
 +save(entity: Account): void
 }
 class SkyCropDbContext <<EF Core>> {
@@ -73,14 +73,14 @@ AccessTokenIssuer ..> AccessTokenResource : produces
 AccountRepository ..|> IAccountRepository
 IAccountRepository ..> Account : persistence contract
 AccountRepository --> SkyCropDbContext : data access
-package "Application" {
+package "Application" as applicationLayer {
 interface ICredentialVerifier <<integration contract>> {
-+verify(password: String, passwordHash: String): boolean
++verify(password: String, passwordHash: PasswordHash): boolean
 }
 }
-package "Infrastructure" {
+package "Infrastructure" as infrastructureLayer {
 class PasswordHashVerifier <<adapter>> {
-+verify(password: String, passwordHash: String): boolean
++verify(password: String, passwordHash: PasswordHash): boolean
 }
 }
 AccountApplicationService --> ICredentialVerifier : requests an operation
@@ -97,4 +97,33 @@ The view shows a context use case and credential verification.
 Aggregate attributes are detailed in the domain views.
 Infrastructure dependencies implement internal contracts.
 endlegend
+package "Domain" as domainLayer {
+class Username <<value object>> {
+-value: String {readOnly}
+}
+note right of Username
+Non-empty text after trimming outer whitespace.
+Preserves case; equality compares the stored value.
+Account uniqueness follows the identity policy.
+end note
+class PasswordHash <<value object>> {
+-encodedValue: String {readOnly}
+}
+note right of PasswordHash
+Non-empty encoded output of the credential hasher.
+Contains the algorithm parameters required by the verifier.
+Never stores plaintext or appears in HTTP responses.
+Equality compares the encoded representation.
+end note
+}
+Account "1" *-- "1" Username : username
+Account "1" *-- "1" PasswordHash : passwordHash
+note right of AuthenticateCommand
+HTTP input remains plain text. The use case constructs Username
+before querying the account and verifies the supplied password
+against the stored PasswordHash without returning it.
+end note
+interfacesLayer -[hidden]down-> applicationLayer
+applicationLayer -[hidden]down-> domainLayer
+domainLayer -[hidden]down-> infrastructureLayer
 @enduml

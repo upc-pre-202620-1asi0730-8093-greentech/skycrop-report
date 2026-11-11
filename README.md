@@ -2036,7 +2036,7 @@ La arquitectura propuesta de SkyCrop comprende una Landing Page desarrollada con
 
 ### 4.6.4. Software Architecture Components Diagrams.
 
-Las vistas C4 de componentes describen la estructura interna de la landing, la aplicación web y el backend RESTful API de la arquitectura propuesta. Cada componente incluye su tecnología y responsabilidad; las relaciones indican las operaciones o los protocolos de comunicación. Los Bounded Contexts agrupan responsabilidades dentro de cada contenedor y no representan unidades de despliegue independientes.
+Las vistas C4 de componentes describen la estructura interna de la landing, la aplicación web y el backend RESTful API de la arquitectura propuesta. Cada componente incluye su tecnología y responsabilidad; las relaciones indican las operaciones o los protocolos de comunicación. Los Bounded Contexts agrupan responsabilidades dentro de cada contenedor y no representan unidades de despliegue independientes. La notación conserva la paleta C4: personas en azul oscuro (`#08427b`), sistemas en azul (`#1168bd`), contenedores en azul claro (`#438dd5`), componentes en celeste (`#85bbf0`) y sistemas externos en gris (`#999999`). Los componentes utilizan texto negro; los demás elementos coloreados, texto blanco. Los límites de capas y contextos mantienen fondo blanco para distinguir las agrupaciones de los elementos arquitectónicos.
 
 **Landing Page**
 
@@ -2046,7 +2046,7 @@ Los componentes organizan la navegación, las funcionalidades y beneficios, los 
 
 **Frontend Web Application: vista general**
 
-La vista general organiza el frontend en Presentation, Application, Domain e Infrastructure. Presentation reúne el layout y las vistas de los ocho contextos, en el orden del catálogo del dominio. Los stores de Application coordinan las acciones y el estado; los modelos de Domain representan los datos del cliente; los clientes del API, assemblers y el cliente HTTP pertenecen a Infrastructure. La propuesta utiliza Vue, JavaScript y PrimeVue, con soporte para inglés y español, diseño adaptable y atributos ARIA.
+La vista general organiza el frontend en Presentation, Application, Domain e Infrastructure. Presentation reúne el layout y las vistas de los ocho contextos, en el orden del catálogo del dominio. Los stores de Application coordinan las acciones y el estado; los modelos de Domain representan los datos del cliente; los clientes del API, assemblers y el cliente HTTP pertenecen a Infrastructure. La propuesta utiliza Vue, JavaScript y PrimeVue, con soporte para inglés y español, diseño adaptable y atributos ARIA. La vista agrupa los componentes de cada capa en core, soporte y genéricos; Crops pertenece a Agricultural Plot Management y Shared reúne componentes transversales, sin constituir un Bounded Context. El API RESTful representa el destino de la arquitectura propuesta; la implementación actual del frontend consume la mock API.
 
 <img src="resources/imgs/Software Architecture Diagram/Components-Frontend.png" alt="C4: vista general de componentes del frontend de SkyCrop">
 
@@ -2067,7 +2067,7 @@ Las vistas individuales agrupan los componentes por capa dentro de cada Bounded 
 | Domain | Modelos de datos utilizados por el cliente. | Agregados, entidades, objetos de valor, reglas y contratos de repositorio. |
 | Infrastructure | Clientes del API, assemblers y transporte HTTP compartido. | Repositorios con Entity Framework Core y adaptadores externos. |
 
-En el frontend, las vistas delegan las acciones al store del contexto. El cliente del API utiliza el transporte HTTP compartido y el assembler construye los modelos a partir de las respuestas. Estos modelos facilitan la interacción del cliente; las reglas de negocio y su validación autoritativa permanecen en el backend.
+En el frontend, las vistas delegan las acciones al store del contexto. El store invoca el cliente del API y solicita al assembler la conversión de los recursos de entrada y salida. El cliente del API utiliza el transporte HTTP compartido; el assembler construye los modelos sin efectuar solicitudes HTTP. Estos modelos facilitan la interacción del cliente; las reglas de negocio y su validación autoritativa permanecen en el backend.
 
 En el backend, los servicios de aplicación utilizan contratos de repositorio e integración, cuyas implementaciones pertenecen a Infrastructure. El dominio no depende de Entity Framework Core ni de los proveedores externos. Las vistas describen la arquitectura propuesta y complementan el diseño de clases de la sección 4.7.1.
 
@@ -2232,6 +2232,20 @@ La revisión incorpora tipos para medidas, identificación de drones y recursos 
 | `Temperature` | Temperatura de `TerrainData` y `WeatherData`. | Valor expresado en grados Celsius; admite valores negativos. Igualdad por el valor en esa unidad. Los umbrales agronómicos corresponden a la regla aplicable. |
 | `Precipitation` | Precipitación de `WeatherData`. | Acumulado no negativo en milímetros para el intervalo informado por el proveedor meteorológico. Igualdad por milímetros; las comparaciones requieren intervalos compatibles. |
 
+
+La revisión de los atributos del dominio también incorpora los siguientes valores. Esta propuesta no supone que todos ellos estén implementados en el backend actual.
+
+| Value Object | Uso | Invariantes e igualdad |
+|---|---|---|
+| `Username` | Identificación de la cuenta en IAM. | Texto no vacío después de quitar espacios externos; conserva mayúsculas y minúsculas. Igualdad por el texto almacenado. La unicidad corresponde a la política de identidad. |
+| `PasswordHash` | Credencial almacenada de `Account`. | Representación codificada no vacía producida por el servicio de hash, con los parámetros necesarios para verificarla. No contiene la contraseña en texto plano ni se devuelve en respuestas HTTP. Igualdad por la representación codificada. |
+| `PhLevel` | pH de `TerrainData`. | Valor numérico finito entre 0 y 14 para este modelo de suelo, sin unidad. Igualdad numérica; los umbrales por cultivo corresponden a `AgronomicRule`. |
+| `FlightParameters` | Parámetros de vuelo de `DroneConfiguration`. | Altura y velocidad positivas, expresadas mediante `Altitude` y `Speed`. Igualdad por ambos valores; los límites del dispositivo se validan por separado. |
+| `ConnectionSettings` | Conexión del dron. | Endpoint absoluto no vacío y protocolo admitido por el adaptador, compatibles entre sí. Igualdad por ambos valores; no incorpora credenciales en el endpoint. |
+| `SecuritySettings` | Requisitos de seguridad de la conexión del dron. | Requisitos explícitos de autenticación y transporte cifrado, cuya combinación debe ser compatible con el dispositivo. Igualdad por ambos indicadores; no almacena secretos. |
+
+`Drone.model` reutiliza `Name` para exigir un texto no vacío, sin añadir otro tipo con las mismas reglas. Los tipos primitivos permanecen como representación interna de los objetos de valor y en los contratos HTTP. Los indicadores booleanos, los identificadores y los textos libres, como observaciones o contenido del reporte, se conservan cuando no existe una regla de dominio adicional que justifique otro objeto. Las vistas por capas de IAM, Drone Management y Diagnoses Generation reflejan los mismos tipos y relaciones de composición de las vistas generales.
+
 El título de `Report` utiliza `Name`, que ya representa texto no vacío. Las vistas que repiten un objeto de valor conservan su nombre, estructura y reglas. Los identificadores de agregados siguen representados mediante `Long`; no se añaden tipos sin comportamiento propio para cada identificador.
 
 Todos estos valores se validan al construirlos y se sustituyen completos al cambiar; no tienen setters ni identificadores. Un teléfono o una dirección no proporcionados se representan por ausencia del objeto, en lugar de crear valores vacíos. `verifiedAt` permanece ausente antes de verificar el segundo factor. En un vuelo, el inicio y el fin permanecen ausentes hasta sus respectivos eventos y, cuando ambos existen, el fin no puede preceder al inicio. Un código de recuperación deja de ser válido al alcanzar su instante de vencimiento.
@@ -2258,7 +2272,7 @@ Las tres vistas generales siguientes agrupan varios contextos para mostrar sus r
 Esta vista muestra a `Diagnosis` como raíz del agregado que contiene los resultados del análisis, las anomalías, el mapa y la entrada del historial. `AgronomicRule` mantiene las reglas utilizadas durante el análisis. `Report` conserva las referencias a los diagnósticos incluidos mediante `diagnosisIds`, mientras que `Notification` identifica al destinatario mediante `recipientId` y relaciona los avisos de anomalías con `diagnosisId` y `anomalyId`.
 
 <div align="center">
-<img src="resources/imgs/Diagrams/ClassDiagram3-updated.png" alt="Agregados de diagnósticos, reportes y notificaciones" width="600">
+<img src="resources/imgs/Diagrams/ClassDiagram3-updated.png" alt="Agregados de diagnósticos, reportes y notificaciones" width="1200">
 </div>
 
 **Agricultural Plot Management y Drone Management**
@@ -2266,7 +2280,7 @@ Esta vista muestra a `Diagnosis` como raíz del agregado que contiene los result
 `AgriculturalPlot` contiene los cultivos y el mapa de la parcela, y relaciona a los usuarios autorizados mediante `ownerId` y `memberIds`. `Drone` contiene su configuración. `FlightPlan` referencia la parcela mediante `plotId`, y `Flight` relaciona el plan y el dron mediante `flightPlanId` y `droneId`. Las imágenes capturadas pertenecen al agregado del vuelo.
 
 <div align="center">
-<img src="resources/imgs/Diagrams/ClassDiagram2-updated.png" alt="Agregados de parcelas y drones" width="600">
+<img src="resources/imgs/Diagrams/ClassDiagram2-updated.png" alt="Agregados de parcelas y drones" width="1200">
 </div>
 
 **Subscriptions and Payment Management, Profiles and Preferences Management e IAM**
@@ -2274,7 +2288,7 @@ Esta vista muestra a `Diagnosis` como raíz del agregado que contiene los result
 `Subscription` administra la vigencia y el estado de la suscripción. Cada `Payment` conserva su propio estado y referencia la suscripción mediante `subscriptionId`. `UserProfile` relaciona los datos del perfil con `userId`. En IAM, `User` representa la identidad del usuario y `Account` administra las credenciales, la autenticación de dos factores y los códigos de recuperación. `Account.userId` relaciona ambos agregados.
 
 <div align="center">
-<img src="resources/imgs/Diagrams/ClassDiagram1-updated.png" alt="Agregados de suscripciones, perfiles e IAM" width="600">
+<img src="resources/imgs/Diagrams/ClassDiagram1-updated.png" alt="Agregados de suscripciones, perfiles e IAM" width="1200">
 </div>
 
 **Diseño de clases por capas**
@@ -2297,7 +2311,7 @@ Los requests contienen los datos recibidos por el API; los comandos expresan la 
 La generación de un diagnóstico recibe el identificador de la parcela y los de las imágenes. El servicio de aplicación solicita el análisis mediante `IImageAnalysis`, coordina el agregado `Diagnosis` y utiliza `IDiagnosisRepository` para su persistencia.
 
 <div align="center">
-<img src="resources/imgs/Diagrams/layers/diagnoses-layered-classes.png" alt="Diseño de clases por capas de Diagnoses Generation" width="700">
+<img src="resources/imgs/Diagrams/layers/diagnoses-layered-classes.png" alt="Diseño de clases por capas de Diagnoses Generation" width="1200">
 </div>
 
 **Report Management**
@@ -2321,7 +2335,7 @@ El registro de una parcela recibe nombre, superficie, ubicación e identificador
 El registro de un dron relaciona el dispositivo con su propietario. `DroneApplicationService` utiliza `IDroneRepository` para conservar sus datos e `IDroneGateway` para encapsular la conexión con el dispositivo.
 
 <div align="center">
-<img src="resources/imgs/Diagrams/layers/drones-layered-classes.png" alt="Diseño de clases por capas de Drone Management" width="700">
+<img src="resources/imgs/Diagrams/layers/drones-layered-classes.png" alt="Diseño de clases por capas de Drone Management" width="1200">
 </div>
 
 **Subscriptions and Payment Management**
@@ -2353,7 +2367,7 @@ El envío de una notificación recibe el destinatario, el mensaje y las referenc
 La autenticación consulta la cuenta mediante el nombre de usuario. `ICredentialVerifier` verifica la contraseña contra el hash almacenado y `AccessTokenIssuer` produce el recurso de acceso. El repositorio mantiene separada la consulta de credenciales de la respuesta HTTP.
 
 <div align="center">
-<img src="resources/imgs/Diagrams/layers/iam-layered-classes.png" alt="Diseño de clases por capas de IAM — Identity and Access Management" width="700">
+<img src="resources/imgs/Diagrams/layers/iam-layered-classes.png" alt="Diseño de clases por capas de IAM — Identity and Access Management" width="1200">
 </div>
 
 ## 4.8. Database Design.
