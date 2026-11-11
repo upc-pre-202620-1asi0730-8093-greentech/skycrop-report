@@ -56,7 +56,7 @@ class TerrainData  {
 -humidity: Percentage
 -temperature: Temperature
 -nutrients: String
--pH: Decimal
+-pH: PhLevel
 +update(): void
 }
 class AerialImage <<external reference>> {
@@ -300,4 +300,13 @@ WeatherData ..> Timestamp : recordedAt
 TerrainMap "1" *-- "1" ResourceUrl : mapUrl
 TerrainMap "1" *-- "1" ImageResolution : resolution
 CloudStorageService ..> ResourceUrl : stored resource location
+class PhLevel <<value object>> {
+-value: Decimal {readOnly}
+}
+note right of PhLevel
+Finite dimensionless value in [0, 14] for the soil model.
+Equality compares the numeric value; updates create a new value.
+Crop-specific thresholds belong to AgronomicRule.
+end note
+TerrainData "1" *-- "1" PhLevel : pH
 @enduml
