@@ -1,6 +1,41 @@
 @startuml
-!pragma layout smetana
-skinparam monochrome true
+' C4 palette: people, systems, containers, components and external systems.
+skinparam monochrome false
+skinparam backgroundColor #ffffff
+skinparam actorStyle rectangle
+skinparam actor {
+  BackgroundColor #08427b
+  BorderColor #08427b
+  FontColor #ffffff
+}
+skinparam component {
+  BackgroundColor #85bbf0
+  BorderColor #5b8bb1
+  FontColor #000000
+  BackgroundColor<<container>> #438dd5
+  BorderColor<<container>> #2e6295
+  FontColor<<container>> #ffffff
+  BackgroundColor<<external>> #999999
+  BorderColor<<external>> #777777
+  FontColor<<external>> #ffffff
+  BackgroundColor<<system>> #1168bd
+  BorderColor<<system>> #0b4884
+  FontColor<<system>> #ffffff
+}
+skinparam database {
+  BackgroundColor #438dd5
+  BorderColor #2e6295
+  FontColor #ffffff
+}
+skinparam rectangle {
+  BackgroundColor<<person>> #08427b
+  BorderColor<<person>> #08427b
+  FontColor<<person>> #ffffff
+  BackgroundColor #ffffff
+  BorderColor #777777
+  FontColor #000000
+}
+skinparam ArrowColor #555555
 skinparam shadowing false
 skinparam dpi 120
 skinparam defaultFontName SansSerif
@@ -10,7 +45,7 @@ skinparam nodesep 35
 skinparam ranksep 50
 top to bottom direction
 title SkyCrop - C4 - Frontend Components by Layer
-actor "Farmer / Agronomist" as user
+rectangle "Farmer / Agronomist\n[Person]" as user <<person>>
 rectangle "Frontend Web Application\n[Container: Vue / JavaScript / PrimeVue]" {
 rectangle "Presentation" {
 component "Shared Layout and Router\n[Vue / Vue Router]\n\nNavigation, language selection and page composition." as layout
@@ -35,8 +70,8 @@ component "Shared HTTP Client\n[Axios / JavaScript]\n\nBase URL, headers and HTT
 component "Map Adapter\n[Leaflet / JavaScript]\n\nMap tiles and geocoding requests." as mapsAdapter
 }
 }
-component "RESTful API\n[External container: ASP.NET Core]\n\nTarget backend contracts; the current client uses the mock API." as api
-component "Map Providers\n[External systems]\n\nMap tiles and geocoding." as maps
+component "RESTful API\n[Container: ASP.NET Core]\n\nTarget backend contracts; the current client uses the mock API." as api <<container>>
+component "Map Providers\n[External systems]\n\nMap tiles and geocoding." as maps <<external>>
 user --> layout : Interacts
 layout --> coreViews : Displays
 layout --> supportingViews : Displays

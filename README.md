@@ -2036,7 +2036,7 @@ La arquitectura propuesta de SkyCrop comprende una Landing Page desarrollada con
 
 ### 4.6.4. Software Architecture Components Diagrams.
 
-Las vistas C4 de componentes describen la estructura interna de la landing, la aplicación web y el backend RESTful API de la arquitectura propuesta. Cada componente incluye su tecnología y responsabilidad; las relaciones indican las operaciones o los protocolos de comunicación. Los Bounded Contexts agrupan responsabilidades dentro de cada contenedor y no representan unidades de despliegue independientes.
+Las vistas C4 de componentes describen la estructura interna de la landing, la aplicación web y el backend RESTful API de la arquitectura propuesta. Cada componente incluye su tecnología y responsabilidad; las relaciones indican las operaciones o los protocolos de comunicación. Los Bounded Contexts agrupan responsabilidades dentro de cada contenedor y no representan unidades de despliegue independientes. La notación conserva la paleta C4: personas en azul oscuro (`#08427b`), sistemas en azul (`#1168bd`), contenedores en azul claro (`#438dd5`), componentes en celeste (`#85bbf0`) y sistemas externos en gris (`#999999`). Los componentes utilizan texto negro; los demás elementos coloreados, texto blanco. Los límites de capas y contextos mantienen fondo blanco para distinguir las agrupaciones de los elementos arquitectónicos.
 
 **Landing Page**
 
