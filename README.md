@@ -3625,9 +3625,57 @@ A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacio
 
 ## 5.3. Validation Interviews. 
 
-
 ## 5.3.1. Diseño de Entrevistas. 
 
+Para llevar a cabo las entrevistas de validación, se mostrarán los artefactos desarrollados durante nuestro proyecto a personas pertenecientes a los segmentos objetivos definidos previamente. Durante la entrevista se mostrará la Landing Page y la Aplicación Web Frontend de SkyCrop, siguiendo varios flujos comunes distintos por segmento y realizando preguntas luego de la demostración:
+
+**1- Agricultores**, productores agrícolas medianos o pequeños, independientes o asociados a cooperativas, y dependan del monitoreo constante de sus parcelas para prevenir pérdidas.
+
+**Flujos a seguir**
+
+- Lectura del Landing Page y la propuesta de la solución
+- Ingreso a la Aplicación Web desde la Landing Page e introducción a las secciones de la aplicación
+- Registro de una parcela agrícola y vista de sus detalles
+- Registro de cultivos y miembros de una parcela
+- Vista de los detalles e imagenes de los drones
+- Consulta de los diagnosticos de los cultivos
+- Consulta de los reportes estacionales 
+
+**Preguntas a realizar**
+
+- ¿Cuales fueron tus primeras impresiones al ver la aplicación?
+- ¿Lograste entender facilmente lo que la pagina de introducción (Landing page) quiso presentar?
+- ¿Consideras que las funcionalidades de la aplicación pueden ayudarte a monitorear tus cultivos?
+- Al revisar los diagnosticos, ¿Crees que la información es lo suficientemente clara para tomar una decisión?
+- ¿Hay alguna función que crees que se debería agregar dentro de la aplicación para facilitar tu trabajo?
+- ¿Consideras que las operaciones dentro de la aplicación son faciles de realizar? 
+- ¿Qué partes de la aplicación te parecieron confusas? ¿Por qué?
+- ¿Qué consideras que se podría mejorar en la aplicación?
+- ¿Comprarías una subscripción para el uso de nuestra aplicación como apoyo en el monitoreo de tus cultivos y parcelas? ¿Por qué?
+
+**2- Ingenieros Agronomos**, que sean profesionales independientes o vinculados a cooperativas u asociaciones agrarias y necesiten herramientas de diagnóstico eficientes para atender múltiples parcelas o clientes.
+
+**Flujos a seguir**
+
+- Lectura del Landing Page y la propuesta de la solución
+- Ingreso a la Aplicación Web desde la Landing Page e introducción a las secciones de la aplicación
+- Vista de los detalles de una parcela agrícola
+- Registro y vista de los detalles de los drones
+- Configuración de rutas de vuelo de los drones
+- Consulta de los diagnosticos de los cultivos
+- Consulta de los reportes estacionales 
+
+**Preguntas a realizar**
+
+- ¿Cuales fueron tus primeras impresiones al ver la aplicación?
+- ¿Lograste entender facilmente lo que la pagina de introducción (Landing page) quiso presentar?
+- ¿Consideras que las funcionalidades de la aplicación pueden ayudarte a asesorar parcelas agrícolas?
+- En cuanto a diagnosticos y reportes, ¿Aquello mostrado en la aplicación es algo que usted espera ver al analizar un campo?
+- ¿Hay alguna función que crees que se debería agregar dentro de la aplicación para facilitar tu trabajo?
+- ¿Consideras que las operaciones dentro de la aplicación son faciles de realizar? 
+- ¿Qué partes de la aplicación te parecieron confusas? ¿Por qué?
+- ¿Qué consideras que se podría mejorar en la aplicación?
+- ¿Comprarías una subscripción para el uso de nuestra aplicación como apoyo en el asesoramiento de parcelas y cultivos? ¿Por qué?
 
 ## 5.3.2. Registro de Entrevistas. 
 
