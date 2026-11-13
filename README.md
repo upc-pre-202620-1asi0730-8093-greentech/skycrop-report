@@ -1,54 +1,89 @@
-<div align="center" style="font-family: Arial, sans-serif; color: #000; font-size: 11pt; line-height: 1.3; text-align: center; margin: 0; padding-top: 24px; break-inside: avoid; page-break-inside: avoid;">
-  <img src="resources/imgs/UPC_logo_transparente.png" alt="Logo UPC" style="display: block; width: 75px; height: auto; margin: 0 auto 22px;">
-  <div style="margin-bottom: 10px;">Universidad Peruana de Ciencias Aplicadas</div>
-  <div style="margin-bottom: 34px;">Carrera de Ingeniería de Software</div>
-  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 12px;">1ASI0730</div>
-  <div style="font-size: 14pt; font-weight: bold; margin-bottom: 12px;">Aplicaciones Web</div>
-  <div style="margin-bottom: 10px;">NRC</div>
-  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 14px;">8093</div>
-  <div style="font-size: 16pt; font-weight: bold; margin-bottom: 14px;">Informe del Trabajo Final</div>
-  <div style="margin-bottom: 10px;">Docente</div>
-  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 34px;">Bautista Ubillús, Efrain Ricardo</div>
-  <div style="margin-bottom: 10px;">Equipo</div>
-  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 12px;">GreenTech</div>
-  <div style="margin-bottom: 10px;">Proyecto</div>
-  <div style="font-size: 13pt; font-weight: bold; margin-bottom: 32px;">SkyCrop</div>
-  <div style="font-size: 11pt; font-weight: bold; margin-bottom: 8px;">Integrantes</div>
-  <table align="center" style="display: table; width: auto; margin: 0 auto 30px; border: none; border-collapse: collapse; table-layout: auto; color: #000; font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.3;">
-    <thead>
-      <tr style="border: none; background: transparent;">
-        <th style="border: none; background: transparent; color: #000; padding: 4px 14px 8px 0; text-align: left; font-weight: bold;">Código</th>
-        <th style="border: none; background: transparent; color: #000; padding: 4px 0 8px; text-align: left; font-weight: bold;">Apellidos y Nombres</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="border: none; background: transparent;">
-        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202423973</td>
-        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Landa Sánchez, Sunio Danilo</td>
-      </tr>
-      <tr style="border: none; background: transparent;">
-        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202423775</td>
-        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Cano Gomez, Yam Antony Gabriel</td>
-      </tr>
-      <tr style="border: none; background: transparent;">
-        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202312912</td>
-        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Jonseck Choque, Oliver</td>
-      </tr>
-      <tr style="border: none; background: transparent;">
-        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202310349</td>
-        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Rubio Ortiz, Luis Sebastián</td>
-      </tr>
-      <tr style="border: none; background: transparent;">
-        <td style="border: none; color: #000; padding: 4px 14px 4px 0; text-align: left; white-space: nowrap;">U202219266</td>
-        <td style="border: none; color: #000; padding: 4px 0; text-align: left;">Pumahualcca Garcia, Diego Rodrigo</td>
-      </tr>
-    </tbody>
-  </table>
-  <div style="font-weight: bold; margin-bottom: 30px;">Período 202620</div>
-  <div style="font-weight: bold;">Octubre 2026</div>
+<div align="center" style="margin-top: -5px; font-size: 18pt;">
+<img src="resources/imgs/UPC_logo_transparente.png" alt="UPC_logo_transparente" style="width: 15%; height: auto;">
+
+<br>
+Universidad Peruana de Ciencias Aplicadas
+
+Carrera de Ingeniería de Software
+
+**1ASI0730**
+
+**Aplicaciones Web**
+
+NRC
+
+**8093**
+
+**Informe del Trabajo Final**
+
+Docente
+
+**Bautista Ubillús, Efrain Ricardo**
+
+Equipo
+
+**GreenTech**
+
+Proyecto
+
+**SkyCrop**
+
+
+**Integrantes**
+
+<table style="border: none; border-collapse: collapse;">
+<tr>
+<td style="border: none;">
+  <strong>Código</strong>
+</td>
+<td style="border: none;">
+  <strong>Apellidos y Nombres</strong>
+</td>
+</tr>
+
+<tr>
+<td style="border: none;">U202423973
+</td>
+<td style="border: none;">Landa Sánchez, Sunio Danilo
+</td>
+</tr>
+
+<tr>
+<td style="border: none;">U202423775
+</td>
+<td style="border: none;">Cano Gomez, Yam Antony
+</td>
+</tr>
+
+<tr>
+<td style="border: none;">U202312912
+</td>
+<td style="border: none;">Jonseck Choque, Oliver
+</td>
+</tr>
+
+<tr>
+<td style="border: none;">U202310349
+</td>
+<td style="border: none;">Rubio Ortiz, Luis Sebastián
+</td>
+</tr>
+
+<tr>
+<td style="border: none;">U202219266
+</td>
+<td style="border: none;">Pumahualcca Garcia, Diego Rodrigo
+</td>
+</tr>
+</table>
+
+**Período 202620**
+
+**Noviembre 2026**
+
 </div>
 
-<div style="page-break-after: always; break-after: page;"></div>
+<div style="page-break-after: always;"></div>
 
 
 # Registro de Versiones del Informe
@@ -85,9 +120,10 @@ El registro reúne las modificaciones principales del informe. La autoría del d
 | 26 | 2026-10-09 | Equipo GreenTech | Documentación de servicios y evidencias de ejecución del Sprint 2; actualización de Student Outcome y conclusiones para TB1. |
 | 27 | 2026-10-09 | Equipo GreenTech | Corrección de la planificación y trazabilidad del Sprint 2, referencias de repositorios y publicación, redacción académica, enlaces internos e incorporación de formularios en las evidencias de ejecución. |
 | 28 | 2026-10-09 | Equipo GreenTech | Registro de la actualización de la landing page para TB1 y ampliación de las evidencias de ejecución con la confirmación de registro de parcela, los detalles del dron y el resultado de un diagnóstico simulado. |
-| 29 | 2026-10-16 | Sunio Landa     | Correcciones al formato del informe |
-| 30 | 2026-10-19 | Sebastián Rubio | Correcciones a las observaciones registradas en el TB1 |
-| 31 | 2026-10-26 | Sunio Landa     | Registro del Sprint planning 3 y la matriz de liderazgo y colaboración |
+| 29 | 2026-10-16 | Sunio Landa      | Correcciones al formato del informe |
+| 30 | 2026-10-19 | Sebastián Rubio  | Correcciones a las observaciones registradas en el TB1 |
+| 31 | 2026-10-26 | Sunio Landa      | Registro del Sprint planning 3 y la matriz de liderazgo y colaboración |
+| 32 | 2026-11-11 | Sunio Landa      | Diseño de las entrevistas de validación |
 
 <div style="page-break-after: always;"></div>
 
@@ -3590,9 +3626,57 @@ A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacio
 
 ## 5.3. Validation Interviews. 
 
-
 ## 5.3.1. Diseño de Entrevistas. 
 
+Para llevar a cabo las entrevistas de validación, se mostrarán los artefactos desarrollados durante nuestro proyecto a personas pertenecientes a los segmentos objetivos definidos previamente. Durante la entrevista se mostrará la Landing Page y la Aplicación Web Frontend de SkyCrop, siguiendo varios flujos comunes distintos por segmento y realizando preguntas luego de la demostración:
+
+**1- Agricultores**, productores agrícolas medianos o pequeños, independientes o asociados a cooperativas, y dependan del monitoreo constante de sus parcelas para prevenir pérdidas.
+
+**Flujos a seguir**
+
+- Lectura del Landing Page y la propuesta de la solución
+- Ingreso a la Aplicación Web desde la Landing Page e introducción a las secciones de la aplicación
+- Registro de una parcela agrícola y vista de sus detalles
+- Registro de cultivos y miembros de una parcela
+- Vista de los detalles e imagenes de los drones
+- Consulta de los diagnosticos de los cultivos
+- Consulta de los reportes estacionales 
+
+**Preguntas a realizar**
+
+- ¿Cuales fueron tus primeras impresiones al ver la aplicación?
+- ¿Lograste entender facilmente lo que la pagina de introducción (Landing page) quiso presentar?
+- ¿Consideras que las funcionalidades de la aplicación pueden ayudarte a monitorear tus cultivos?
+- Al revisar los diagnosticos, ¿Crees que la información es lo suficientemente clara para tomar una decisión?
+- ¿Hay alguna función que crees que se debería agregar dentro de la aplicación para facilitar tu trabajo?
+- ¿Consideras que las operaciones dentro de la aplicación son faciles de realizar? 
+- ¿Qué partes de la aplicación te parecieron confusas? ¿Por qué?
+- ¿Qué consideras que se podría mejorar en la aplicación?
+- ¿Comprarías una subscripción para el uso de nuestra aplicación como apoyo en el monitoreo de tus cultivos y parcelas? ¿Por qué?
+
+**2- Ingenieros Agronomos**, que sean profesionales independientes o vinculados a cooperativas u asociaciones agrarias y necesiten herramientas de diagnóstico eficientes para atender múltiples parcelas o clientes.
+
+**Flujos a seguir**
+
+- Lectura del Landing Page y la propuesta de la solución
+- Ingreso a la Aplicación Web desde la Landing Page e introducción a las secciones de la aplicación
+- Vista de los detalles de una parcela agrícola
+- Registro y vista de los detalles de los drones
+- Configuración de rutas de vuelo de los drones
+- Consulta de los diagnosticos de los cultivos
+- Consulta de los reportes estacionales 
+
+**Preguntas a realizar**
+
+- ¿Cuales fueron tus primeras impresiones al ver la aplicación?
+- ¿Lograste entender facilmente lo que la pagina de introducción (Landing page) quiso presentar?
+- ¿Consideras que las funcionalidades de la aplicación pueden ayudarte a asesorar parcelas agrícolas?
+- En cuanto a diagnosticos y reportes, ¿Aquello mostrado en la aplicación es algo que usted espera ver al analizar un campo?
+- ¿Hay alguna función que crees que se debería agregar dentro de la aplicación para facilitar tu trabajo?
+- ¿Consideras que las operaciones dentro de la aplicación son faciles de realizar? 
+- ¿Qué partes de la aplicación te parecieron confusas? ¿Por qué?
+- ¿Qué consideras que se podría mejorar en la aplicación?
+- ¿Comprarías una subscripción para el uso de nuestra aplicación como apoyo en el asesoramiento de parcelas y cultivos? ¿Por qué?
 
 ## 5.3.2. Registro de Entrevistas. 
 
