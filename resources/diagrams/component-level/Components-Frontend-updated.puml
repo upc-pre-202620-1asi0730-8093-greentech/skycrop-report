@@ -26,6 +26,7 @@ Container_Boundary(frontend, "Single Page Application") {
     Component(crops, "Crops", "Vue, JavaScript", "Crop information viewing and editing.")
     Component(notifications, "Notifications", "Vue, JavaScript", "Notifications, details and read status.")
     Component(iam, "IAM", "Vue, JavaScript", "Registration, sign-in and account recovery.")
+    Component(profiles, "Profiles", "Vue, JavaScript", "Accounts and profile information.")
     Component(shared, "Shared", "Vue, JavaScript", "Value objects and presentation views")
 }
 
@@ -36,9 +37,10 @@ Rel(shared, diagnoses, "Renders diagnosis list and details")
 Rel(shared, reports, "Renders report list and details")
 Rel(shared, plots, "Renders plot form, list and information")
 Rel(shared, drones, "Renders drone linking form, list and details")
-Rel(shared, subscriptions, "Renders subscription plans and form")
+Rel(shared, subscriptions, "Renders subscription plans and active plans")
 Rel(shared, crops, "Renders crop details")
 Rel(shared, iam, "Renders registration form and account details")
+Rel(shared, profiles, "Renders profile information view")
 
 Rel(crops, plots, "Gets plot information from")
 Rel(subscriptions, notifications, "Requests reminder notifications")
@@ -53,6 +55,7 @@ Rel(subscriptions, api, "Reads and writes subscriptions using [HTTPS/JSON]")
 Rel(crops, api, "Reads and writes crop information using [HTTPS/JSON]")
 Rel(notifications, api, "Requests notifications using [HTTPS/JSON]")
 Rel(iam, api, "Signs users in and up using [HTTPS/JSON]")
+Rel(profiles, api, "Signs users in and up using [HTTPS/JSON]")
 
 Rel(plots, maps, "Gets map information using [HTTPS/JSON]")
 Rel(diagnoses, maps, "Gets map information using [HTTPS/JSON]")
