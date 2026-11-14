@@ -1,113 +1,61 @@
 @startuml
-' C4 palette: people, systems, containers, components and external systems.
-skinparam monochrome false
-skinparam backgroundColor #ffffff
-skinparam actorStyle rectangle
-skinparam actor {
-  BackgroundColor #08427b
-  BorderColor #08427b
-  FontColor #ffffff
-}
-skinparam component {
-  BackgroundColor #85bbf0
-  BorderColor #5b8bb1
-  FontColor #000000
-  BackgroundColor<<container>> #438dd5
-  BorderColor<<container>> #2e6295
-  FontColor<<container>> #ffffff
-  BackgroundColor<<external>> #999999
-  BorderColor<<external>> #777777
-  FontColor<<external>> #ffffff
-  BackgroundColor<<system>> #1168bd
-  BorderColor<<system>> #0b4884
-  FontColor<<system>> #ffffff
-}
-skinparam database {
-  BackgroundColor #438dd5
-  BorderColor #2e6295
-  FontColor #ffffff
-}
-skinparam rectangle {
-  BackgroundColor<<person>> #08427b
-  BorderColor<<person>> #08427b
-  FontColor<<person>> #ffffff
-  BackgroundColor #ffffff
-  BorderColor #777777
-  FontColor #000000
-}
-skinparam ArrowColor #555555
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
 skinparam shadowing false
 skinparam dpi 120
 skinparam defaultFontName SansSerif
-skinparam componentStyle rectangle
-skinparam wrapWidth 220
-skinparam nodesep 35
-skinparam ranksep 50
-top to bottom direction
-title SkyCrop - C4 - Frontend Components by Layer
-rectangle "Farmer / Agronomist\n[Person]" as user <<person>>
-rectangle "Frontend Web Application\n[Container: Vue / JavaScript / PrimeVue]" {
-rectangle "Presentation" {
-component "Shared Layout and Router\n[Vue / Vue Router]\n\nNavigation, language selection and page composition." as layout
-component "Core Views\n[Vue / PrimeVue]\n\nDiagnoses Generation and Report Management." as coreViews
-component "Supporting Views\n[Vue / PrimeVue]\n\nAgricultural Plot Management (including Crops), Drone Management,\nSubscriptions and Payment Management, Profiles and Preferences Management." as supportingViews
-component "Generic Views\n[Vue / PrimeVue]\n\nNotification Service and IAM - Identity and Access Management." as genericViews
+skinparam wrapWidth 180
+
+
+title SkyCrop - Component Diagram (Bounded Contexts)
+
+
+System_Ext(maps, "Map Service", "Provides maps using latitude and longitude")
+
+
+Container(web, "Web Application", "Vercel", "Serves the Single Page Application to a user's browser")
+Container(api, "RESTful API", "C#, ASP.NET", "Exposes domain operations and data access endpoints.")
+
+
+Container_Boundary(frontend, "Single Page Application") {
+    Component(diagnoses, "Diagnoses", "Vue, JavaScript", "Diagnoses, results map and history.")
+    Component(reports, "Reports", "Vue, JavaScript", "Reports, comparison and document downloads.")
+    Component(plots, "Plots", "Vue, JavaScript", "Plot registration, details, crops and collaboration.")
+    Component(drones, "Drones", "Vue, JavaScript", "Drone registration, configuration and flights.")
+    Component(subscriptions, "Subscriptions", "Vue, JavaScript", "Plans, payments and subscription status.")
+    Component(crops, "Crops", "Vue, JavaScript", "Crop information viewing and editing.")
+    Component(notifications, "Notifications", "Vue, JavaScript", "Notifications, details and read status.")
+    Component(iam, "IAM", "Vue, JavaScript", "Registration, sign-in and account recovery.")
+    Component(shared, "Shared", "Vue, JavaScript", "Value objects and presentation views")
 }
-rectangle "Application" {
-component "Core Stores\n[Pinia / JavaScript]\n\nCoordinate diagnosis and report actions and state." as coreStores
-component "Supporting Stores\n[Pinia / JavaScript]\n\nCoordinate plot, crop, drone, subscription and profile actions and state." as supportingStores
-component "Generic Stores\n[Pinia / JavaScript]\n\nCoordinate notifications and identity session actions and state." as genericStores
-}
-rectangle "Domain" {
-component "Core Client Models\n[JavaScript]\n\nDiagnosis and report entities, value objects and validation." as coreModels
-component "Supporting Client Models\n[JavaScript]\n\nPlot, crop, drone and subscription models and validation." as supportingModels
-component "Generic Client Models\n[JavaScript]\n\nIdentity values and notification navigation rules." as genericModels
-}
-rectangle "Infrastructure" {
-component "Context API Clients\n[Axios / JavaScript]\n\nRead and write HTTP resources through the configured API." as clients
-component "Context Assemblers\n[JavaScript]\n\nMap transport resources to client models and back." as assemblers
-component "Shared HTTP Client\n[Axios / JavaScript]\n\nBase URL, headers and HTTP transport." as http
-component "Map Adapter\n[Leaflet / JavaScript]\n\nMap tiles and geocoding requests." as mapsAdapter
-}
-}
-component "RESTful API\n[Container: ASP.NET Core]\n\nTarget backend contracts; the current client uses the mock API." as api <<container>>
-component "Map Providers\n[External systems]\n\nMap tiles and geocoding." as maps <<external>>
-user --> layout : Interacts
-layout --> coreViews : Displays
-layout --> supportingViews : Displays
-layout --> genericViews : Displays
-coreViews --> coreStores : Requests actions / reads state
-supportingViews --> supportingStores : Requests actions / reads state
-genericViews --> genericStores : Requests actions / reads state
-coreStores --> coreModels : Applies client validation
-supportingStores --> supportingModels : Applies client validation
-genericStores --> genericModels : Applies client validation
-coreStores --> clients : Invokes remote operations
-supportingStores --> clients : Invokes remote operations
-genericStores --> clients : Invokes remote operations
-coreStores --> assemblers : Maps resources
-supportingStores --> assemblers : Maps resources
-assemblers --> coreModels : Constructs models
-assemblers --> supportingModels : Constructs models
-clients --> http : Sends requests
-http --> api : HTTPS / JSON
-supportingViews --> mapsAdapter : Displays plot locations
-coreViews --> mapsAdapter : Displays diagnosis locations
-mapsAdapter --> maps : HTTPS / tiles
-coreViews -[hidden]right-> supportingViews
-supportingViews -[hidden]right-> genericViews
-coreStores -[hidden]right-> supportingStores
-supportingStores -[hidden]right-> genericStores
-coreModels -[hidden]right-> supportingModels
-supportingModels -[hidden]right-> genericModels
-coreModels -[hidden]down-> clients
-legend bottom
-Component overview of one frontend container, grouped by layer.
-Context groups follow the core, supporting and generic domain catalog.
-Crops belong to Agricultural Plot Management; Shared is not a bounded context.
-Dependencies point from a consumer to the component it uses.
-Client models do not depend on HTTP transport or replace backend domain rules.
-The target architecture includes the backend API; the current deployment uses a mock API.
-Individual context diagrams expand these component groups.
-endlegend
+
+
+Rel(web, frontend, "Serves")
+
+Rel(shared, diagnoses, "Renders diagnosis list and details")
+Rel(shared, reports, "Renders report list and details")
+Rel(shared, plots, "Renders plot form, list and information")
+Rel(shared, drones, "Renders drone linking form, list and details")
+Rel(shared, subscriptions, "Renders subscription plans and form")
+Rel(shared, crops, "Renders crop details")
+Rel(shared, iam, "Renders registration form and account details")
+
+Rel(crops, plots, "Gets plot information from")
+Rel(subscriptions, notifications, "Requests reminder notifications")
+Rel(drones, notifications, "Requests alert notifications")
+Rel(diagnoses, notifications, "Requests alert notifications")
+
+Rel(diagnoses, api, "Reads and writes diagnoses using [HTTPS/JSON]")
+Rel(reports, api, "Reads and writes reports using [HTTPS/JSON] ")
+Rel(plots, api, "Reads and writes plots using [HTTPS/JSON]")
+Rel(drones, api, "Reads and writes drones using [HTTPS/JSON]")
+Rel(subscriptions, api, "Reads and writes subscriptions using [HTTPS/JSON]")
+Rel(crops, api, "Reads and writes crop information using [HTTPS/JSON]")
+Rel(notifications, api, "Requests notifications using [HTTPS/JSON]")
+Rel(iam, api, "Signs users in and up using [HTTPS/JSON]")
+
+Rel(plots, maps, "Gets map information using [HTTPS/JSON]")
+Rel(diagnoses, maps, "Gets map information using [HTTPS/JSON]")
+
+
 @enduml
