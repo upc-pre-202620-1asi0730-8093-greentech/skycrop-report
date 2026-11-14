@@ -1,102 +1,79 @@
 @startuml
-' C4 palette: people, systems, containers, components and external systems.
-skinparam monochrome false
-skinparam backgroundColor #ffffff
-skinparam actorStyle rectangle
-skinparam actor {
-  BackgroundColor #08427b
-  BorderColor #08427b
-  FontColor #ffffff
-}
-skinparam component {
-  BackgroundColor #85bbf0
-  BorderColor #5b8bb1
-  FontColor #000000
-  BackgroundColor<<container>> #438dd5
-  BorderColor<<container>> #2e6295
-  FontColor<<container>> #ffffff
-  BackgroundColor<<external>> #999999
-  BorderColor<<external>> #777777
-  FontColor<<external>> #ffffff
-  BackgroundColor<<system>> #1168bd
-  BorderColor<<system>> #0b4884
-  FontColor<<system>> #ffffff
-}
-skinparam database {
-  BackgroundColor #438dd5
-  BorderColor #2e6295
-  FontColor #ffffff
-}
-skinparam rectangle {
-  BackgroundColor #ffffff
-  BorderColor #777777
-  FontColor #000000
-}
-skinparam ArrowColor #555555
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
 skinparam shadowing false
-skinparam dpi 120
+skinparam dpi 150
 skinparam defaultFontName SansSerif
-skinparam componentStyle rectangle
-skinparam wrapWidth 180
-skinparam nodesep 35
-skinparam ranksep 45
-top to bottom direction
+skinparam wrapWidth 220
+left to right direction
+
 title SkyCrop - C4 - Backend Component Overview
-component "Frontend Web Application\n[Container: Vue]\n\nConsumes REST operations." as web <<container>>
-rectangle "Backend RESTful API\n[Container: C# / ASP.NET Core]" {
-rectangle "Interfaces / Presentation" {
-component "HTTP Controllers per Context\n[Component: ASP.NET Core]\n\nReceive requests and return HTTP resources." as controllers
+
+Container(spa, "Single Page Application", "Vue, JavaScript, PrimeVue", "It runs in the browser and manages the interaction between farmers and agronomists.")
+
+ContainerDb(db, "Relational Database", "MySQL Server", "Stores application data.")
+
+Container_Boundary(api, "Backend RESTful API") {
+
+
+
+Component(shared, "Shared",                  "C#, ASP.NET", "Shares base abstractions, error handlers, localization.")
+Component(diagnoses, "Diagnoses",            "C#, ASP.NET", "Requests analysis and stores diagnoses and anomalies.")
+Component(reports, "Reports",                "C#, ASP.NET", "Consolidates diagnoses and generates documents.")
+Component(plots, "Plots",                    "C#, ASP.NET", "Manages plots and collaborative access.")
+Component(crops, "Crops",                    "C#, ASP.NET", "Manages crops and their details")
+Component(drones, "Drones",                  "C#, ASP.NET", "Manages devices, flight plans and flight executions.")
+Component(subscriptions, "Subscriptions",    "C#, ASP.NET", "Manages subscription validity and transactions.")
+Component(profiles, "Profiles",              "C#, ASP.NET", "Manages user contact information.")
+Component(notifications, "Notifications",    "C#, ASP.NET", "Records notifications and coordinates delivery.")
+Component(iam, "IAM",                        "C#, ASP.NET", "Manages identities, credentials and authorization.")
+
 }
-rectangle "Application" {
-component "Application Services per Context\n[Component: C#]\n\nCoordinate use cases through internal contracts." as application
-component "Integration Contracts\n[Component: C# interfaces]\n\nDefine required provider and device operations." as integrationContracts
-}
-rectangle "Domain" {
-component "Diagnoses Generation / Core\n[Component: C# domain model]\n\nRequests analysis and stores diagnoses and anomalies." as diagnoses
-component "Report Management / Core\n[Component: C# domain model]\n\nConsolidates diagnoses and generates documents." as reports
-component "Agricultural Plot Management / Supporting\n[Component: C# domain model]\n\nManages plots, crops and collaborative access." as plots
-component "Drone Management / Supporting\n[Component: C# domain model]\n\nManages devices, flight plans and flight executions." as drones
-component "Subscriptions and Payment Management / Supporting\n[Component: C# domain model]\n\nManages subscription validity and transactions." as subscriptions
-component "Profiles and Preferences Management / Supporting\n[Component: C# domain model]\n\nManages user contact information." as profiles
-component "Notification Service / Generic\n[Component: C# domain model]\n\nRecords notifications and coordinates delivery." as notifications
-component "IAM — Identity and Access Management / Generic\n[Component: C# domain model]\n\nManages identities, credentials and authorization." as iam
-component "Repository Contracts\n[Component: C# interfaces]\n\nDefine aggregate persistence." as repositoryContracts
-}
-rectangle "Infrastructure" {
-component "Persistence\n[Component: Entity Framework Core]\n\nRepositories per aggregate and data access." as persistence
-component "External Integrations\n[Component: C# / HTTPS]\n\nAdapters for analysis, maps, drones, payments, messaging and files." as integrations
-}
-}
-database "Relational Database\n[Container: MySQL Server or PostgreSQL]" as db
-component "External Providers\n[External systems: Services / Devices]\n\nAnalysis, maps, drones, payments, messaging and storage." as providers <<external>>
-web --> controllers : REST [HTTPS / JSON]
-controllers --> application : Delegates use cases
-application --> repositoryContracts : Queries and persists
-application --> integrationContracts : Requests an operation
-persistence ..|> repositoryContracts : Implements
-integrations ..|> integrationContracts : Implements
-application --> diagnoses : Applies rules
-application --> reports : Applies rules
-application --> plots : Applies rules
-application --> drones : Applies rules
-application --> subscriptions : Applies rules
-application --> profiles : Applies rules
-application --> notifications : Applies rules
-application --> iam : Applies rules
-persistence --> db : Reads and writes [SQL]
-integrations --> providers : HTTPS / device protocol
-diagnoses -[hidden]right-> reports
-reports -[hidden]right-> plots
-plots -[hidden]right-> drones
-drones -[hidden]right-> subscriptions
-subscriptions -[hidden]right-> profiles
-profiles -[hidden]right-> notifications
-notifications -[hidden]right-> iam
-legend bottom
-C4 - Component view of the proposed architecture.
-Each view expands a single container.
-The domain catalog follows the core, supporting and generic context order.
-Each context distributes its components across the four layers.
-Individual views detail the corresponding contracts and adapters.
-endlegend
+
+
+Rel(crops, plots, "Gets plot information")
+Rel(diagnoses, plots, "Gets plot information")
+
+Rel(subscriptions, profiles, "Gets user information")
+Rel(notifications, profiles, "Sends notifications")
+Rel(iam, profiles, "Gets user information")
+
+Rel(diagnoses, notifications, "Requests alerts")
+Rel(reports, notifications, "Requests notifications")
+Rel(drones, notifications, "Requests alerts")
+
+Rel(diagnoses,     db,    "Reads and writes diagnoses data")
+Rel(reports,       db,    "Reads and writes reports details")
+Rel(plots,         db,    "Reads and writes plot information")
+Rel(crops,         db,    "Reads and writes crop data")
+Rel(drones,        db,    "Reads and writes drone information")
+Rel(subscriptions, db,    "Reads and writes subscription details")
+Rel(profiles,      db,    "Reads and writes profiles information")
+Rel(notifications, db,    "Reads and writes notification details")
+Rel(iam,           db,    "Reads and writes IAM details")
+
+Rel(diagnoses,     shared,    "Uses shared abstractions and utilities")
+Rel(reports,       shared,    "Uses shared abstractions and utilities")
+Rel(plots,         shared,    "Uses shared abstractions and utilities")
+Rel(crops,         shared,    "Uses shared abstractions and utilities")
+Rel(drones,        shared,    "Uses shared abstractions and utilities")
+Rel(subscriptions, shared,    "Uses shared abstractions and utilities")
+Rel(profiles,      shared,    "Uses shared abstractions and utilities")
+Rel(notifications, shared,    "Uses shared abstractions and utilities")
+Rel(iam,           shared,    "Uses shared abstractions and utilities")
+
+Rel(spa, diagnoses,         "Requests diagnoses details")
+Rel(spa, reports,           "Requests reports information")
+Rel(spa, plots,             "Creates and views plots")
+Rel(spa, crops,             "Creates and views crop details")
+Rel(spa, drones,            "Creates and views drones")
+Rel(spa, subscriptions,     "Requests subscription plans and details")
+Rel(spa, profiles,          "Creates and views profiles")
+Rel(spa, notifications,     "Receives notifications")
+Rel(spa, iam,               "Signs in and Signs up")
+
+
+
+
+
 @enduml
