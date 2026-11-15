@@ -3639,6 +3639,28 @@ Como evidencia del trabajo realizado, se presentan los commits más representati
 
 #### 5.2.3.6. Services Documentation Evidence for Sprint Review. 
 
+El servicio backend de SkyCrop implementa una API RESTful desarrollada en .NET bajo una arquitectura orientada al dominio (DDD) y organizada en Bounded Contexts. El servidor recibe y responde cuerpos en formato JSON, exponiendo los endpoints mediante el prefijo `/api/v1` (documentados mediante OpenAPI / Scalar) y persistiendo la información en una base de datos relacional MySQL mediante Entity Framework Core.
+
+La siguiente tabla describe los recursos y operaciones implementadas en los controladores del backend durante el Sprint 3. Las rutas se expresan respecto a la URL base de la API y `{id}` (o su identificador específico) representa la clave primaria del recurso consultado o modificado.
+
+| Recurso | Operaciones implementadas | Descripción y aplicación en el sistema |
+| :--- | :--- | :--- |
+| `/plots` | `GET`, `POST`, `GET /plots/{id}` | Listar y registrar parcelas agrícolas, además de consultar sus detalles específicos e integrar su información con otros contextos delimitados. |
+| `/crops` | `GET`, `POST`, `GET /crops/{CropId}` | Consultar el listado de cultivos, registrar nuevas siembras vinculadas a parcelas y obtener el detalle individual mediante su identificador. |
+| `/drones` | `GET`, `POST`, `GET /drones/{id}`, `PATCH /drones/{id}` | Registrar drones en la flota, listar las unidades disponibles, consultar sus especificaciones y actualizar parcialmente su información o estado. |
+| `/flightroutes` | `GET`, `PATCH /flightroutes/{id}` | Consultar las rutas de vuelo configuradas y modificar parcialmente sus parámetros operativos. |
+| `/flights` | `GET`, `POST`, `GET /flights/{id}`, `PATCH /flights/{id}` | Programar y listar vuelos de monitoreo, consultar su detalle individual y actualizar parcialmente su estado (por ejemplo, ejecución o cancelación). |
+| `/aerialimages` | `GET`, `GET /aerialimages/{id}` | Listar y consultar los registros de imágenes aéreas capturadas durante los vuelos de monitoreo. |
+| `/diagnoses` | `GET`, `POST`, `GET /diagnoses/{id}`, `GET /diagnoses/{id}/map` | Generar diagnósticos fitosanitarios mediante análisis simulado de imágenes, listar diagnósticos, consultar su detalle y obtener su representación georreferenciada (`/map`). |
+| `/reports` | `GET`, `POST`, `GET /reports/{reportId}` | Emitir reportes consolidados de seguimiento agrícola, listar el historial generado y consultar el detalle de un reporte específico. |
+
+Las consultas de colecciones devuelven arreglos JSON y las consultas por identificador retornan un objeto detallado con códigos de estado HTTP estandarizados (`200 OK`, `201 Created`, `400 Bad Request`, `404 Not Found`). Las solicitudes de registro (`POST`) y modificación parcial (`PATCH`) reciben las cargas útiles mediante objetos DTO en formato JSON, aplicando validaciones de dominio y reglas de negocio antes de su persistencia.
+
+**Trazabilidad con el código**
+
+En el repositorio del backend, cada recurso corresponde a su respectivo Bounded Context (`Plots`, `Crops`, `Drones` / `Monitoring`, `Diagnoses` y `Reports`), estructurado en capas de *Interfaces (REST Controllers y Assemblers)*, *Application (Command y Query Services)*, *Domain (Aggregates, Value Objects, Events y Repositories)* e *Infrastructure (EF Core Persistence)*. Asimismo, el proyecto incorpora soporte de internacionalización (`i18n`) para mensajes de respuesta y manejo centralizado de excepciones.
+
+El motor de diagnósticos ejecuta un análisis simulado con validación de escenarios y control de acceso por parcela, mientras que la integración entre contextos se gestiona mediante fachadas (*Facades*) y eventos de dominio e integración. La evidencia de despliegue y disponibilidad del servicio en la nube se presenta en la sección correspondiente de infraestructura.
 
 #### 5.2.3.7. Software Deployment Evidence for Sprint Review. 
 
