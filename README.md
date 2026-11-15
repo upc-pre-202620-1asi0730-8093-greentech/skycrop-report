@@ -3914,8 +3914,9 @@ Enlace al video de prototype navigation: [https://upcedupe-my.sharepoint.com/:v:
 
 Enlace al video de product navigation del Sprint 2: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQDhF1dMbAU1R4u6WSnbjIWYAd2SjkGT6bbca2dyF2NeBkY?e=m6YUYr)
 
+Enlace al video About the Product: [https://www.youtube.com/watch?v=Ze-9J5-Buvo](https://www.youtube.com/watch?v=Ze-9J5-Buvo)
 
-
+Enlace al video About the Team: [https://www.youtube.com/watch?v=oVww3F1rIII](https://www.youtube.com/watch?v=oVww3F1rIII)
 
 <div style="page-break-after: always;"></div>
 
