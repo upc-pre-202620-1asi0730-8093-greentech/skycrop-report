@@ -3622,7 +3622,21 @@ A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacio
 
 #### 5.2.3.8. Team Collaboration Insights during Sprint.
 
+Durante el Sprint 3, se realizó el seguimiento de la colaboración y participación de los integrantes del equipo mediante las herramientas de análisis proporcionadas por GitHub. Estas permitieron visualizar las contribuciones individuales, la frecuencia de los commits y la evolución del repositorio a lo largo del sprint.
 
+A través de la sección **Contributors**, se identificaron las aportaciones realizadas por cada integrante del equipo, permitiendo evaluar su participación en el desarrollo del proyecto.
+
+<div align="center">
+  <img src="resources/imgs/Sprint3-teamCollaborationInsight2.png" alt="Contributors Website - Sprint 3" style="max-width: 90%;">
+</div>
+
+Asimismo, mediante la sección **Insights**, se analizó la actividad general del repositorio, incluyendo la frecuencia de los commits y los cambios realizados durante el Sprint 3. Esta información permitió realizar un seguimiento del progreso del equipo y del trabajo colaborativo desarrollado.
+
+<div align="center">
+  <img src="resources/imgs/Sprint3-teamCollaborationInsight.png" alt="Insights Website - Sprint 3" style="max-width: 90%;">
+</div>
+
+En conclusión, las herramientas de GitHub facilitaron el monitoreo de las contribuciones y la evolución del proyecto durante el Sprint 3, proporcionando información relevante sobre la participación del equipo y el avance de las actividades de desarrollo.
 
 ## 5.3. Validation Interviews. 
 
