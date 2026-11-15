@@ -3680,6 +3680,24 @@ Para llevar a cabo las entrevistas de validación, se mostrarán los artefactos 
 
 ## 5.3.2. Registro de Entrevistas. 
 
+*Registro de entrevistas — Segmento 2: Ingenieros agrónomos*
+
+**Entrevista 1**
+
+| Campo | Detalle |
+| :--- | :--- |
+| **Nombre** | Yamil Tejada |
+| **Edad** | 25 años |
+| **Departamento** | Apurímac |
+| **Duración** | 11:54 min |
+
+<div align="center">
+<img src="resources/imgs/chapter_5/entrevista1_segmento2_validacion.png" alt="Entrevista de validación 1 - Segmento 2: Yamil Tejada" width="600">
+</div>
+
+**Resumen**:
+Yamil, un ingeniero agrónomo de 25 años que vive en Apurímac, evalúa la propuesta y facilidad de uso tanto de la página principal como de la plataforma web de SkyCrop tras ver la demostración. Destaca que el menú separa de forma clara las parcelas, los drones, los diagnósticos y los reportes, lo que le ayuda a planificar los recorridos con puntos de ruta, altitud y velocidad, así como a revisar los resultados por terreno. Señala que los diagnósticos de anomalías y los reportes con la evolución del NDVI y el área cubierta coinciden con lo que espera ver al analizar el campo, aunque sugiere indicar si faltaron mediciones en algunas fechas y añadir una estimación previa de la duración del vuelo para compararla con la autonomía del dron. Como mejora para la aplicación, recomienda colocar una breve explicación al lado de los botones de guardar ruta y planificar vuelo, ya que al inicio le generaron dudas, y mostrar claramente qué parcela y qué dron quedan asociados antes de confirmar. Finalmente, comenta que compraría el plan Profesional porque le ofrece mayor capacidad para gestionar varias parcelas y drones, además de permitirle invitar usuarios para apoyar sus asesorías.
+
 
 ## 5.3.3. Evaluaciones según heurísticas. 
 
