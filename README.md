@@ -3680,6 +3680,66 @@ Para llevar a cabo las entrevistas de validación, se mostrarán los artefactos 
 
 ## 5.3.2. Registro de Entrevistas. 
 
+*Registro de entrevistas — Segmento 1: Agricultores*
+
+**Entrevista 1**
+
+| Campo | Detalle |
+| :--- | :--- |
+| **Nombre** | Drago Duarte |
+| **Edad** | 26 años |
+| **Distrito** | Huancayo |
+| **Duración** | 12:35 min |
+| **Timing** | Pendiente |
+| **Enlace** | [Entrevista](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423775_upc_edu_pe/IQAv6ekgiIqjSLblth-icr1aAS6y-3jaw_dPwZHmMoQwaCg?e=Vo7WUJ) |
+
+<div align="center">
+<img src="resources/imgs/chapter_5/entrevista1_segmento1_validacion.png" alt="Entrevista de validación 1 - Segmento 1: Drago Duarte" width="600">
+</div>
+
+**Resumen**:
+Drago, un agricultor de 26 años de Huancayo, evalúa la página principal y la plataforma web de SkyCrop tras una demostración de sus funciones para el monitoreo de cultivos. Destaca como punto positivo poder ingresar a la sección de parcelas para visualizar el terreno y sus cultivos, además de consultar los diagnósticos para identificar resultados que requieren revisión. Señala que la página inicial le resultó dinámica y fácil de entender, y que tanto el registro de parcelas en el mapa como el ingreso de datos de siembra son operaciones sencillas. Respecto a los diagnósticos, comenta que el ejemplo de estrés hídrico le permite ubicar la anomalía y su severidad para saber por dónde empezar en el campo, aunque sugiere añadir una indicación breve sobre qué hacer con el cultivo y un acceso directo al último diagnóstico desde la ficha de cada parcela. Como punto confuso, menciona que el reporte muestra gráficos con las siglas NDVI pero no explica qué significan los cambios de valores para su terreno, por lo que recomienda agregar una frase corta debajo del gráfico que oriente cómo interpretar los números. Finalmente, indica que adquiriría el plan Básico como prueba, ya que cubre hasta cinco parcelas e incluye diagnósticos y reportes estacionales.
+
+---
+
+*Registro de entrevistas — Segmento 2: Ingenieros agrónomos*
+
+**Entrevista 1**
+
+| Campo | Detalle |
+| :--- | :--- |
+| **Nombre** | Yamil Tejada |
+| **Edad** | 25 años |
+| **Departamento** | Apurímac |
+| **Duración** | 11:54 min |
+| **Timing** | Pendiente |
+| **Enlace** | [Entrevista](https://upcedupe-my.sharepoint.com/personal/u202423775_upc_edu_pe/_layouts/15/stream.aspx?id=%2Fpersonal%2Fu202423775%5Fupc%5Fedu%5Fpe%2FDocuments%2FEntrevistas%20Aplicaciones%20Web%2FEntrevista%5FSegmento%20Ingeniero%20Agronomo%20%28Yamil%29%2Emp4&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E6cf0c2b2%2Da0bc%2D45de%2Dbb46%2D3041419b99a9&isDarkMode=false) |
+
+<div align="center">
+<img src="resources/imgs/chapter_5/entrevista1_segmento2_validacion.png" alt="Entrevista de validación 1 - Segmento 2: Yamil Tejada" width="600">
+</div>
+
+**Resumen**:
+Yamil, un ingeniero agrónomo de 25 años que vive en Apurímac, evalúa la propuesta y facilidad de uso tanto de la página principal como de la plataforma web de SkyCrop tras ver la demostración. Destaca que el menú separa de forma clara las parcelas, los drones, los diagnósticos y los reportes, lo que le ayuda a planificar los recorridos con puntos de ruta, altitud y velocidad, así como a revisar los resultados por terreno. Señala que los diagnósticos de anomalías y los reportes con la evolución del NDVI y el área cubierta coinciden con lo que espera ver al analizar el campo, aunque sugiere indicar si faltaron mediciones en algunas fechas y añadir una estimación previa de la duración del vuelo para compararla con la autonomía del dron. Como mejora para la aplicación, recomienda colocar una breve explicación al lado de los botones de guardar ruta y planificar vuelo, ya que al inicio le generaron dudas, y mostrar claramente qué parcela y qué dron quedan asociados antes de confirmar. Finalmente, comenta que compraría el plan Profesional porque le ofrece mayor capacidad para gestionar varias parcelas y drones, además de permitirle invitar usuarios para apoyar sus asesorías.
+
+**Entrevista 2**
+
+| Campo | Detalle |
+| :--- | :--- |
+| **Nombre** | Ana Camila Patricio |
+| **Edad** | 25 años |
+| **Departamento** | Cusco |
+| **Duración** | 8:49 min |
+| **Timing** | [Colocar hora de inicio y fin] |
+| **Enlace** | [Entrevista](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423775_upc_edu_pe/IQAILL2qLG0QR7A5mCgDwqmrAfhHBrKPh_odZtmZqfrLpio?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=TalhMa) |
+
+<div align="center">
+<img src="resources/imgs/chapter_5/entrevista2_segmento2_validacion.png" alt="Entrevista de validación 2 - Segmento 2: Ana Camila Patricio" width="600">
+</div>
+
+**Resumen**:
+Ana Camila Patricio, una ingeniera agrónoma de 25 años que reside en Cusco, evalúa la página principal y la aplicación web de SkyCrop tras una demostración de sus funciones. Destaca que es fácil ubicar los diagnósticos y reportes en el menú, y señala que la sección para agrónomos le ayuda a entender el enfoque de la plataforma, diferenciando bien entre revisar un caso puntual y consultar un informe de periodo. Comenta que poder buscar diagnósticos por parcela, ver su fecha y abrir el detalle con la severidad y ubicación resulta muy útil para decidir qué terreno priorizar cuando tiene varias visitas pendientes. Respecto a los reportes, valora las alertas y el gráfico de NDVI para explicar los resultados, aunque sugiere resumir los cambios importantes en una frase y agregar una vista general que reúna el último diagnóstico de cada parcela para comparar terrenos desde una misma pantalla. Como punto confuso, menciona que al generar un reporte se pide un mínimo de cinco registros de monitoreo pero no se muestra cuántos hay disponibles en el rango elegido, por lo que recomienda mostrar ese conteo antes de generar el informe. Finalmente, indica que consideraría el plan Corporativo para trabajar con una cooperativa por los roles y permisos ofrecidos, revisando previamente que los accesos se ajusten tanto a los agrónomos como a quienes solo consultan información.
+
 
 ## 5.3.3. Evaluaciones según heurísticas. 
 
