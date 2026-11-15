@@ -3691,7 +3691,7 @@ Para llevar a cabo las entrevistas de validación, se mostrarán los artefactos 
 | **Distrito** | Huancayo |
 | **Duración** | 12:35 min |
 | **Timing** | Pendiente |
-| **Enlace** | Pendiente |
+| **Enlace** | [Entrevista](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423775_upc_edu_pe/IQAv6ekgiIqjSLblth-icr1aAS6y-3jaw_dPwZHmMoQwaCg?e=Vo7WUJ) |
 
 <div align="center">
 <img src="resources/imgs/chapter_5/entrevista1_segmento1_validacion.png" alt="Entrevista de validación 1 - Segmento 1: Drago Duarte" width="600">
@@ -3713,7 +3713,7 @@ Drago, un agricultor de 26 años de Huancayo, evalúa la página principal y la 
 | **Departamento** | Apurímac |
 | **Duración** | 11:54 min |
 | **Timing** | Pendiente |
-| **Enlace** | Pendiente |
+| **Enlace** | [Entrevista](https://upcedupe-my.sharepoint.com/personal/u202423775_upc_edu_pe/_layouts/15/stream.aspx?id=%2Fpersonal%2Fu202423775%5Fupc%5Fedu%5Fpe%2FDocuments%2FEntrevistas%20Aplicaciones%20Web%2FEntrevista%5FSegmento%20Ingeniero%20Agronomo%20%28Yamil%29%2Emp4&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E6cf0c2b2%2Da0bc%2D45de%2Dbb46%2D3041419b99a9&isDarkMode=false) |
 
 <div align="center">
 <img src="resources/imgs/chapter_5/entrevista1_segmento2_validacion.png" alt="Entrevista de validación 1 - Segmento 2: Yamil Tejada" width="600">
