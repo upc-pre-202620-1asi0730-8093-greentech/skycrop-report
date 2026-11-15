@@ -3906,7 +3906,8 @@ Enlace al prototipo de la aplicación realizado en Figma: [https://www.figma.com
 
 Enlace a la landing page publicada en GitHub pages: [https://upc-pre-202620-1asi0730-8093-greentech.github.io/skycrop-website/](https://upc-pre-202620-1asi0730-8093-greentech.github.io/skycrop-website/)
 
-Enlace al frontend web application de SkyCrop desplegado en Vercel: [https://skycrop-website.vercel.app/home](https://skycrop-website.vercel.app/home)
+Enlace al frontend web application de SkyCrop desplegado en Vercel: [https://skycrop-website.vercel.app/home](https://skycrop-website.vercel.app/home)  
+**Cuenta de prueba:** Correo: abc@gmail.com, Contraseña: 123456789
 
 Enlace al video de entrevistas de Needfinding: [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202423973_upc_edu_pe/IQAs_PnoTE5iRpSbVLalpTuEAXN0uFDhZLx91ilex0f1F4s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Hz1f5O)
 
