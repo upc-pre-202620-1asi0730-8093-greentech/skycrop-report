@@ -3610,19 +3610,78 @@ A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacio
 
 #### 5.2.3.4. Development Evidence for Sprint Review. 
 
+Durante el desarrollo del backend, el equipo de GreenTech implementó e integró los servicios principales y la lógica de negocio para la plataforma SkyCrop. Las actividades comprendieron la gestión de parcelas, cultivos, generación de diagnósticos mediante análisis simulado, emisión de reportes, manejo de excepciones, internacionalización y la preparación del despliegue de la API.
+
+Como evidencia del trabajo realizado, se presentan los commits más representativos registrados en el repositorio de GitHub, los cuales permiten verificar los avances alcanzados durante el sprint.
+
+**Tabla. Development Evidence for Sprint Review 3 - Backend**
+
+| Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/create-report` | `c738645` | feat(reports): implement report command and query services | Implementa los servicios de comandos y consultas para el módulo de reportes, permitiendo la creación y obtención estructurada de información agrícola. | 10/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/create-report` | `90bd080` | feat(reports): add reports controller | Agrega el controlador REST para la gestión de reportes, exponiendo los endpoints necesarios para la comunicación con la aplicación cliente. | 10/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/create-report` | `48b6eaa` | feat(i18n): add reports message resource files | Incorpora los archivos de recursos de mensajes para soportar la internacionalización en las respuestas y notificaciones del módulo de reportes. | 10/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/get-reports` | `a99a6dc` | feat(reports): add get all reports endpoint | Implementa el endpoint para consultar el listado completo de reportes registrados en el sistema, facilitando su visualización en la plataforma. | 11/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/plots-integration` | `0509f75` | feat(plots): expose parcel lookup facade | Expone la fachada de búsqueda de parcelas para permitir la consulta e integración de datos de terrenos entre distintos contextos delimitados. | 11/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/plots-integration` | `de7eb6c` | feat(plots): publish plot registration integration event | Implementa la publicación del evento de integración al registrar una parcela, asegurando la sincronización de datos en la arquitectura del backend. | 11/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/diagnoses` | `649441c` | feat(diagnoses): add simulated image analysis with scenario checks | Desarrolla el motor simulado de análisis de imágenes con validación de escenarios para generar diagnósticos fitosanitarios de los cultivos. | 12/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/diagnoses` | `4629b52` | feat(diagnoses): configure EF Core persistence mappings | Configura el mapeo de entidades y persistencia mediante Entity Framework Core para almacenar los diagnósticos en la base de datos. | 12/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/diagnoses` | `8089b78` | feat(diagnoses): expose generation and query endpoints | Expone los endpoints de generación y consulta de diagnósticos, permitiendo ejecutar análisis y revisar el historial desde el frontend. | 13/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/crops` | `94da121` | feat(crops): add Crop aggregate, with its crop status and created event. | Implementa el agregado principal de cultivos junto con sus estados y eventos de dominio para gestionar el ciclo de vida de cada siembra. | 13/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/crops` | `9b92666` | feat(crops): add crop command service. | Desarrolla el servicio de comandos para la gestión de cultivos, encapsulando las reglas de negocio para su registro y actualización. | 13/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/report-errors` | `113a9c2` | fix(reports): add missing exception handling to report command service | Añade el manejo de excepciones faltante en el servicio de comandos de reportes, mejorando la estabilidad y control de errores de la API. | 14/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/crops` | `f94be03` | feat(crops): wire crops services into program startup. | Registra e inyecta las dependencias de los servicios de cultivos en la configuración inicial de la aplicación para su correcta ejecución. | 14/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `release/v1.0.0` | `3dde811` | docs: add CHANGELOG.md | Incorpora el archivo CHANGELOG.md documentando los hitos, nuevas funcionalidades y cambios relevantes de la versión inicial del sistema. | 15/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `main` | `26ebcd9` | Merge branch 'release/v1.0.0' into main | Integra la rama de lanzamiento `release/v1.0.0` hacia `main`, consolidando el código estable para el despliegue de la versión 1.0.0 del backend. | 15/11/2026 |
 
 #### 5.2.3.5. Execution Evidence for Sprint Review. 
 
 
 #### 5.2.3.6. Services Documentation Evidence for Sprint Review. 
 
+El servicio backend de SkyCrop implementa una API RESTful desarrollada en .NET bajo una arquitectura orientada al dominio (DDD) y organizada en Bounded Contexts. El servidor recibe y responde cuerpos en formato JSON, exponiendo los endpoints mediante el prefijo `/api/v1` (documentados mediante OpenAPI / Scalar) y persistiendo la información en una base de datos relacional MySQL mediante Entity Framework Core.
+
+La siguiente tabla describe los recursos y operaciones implementadas en los controladores del backend durante el Sprint 3. Las rutas se expresan respecto a la URL base de la API y `{id}` (o su identificador específico) representa la clave primaria del recurso consultado o modificado.
+
+| Recurso | Operaciones implementadas | Descripción y aplicación en el sistema |
+| :--- | :--- | :--- |
+| `/plots` | `GET`, `POST`, `GET /plots/{id}` | Listar y registrar parcelas agrícolas, además de consultar sus detalles específicos e integrar su información con otros contextos delimitados. |
+| `/crops` | `GET`, `POST`, `GET /crops/{CropId}` | Consultar el listado de cultivos, registrar nuevas siembras vinculadas a parcelas y obtener el detalle individual mediante su identificador. |
+| `/drones` | `GET`, `POST`, `GET /drones/{id}`, `PATCH /drones/{id}` | Registrar drones en la flota, listar las unidades disponibles, consultar sus especificaciones y actualizar parcialmente su información o estado. |
+| `/flightroutes` | `GET`, `PATCH /flightroutes/{id}` | Consultar las rutas de vuelo configuradas y modificar parcialmente sus parámetros operativos. |
+| `/flights` | `GET`, `POST`, `GET /flights/{id}`, `PATCH /flights/{id}` | Programar y listar vuelos de monitoreo, consultar su detalle individual y actualizar parcialmente su estado (por ejemplo, ejecución o cancelación). |
+| `/aerialimages` | `GET`, `GET /aerialimages/{id}` | Listar y consultar los registros de imágenes aéreas capturadas durante los vuelos de monitoreo. |
+| `/diagnoses` | `GET`, `POST`, `GET /diagnoses/{id}`, `GET /diagnoses/{id}/map` | Generar diagnósticos fitosanitarios mediante análisis simulado de imágenes, listar diagnósticos, consultar su detalle y obtener su representación georreferenciada (`/map`). |
+| `/reports` | `GET`, `POST`, `GET /reports/{reportId}` | Emitir reportes consolidados de seguimiento agrícola, listar el historial generado y consultar el detalle de un reporte específico. |
+
+Las consultas de colecciones devuelven arreglos JSON y las consultas por identificador retornan un objeto detallado con códigos de estado HTTP estandarizados (`200 OK`, `201 Created`, `400 Bad Request`, `404 Not Found`). Las solicitudes de registro (`POST`) y modificación parcial (`PATCH`) reciben las cargas útiles mediante objetos DTO en formato JSON, aplicando validaciones de dominio y reglas de negocio antes de su persistencia.
+
+**Trazabilidad con el código**
+
+En el repositorio del backend, cada recurso corresponde a su respectivo Bounded Context (`Plots`, `Crops`, `Drones` / `Monitoring`, `Diagnoses` y `Reports`), estructurado en capas de *Interfaces (REST Controllers y Assemblers)*, *Application (Command y Query Services)*, *Domain (Aggregates, Value Objects, Events y Repositories)* e *Infrastructure (EF Core Persistence)*. Asimismo, el proyecto incorpora soporte de internacionalización (`i18n`) para mensajes de respuesta y manejo centralizado de excepciones.
+
+El motor de diagnósticos ejecuta un análisis simulado con validación de escenarios y control de acceso por parcela, mientras que la integración entre contextos se gestiona mediante fachadas (*Facades*) y eventos de dominio e integración. La evidencia de despliegue y disponibilidad del servicio en la nube se presenta en la sección correspondiente de infraestructura.
 
 #### 5.2.3.7. Software Deployment Evidence for Sprint Review. 
 
 
 #### 5.2.3.8. Team Collaboration Insights during Sprint.
 
+Durante el Sprint 3, se realizó el seguimiento de la colaboración y participación de los integrantes del equipo mediante las herramientas de análisis proporcionadas por GitHub. Estas permitieron visualizar las contribuciones individuales, la frecuencia de los commits y la evolución del repositorio a lo largo del sprint.
 
+A través de la sección **Contributors**, se identificaron las aportaciones realizadas por cada integrante del equipo, permitiendo evaluar su participación en el desarrollo del proyecto.
+
+<div align="center">
+  <img src="resources/imgs/Sprint3-teamCollaborationInsight2.png" alt="Contributors Website - Sprint 3" style="max-width: 90%;">
+</div>
+
+Asimismo, mediante la sección **Insights**, se analizó la actividad general del repositorio, incluyendo la frecuencia de los commits y los cambios realizados durante el Sprint 3. Esta información permitió realizar un seguimiento del progreso del equipo y del trabajo colaborativo desarrollado.
+
+<div align="center">
+  <img src="resources/imgs/Sprint3-teamCollaborationInsight.png" alt="Insights Website - Sprint 3" style="max-width: 90%;">
+</div>
+
+En conclusión, las herramientas de GitHub facilitaron el monitoreo de las contribuciones y la evolución del proyecto durante el Sprint 3, proporcionando información relevante sobre la participación del equipo y el avance de las actividades de desarrollo.
 
 ## 5.3. Validation Interviews. 
 
