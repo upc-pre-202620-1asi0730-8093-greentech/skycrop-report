@@ -161,23 +161,27 @@ La captura corresponde al historial mostrado en `main`; no representa un conteo 
 
 **AV2: colaboración en el informe**
 
-Para AV2, el equipo amplió la documentación del Sprint 3, actualizó los diagramas de arquitectura y diseño, y registró entrevistas de validación. El análisis considera los commits sin merge con fecha de autor entre el **26 de octubre y el 15 de noviembre de 2026**, inclusive, presentes en `develop` al corte [f4e9faa](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/f4e9faa60d5e17091412bff14a7cf0f31837f3fa). El intervalo comienza con el registro de la planificación del Sprint 3; las evidencias de AV1 y TB1 conservan sus propios períodos de consulta.
+Para AV2, el equipo amplió la documentación del Sprint 3, actualizó los diagramas de arquitectura y diseño, y registró las entrevistas de validación. Las siguientes capturas de GitHub permiten observar la actividad del repositorio y los aportes registrados por los integrantes durante la preparación de esta entrega.
 
-Se identificaron **28 commits sin merge** y **5 nombres de autor** en el intervalo. La tabla conserva los nombres registrados en Git y relaciona su actividad con evidencias del informe:
+La captura de **Pulse** corresponde al período del **8 al 15 de noviembre de 2026**, con el filtro de una semana. Muestra **5 pull requests integrados**, ninguno abierto y ninguna incidencia activa. Excluyendo los merges, GitHub registra **5 autores y 107 commits en `main`**, así como 107 commits en todas las ramas. En `main` se modificaron **222 archivos**, con **11 959 adiciones y 72 eliminaciones**. Los cinco pull requests fueron integrados por dos personas.
 
-| Autor registrado en Git | Commits sin merge | Aportes documentados | Evidencias |
-|---|---:|---|---|
-| Sunio Landa | 15 | Planificación, matriz de liderazgo y backlog del Sprint 3; diseño de entrevistas de validación; actualización de diagramas de componentes y EventStorming. | [`1ee3cc8`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/1ee3cc866acf428da4e830fd61d7c38b338cec3e), [`1cfd578`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/1cfd5784c70ded330291dbee1d648d337e078d6b), [`740da33`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/740da3329fdefa4ede35c44cbfec632f25653fad), [`cb04fa2`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/cb04fa27a5da80ffdfed6df413c620d43392558a) |
-| Yam Cano Gomez | 4 | Registro de las entrevistas de Yamil, Drago y Camila, con sus evidencias y enlaces de validación. | [`75c8103`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/75c810377dfaf4cf25e5f3581fc2f9cae448f70d), [`3acfa29`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/3acfa296f92e8b328f1f0a57c354f090a2f9e3ad), [`a0536db`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/a0536dbe2cbb72f0ad9f9070f9122ce16ee84c0f), [`7338358`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/7338358bceb6b83404f8aedcd6429680f399ae9f) |
-| Olizzy-upc | 4 | Evidencias de desarrollo, documentación de servicios y colaboración del Sprint 3. | [`1bea81a`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/1bea81a82510be1b55ca7891a412fe77a266c987), [`e2be02e`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/e2be02e283bfee48048978171e31657da0cd52f0), [`1e8e46d`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/1e8e46d51c2895fedfb45a73c0d4b165869304eb) |
-| notoriussxd | 3 | Organización de componentes del frontend por capas, ajuste de objetos de valor y diagramas de clases, y revisión de la paleta C4. | [`461221d`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/461221d54179d07bc125f79d3253a5a12ff55729), [`24199ab`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/24199abe1c142896d3baedb0e9c426acb8b903ba), [`efda642`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/efda6421ff49559bde80f15f58a13f8ede55a150) |
-| DiegoPumahualcca | 2 | Ajustes de presentación de la portada y alineación de la introducción de Student Outcome con la plantilla. | [`7d8f107`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/7d8f1076c41f3503a19d43b3675b930e52e6dba7), [`ea23ca3`](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/commit/ea23ca3b0edbcf5426c672c7781009895e7a368f) |
+![Pulse del repositorio skycrop-report para AV2: del 8 al 15 de noviembre de 2026](resources/imgs/chapter_0/Insights-AV2.png)
 
-La integración de los registros de validación se evidencia en el [pull request #9](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/pull/9), mientras que las evidencias del Sprint 3 se integraron mediante el [pull request #10](https://github.com/upc-pre-202620-1asi0730-8093-greentech/skycrop-report/pull/10). El historial también registra merges de ramas dedicadas a planificación, diseño de entrevistas y diagramas. Esta organización permite rastrear los cambios desde el aporte individual hasta su incorporación al informe compartido.
+La captura de **Contributors** presenta las contribuciones de las cinco cuentas del equipo. Las tarjetas muestran los siguientes valores:
 
-Los aportes muestran una distribución de tareas entre planificación, diseño, validación y documentación de las evidencias del producto. La frecuencia de commits permite observar actividad, pero no mide por sí sola el esfuerzo ni la calidad: el conteo incluye correcciones y reversiones, y debe interpretarse junto con los artefactos y la matriz de liderazgo y colaboración del Sprint 3.
+| Cuenta de GitHub | Commits mostrados | Adiciones | Eliminaciones |
+|---|---:|---:|---:|
+| DanLandio | 70 | 5 677 | 2 029 |
+| DiegoPumahualcca | 35 | 6 849 | 2 009 |
+| Olizzy-upc | 25 | 1 464 | 56 |
+| Yam-1CG | 16 | 928 | 0 |
+| notoriussxd | 3 | 2 827 | 2 |
 
-**Alcance de la evidencia:** estas cifras se obtuvieron del historial Git de `develop` en el corte indicado; no corresponden a una captura de GitHub Pulse o Contributors ni al total histórico de `main`. Se excluyen los commits de merge y los cambios posteriores al corte, incluida esta actualización del apartado. Para reproducir el conteo, se consulta `git log f4e9faa60d5e17091412bff14a7cf0f31837f3fa --no-merges --format="%H|%aI|%an|%s"` y se filtra la fecha de autor (`%aI`) por el intervalo indicado.
+![Contributors del repositorio skycrop-report para AV2](resources/imgs/chapter_0/Contributors-AV2.png)
+
+El recorte de Contributors no muestra el filtro temporal ni la rama seleccionada; por ello, sus cifras se describen de forma independiente del intervalo semanal de Pulse. Los valores de ambas capturas no se suman ni se interpretan como un mismo conteo. Asimismo, Pulse presenta actividad de `main`, mientras que los cambios del informe se organizan e integran en `develop`.
+
+Las evidencias muestran participación de las cinco cuentas y actividad de integración durante la preparación de AV2. El trabajo documentado comprende planificación del Sprint 3, revisión de diagramas, entrevistas de validación y evidencias de desarrollo y servicios. La cantidad de commits y líneas modificadas describe actividad registrada; la evaluación de la colaboración se complementa con los artefactos elaborados y la matriz de liderazgo y colaboración del Sprint 3.
 
 <div style="page-break-after: always;"></div>
 
