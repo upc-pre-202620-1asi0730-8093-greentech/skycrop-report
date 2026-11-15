@@ -1996,13 +1996,13 @@ Paso 5: Agregar sistemas externos
 <img src="resources/imgs/chapter_4/design-level-eventstorming-5.png" alt="Eventstorming paso 5" width="600">
 </div>
 
-Paso 6: Escribir reglas de negocio
+Paso 6: Generar Aggregates
 
 <div align="center">
 <img src="resources/imgs/chapter_4/design-level-eventstorming-6.png" alt="Eventstorming paso 6" width="600">
 </div>
 
-Paso 7: Juntar reglas de negocio (Aggregates)
+Paso 7: Bounded Contexts
 
 <div align="center">
 <img src="resources/imgs/chapter_4/design-level-eventstorming-7.png" alt="Eventstorming paso 7" width="600">
