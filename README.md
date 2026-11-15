@@ -3680,6 +3680,28 @@ Para llevar a cabo las entrevistas de validación, se mostrarán los artefactos 
 
 ## 5.3.2. Registro de Entrevistas. 
 
+*Registro de entrevistas — Segmento 1: Agricultores*
+
+**Entrevista 1**
+
+| Campo | Detalle |
+| :--- | :--- |
+| **Nombre** | Drago Duarte |
+| **Edad** | 26 años |
+| **Distrito** | Huancayo |
+| **Duración** | 12:35 min |
+| **Timing** | Pendiente |
+| **Enlace** | Pendiente |
+
+<div align="center">
+<img src="resources/imgs/chapter_5/entrevista1_segmento1_validacion.png" alt="Entrevista de validación 1 - Segmento 1: Drago Duarte" width="600">
+</div>
+
+**Resumen**:
+Drago, un agricultor de 26 años de Huancayo, evalúa la página principal y la plataforma web de SkyCrop tras una demostración de sus funciones para el monitoreo de cultivos. Destaca como punto positivo poder ingresar a la sección de parcelas para visualizar el terreno y sus cultivos, además de consultar los diagnósticos para identificar resultados que requieren revisión. Señala que la página inicial le resultó dinámica y fácil de entender, y que tanto el registro de parcelas en el mapa como el ingreso de datos de siembra son operaciones sencillas. Respecto a los diagnósticos, comenta que el ejemplo de estrés hídrico le permite ubicar la anomalía y su severidad para saber por dónde empezar en el campo, aunque sugiere añadir una indicación breve sobre qué hacer con el cultivo y un acceso directo al último diagnóstico desde la ficha de cada parcela. Como punto confuso, menciona que el reporte muestra gráficos con las siglas NDVI pero no explica qué significan los cambios de valores para su terreno, por lo que recomienda agregar una frase corta debajo del gráfico que oriente cómo interpretar los números. Finalmente, indica que adquiriría el plan Básico como prueba, ya que cubre hasta cinco parcelas e incluye diagnósticos y reportes estacionales.
+
+---
+
 *Registro de entrevistas — Segmento 2: Ingenieros agrónomos*
 
 **Entrevista 1**
@@ -3690,6 +3712,8 @@ Para llevar a cabo las entrevistas de validación, se mostrarán los artefactos 
 | **Edad** | 25 años |
 | **Departamento** | Apurímac |
 | **Duración** | 11:54 min |
+| **Timing** | Pendiente |
+| **Enlace** | Pendiente |
 
 <div align="center">
 <img src="resources/imgs/chapter_5/entrevista1_segmento2_validacion.png" alt="Entrevista de validación 1 - Segmento 2: Yamil Tejada" width="600">
