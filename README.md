@@ -3610,6 +3610,29 @@ A continuación se presenta la tabla del sprint backlog 3 con cada tarea relacio
 
 #### 5.2.3.4. Development Evidence for Sprint Review. 
 
+Durante el desarrollo del backend, el equipo de GreenTech implementó e integró los servicios principales y la lógica de negocio para la plataforma SkyCrop. Las actividades comprendieron la gestión de parcelas, cultivos, generación de diagnósticos mediante análisis simulado, emisión de reportes, manejo de excepciones, internacionalización y la preparación del despliegue de la API.
+
+Como evidencia del trabajo realizado, se presentan los commits más representativos registrados en el repositorio de GitHub, los cuales permiten verificar los avances alcanzados durante el sprint.
+
+**Tabla. Development Evidence for Sprint Review 3 - Backend**
+
+| Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/create-report` | `c738645` | feat(reports): implement report command and query services | Implementa los servicios de comandos y consultas para el módulo de reportes, permitiendo la creación y obtención estructurada de información agrícola. | 10/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/create-report` | `90bd080` | feat(reports): add reports controller | Agrega el controlador REST para la gestión de reportes, exponiendo los endpoints necesarios para la comunicación con la aplicación cliente. | 10/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/create-report` | `48b6eaa` | feat(i18n): add reports message resource files | Incorpora los archivos de recursos de mensajes para soportar la internacionalización en las respuestas y notificaciones del módulo de reportes. | 10/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/get-reports` | `a99a6dc` | feat(reports): add get all reports endpoint | Implementa el endpoint para consultar el listado completo de reportes registrados en el sistema, facilitando su visualización en la plataforma. | 11/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/plots-integration` | `0509f75` | feat(plots): expose parcel lookup facade | Expone la fachada de búsqueda de parcelas para permitir la consulta e integración de datos de terrenos entre distintos contextos delimitados. | 11/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/plots-integration` | `de7eb6c` | feat(plots): publish plot registration integration event | Implementa la publicación del evento de integración al registrar una parcela, asegurando la sincronización de datos en la arquitectura del backend. | 11/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/diagnoses` | `649441c` | feat(diagnoses): add simulated image analysis with scenario checks | Desarrolla el motor simulado de análisis de imágenes con validación de escenarios para generar diagnósticos fitosanitarios de los cultivos. | 12/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/diagnoses` | `4629b52` | feat(diagnoses): configure EF Core persistence mappings | Configura el mapeo de entidades y persistencia mediante Entity Framework Core para almacenar los diagnósticos en la base de datos. | 12/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/diagnoses` | `8089b78` | feat(diagnoses): expose generation and query endpoints | Expone los endpoints de generación y consulta de diagnósticos, permitiendo ejecutar análisis y revisar el historial desde el frontend. | 13/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/crops` | `94da121` | feat(crops): add Crop aggregate, with its crop status and created event. | Implementa el agregado principal de cultivos junto con sus estados y eventos de dominio para gestionar el ciclo de vida de cada siembra. | 13/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/crops` | `9b92666` | feat(crops): add crop command service. | Desarrolla el servicio de comandos para la gestión de cultivos, encapsulando las reglas de negocio para su registro y actualización. | 13/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/report-errors` | `113a9c2` | fix(reports): add missing exception handling to report command service | Añade el manejo de excepciones faltante en el servicio de comandos de reportes, mejorando la estabilidad y control de errores de la API. | 14/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `feature/crops` | `f94be03` | feat(crops): wire crops services into program startup. | Registra e inyecta las dependencias de los servicios de cultivos en la configuración inicial de la aplicación para su correcta ejecución. | 14/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `release/v1.0.0` | `3dde811` | docs: add CHANGELOG.md | Incorpora el archivo CHANGELOG.md documentando los hitos, nuevas funcionalidades y cambios relevantes de la versión inicial del sistema. | 15/11/2026 |
+| upc-pre-202620-1asi0730-8093-greentech/skycrop-backend | `main` | `26ebcd9` | Merge branch 'release/v1.0.0' into main | Integra la rama de lanzamiento `release/v1.0.0` hacia `main`, consolidando el código estable para el despliegue de la versión 1.0.0 del backend. | 15/11/2026 |
 
 #### 5.2.3.5. Execution Evidence for Sprint Review. 
 
