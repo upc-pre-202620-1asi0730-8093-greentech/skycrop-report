@@ -1,84 +1,59 @@
 @startuml
-' C4 palette: people, systems, containers, components and external systems.
-skinparam monochrome false
-skinparam backgroundColor #ffffff
-skinparam actorStyle rectangle
-skinparam actor {
-  BackgroundColor #08427b
-  BorderColor #08427b
-  FontColor #ffffff
-}
-skinparam component {
-  BackgroundColor #85bbf0
-  BorderColor #5b8bb1
-  FontColor #000000
-  BackgroundColor<<container>> #438dd5
-  BorderColor<<container>> #2e6295
-  FontColor<<container>> #ffffff
-  BackgroundColor<<external>> #999999
-  BorderColor<<external>> #777777
-  FontColor<<external>> #ffffff
-  BackgroundColor<<system>> #1168bd
-  BorderColor<<system>> #0b4884
-  FontColor<<system>> #ffffff
-}
-skinparam database {
-  BackgroundColor #438dd5
-  BorderColor #2e6295
-  FontColor #ffffff
-}
-skinparam rectangle {
-  BackgroundColor #ffffff
-  BorderColor #777777
-  FontColor #000000
-}
-skinparam ArrowColor #555555
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
 skinparam shadowing false
-skinparam dpi 120
+skinparam dpi 150
 skinparam defaultFontName SansSerif
-skinparam componentStyle rectangle
-skinparam wrapWidth 180
-skinparam nodesep 35
-skinparam ranksep 45
-top to bottom direction
-title SkyCrop - C4 - Diagnoses Generation - backend
-component "Frontend Web Application\n[Container: Vue]\n\nRequests context operations." as web <<container>>
-rectangle "Backend RESTful API\n[Container: C# / ASP.NET Core]" {
-rectangle "Diagnoses Generation" {
-rectangle "Interfaces / Presentation" {
-component "DiagnosisController / Interfaces\n[Component: ASP.NET Core]\n\nReceives requests, builds commands and returns resources." as controller
+skinparam wrapWidth 220
+left to right direction
+
+title SkyCrop - C4 - Diagnoses Generation - Backend
+
+Container(web, "Frontend Web Application", "Vue", "Requests context operations.")
+ContainerDb(db, "Relational Database", "MySQL Server or PostgreSQL", "Stores application data.")
+
+Container_Boundary(diagnoses, "Diagnoses") {
+        Boundary(interfaces, "Interfaces") {
+            Component(controller, "Rest", "ASP.NET Core", "DiagnosesController receives requests, builds commands with assemblers and returns resources.")
+            Component(acl, "ACL", "ASP.NET Core", "Exposes IDiagnosesContextFacade.")
+            Component(events, "Events", "ASP.NET Core", "AgronomicAnomalyDetectedIntegrationEvent, DiagnosisFailedIntegrationEvent, DiagnosisGeneratedIntegrationEvent")
+        }
+
+        Boundary(application, "Application") {
+            Component(commands, "CommandServices", "C# interface", "Integration contract used by the use case.")
+            Component(queries, "QueryServices", "C#", "Requests analysis and stores diagnoses and anomalies.")
+        }
+
+        Boundary(domainLayer, "Domain") {
+            Component(domain, "Model", "C#", "Diagnosis aggregate root, anomaly entity, value objects, events, commands and queries.")
+            Component(repositoryContract, "Repositories", "C#", "IDiagnosisRepository, defines diagnosis aggregate persistence independently")
+        }
+
+        Boundary(infrastructure, "Infrastructure") {
+            Component(adapter, "ImageAnalysis", "C#", "Generates diagnoses and anomalies.")
+            Component(persistence, "Persistence", "C#, EF Core", "Diagnoses model builder extensions and repository implementation")
+        }
 }
-rectangle "Application" {
-component "DiagnosisApplicationService / Application\n[Component: C#]\n\nRequests analysis and stores diagnoses and anomalies." as service
-component "IImageAnalysis\n[Component: C# interface]\n\nIntegration contract used by the use case." as integrationContract
-}
-rectangle "Domain" {
-component "Domain Model\n[Component: C#]\n\nAggregates, entities, value objects and context rules." as domain
-component "Repository Contracts\n[Component: C# interfaces]\n\nDefine aggregate persistence without depending on EF Core." as repositoryContract
-}
-rectangle "Infrastructure" {
-component "Repositories / Infrastructure\n[Component: Entity Framework Core]\n\nImplement aggregate persistence contracts." as repository
-component "ImageAnalysisAdapter / Infrastructure\n[Component: C#]\n\nResults and anomalies." as adapter
-}
-}
-}
-database "Relational Database\n[Container: MySQL Server or PostgreSQL]" as db
-web --> controller : REST [HTTPS / JSON]
-controller --> service : Delegates operations
-service --> domain : Applies rules
-service --> repositoryContract : Queries and persists through a contract
-repository ..|> repositoryContract : Implements
-repository --> domain : Reconstructs aggregates
-repository --> db : Reads and writes [EF Core / SQL]
-service --> integrationContract : Requests an operation
-adapter ..|> integrationContract : Implements
-component "Image Analysis Service\n[External system: Service]\n\nResults and anomalies." as provider <<external>>
-adapter --> provider : HTTPS
+
+Rel(web, controller, "Sends requests", "REST [HTTPS / JSON]")
+
+Rel(controller, commands, "Delegates operations")
+Rel(controller, queries, "Delegates operations")
+
+Rel(commands, domain, "Applies rules")
+Rel(commands, repositoryContract, "Queries and persists through a contract")
+
+
+
+Rel(persistence, domain, "Reconstructs aggregates")
+Rel(persistence, db, "Reads and writes", "EF Core / SQL")
+
+
 legend bottom
 C4 - Component view of the proposed architecture.
 Each view expands a single container.
 Contexts group responsibilities within the container.
-Solid arrows indicate usage; dashed arrows with a triangle indicate implementation.
 Application uses internal contracts; Infrastructure implements them.
 endlegend
+
 @enduml

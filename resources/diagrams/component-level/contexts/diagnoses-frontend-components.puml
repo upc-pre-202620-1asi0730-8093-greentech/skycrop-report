@@ -1,90 +1,62 @@
 @startuml
-' C4 palette: people, systems, containers, components and external systems.
-skinparam monochrome false
-skinparam backgroundColor #ffffff
-skinparam actorStyle rectangle
-skinparam actor {
-  BackgroundColor #08427b
-  BorderColor #08427b
-  FontColor #ffffff
-}
-skinparam component {
-  BackgroundColor #85bbf0
-  BorderColor #5b8bb1
-  FontColor #000000
-  BackgroundColor<<container>> #438dd5
-  BorderColor<<container>> #2e6295
-  FontColor<<container>> #ffffff
-  BackgroundColor<<external>> #999999
-  BorderColor<<external>> #777777
-  FontColor<<external>> #ffffff
-  BackgroundColor<<system>> #1168bd
-  BorderColor<<system>> #0b4884
-  FontColor<<system>> #ffffff
-}
-skinparam database {
-  BackgroundColor #438dd5
-  BorderColor #2e6295
-  FontColor #ffffff
-}
-skinparam rectangle {
-  BackgroundColor<<person>> #08427b
-  BorderColor<<person>> #08427b
-  FontColor<<person>> #ffffff
-  BackgroundColor #ffffff
-  BorderColor #777777
-  FontColor #000000
-}
-skinparam ArrowColor #555555
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
 skinparam shadowing false
-skinparam dpi 120
+skinparam dpi 150
 skinparam defaultFontName SansSerif
-skinparam componentStyle rectangle
-skinparam wrapWidth 180
-skinparam nodesep 35
-skinparam ranksep 45
-top to bottom direction
-title SkyCrop - C4 - Diagnoses Generation - frontend
-rectangle "Farmer / Agronomist\n[Person]" as user <<person>>
-rectangle "Frontend Web Application\n[Container: Vue / JavaScript / PrimeVue]" {
-rectangle "Diagnoses Generation" {
-rectangle "Presentation" {
-component "diagnosis-list\n[Component: Vue / PrimeVue]\n\nDiagnoses, results map and history." as view0
-component "diagnosis-details\n[Component: Vue / PrimeVue]\n\nView interaction and data." as view1
-component "diagnosis-map\n[Component: Vue / PrimeVue]\n\nView interaction and data." as view2
+skinparam wrapWidth 220
+left to right direction
+
+title SkyCrop - C4 - Diagnoses Generation - Frontend
+
+Person(user, "Farmer / Agronomist", "Interacts with the frontend application")
+
+Container(api, "Backend RESTful API", "C# / ASP.NET Core", "Exposes the context's API contracts.")
+
+Container_Boundary(diagnoses, "Diagnoses") {
+    Boundary(presentation, "Presentation") {
+        Component(view0, "diagnosis-list", "Vue / PrimeVue", "Diagnoses, results map and history.")
+        Component(view1, "diagnosis-details", "Vue / PrimeVue", "View interaction and data.")
+        Component(view2, "diagnosis-map", "Vue / PrimeVue", "View anomaly location and severity.")
+        Component(view2, "diagnoses-grid", "Vue / PrimeVue", "Diagnoses summary grid.")
+    }
+    Boundary(application, "Application") {
+        Component(state, "Diagnoses Store", "Pinia / JavaScript", "Coordinates context actions, data, loading and errors.")
+    }
+    Boundary(domain, "Domain") {
+        Component(model, "Context Models", "JavaScript", "Represents diagnosis and anomaly entity data independently.")
+    }
+    Boundary(infrastructure, "Infrastructure") {
+        Component(apiclient, "Diagnosis API Client", "JavaScript", "Exposes the context's remote operations.")
+        Component(assembler, "Diagnosis Assembler", "JavaScript", "Transforms HTTP resources into application models.")
+    }
+    Boundary(sharedInfra, "Shared Infrastructure") {
+        Component(http, "Shared HTTP Client", "JavaScript", "Base URL and HTTP response handling.")
+    }
 }
-rectangle "Application" {
-component "Diagnosis Store\n[Component: Pinia / JavaScript]\n\nCoordinates context actions, data, loading and errors." as state
-}
-rectangle "Domain" {
-component "Context Models\n[Component: JavaScript]\n\nRepresent client data independently of HTTP transport." as model
-}
-rectangle "Infrastructure" {
-component "Diagnosis API Client\n[Component: JavaScript]\n\nExposes the context's remote operations." as apiclient
-component "Diagnosis Assembler\n[Component: JavaScript]\n\nTransforms HTTP resources into application models." as assembler
-}
-}
-rectangle "Shared Infrastructure" {
-component "Shared HTTP Client\n[Component: JavaScript]\n\nBase URL and HTTP response handling." as http
-}
-}
-component "Backend RESTful API\n[Container: C# / ASP.NET Core]\n\nExposes the context's API contracts." as api <<container>>
-user --> view0 : Interacts
-view0 --> state : Reads state / requests actions
-user --> view1 : Interacts
-view1 --> state : Reads state / requests actions
-user --> view2 : Interacts
-view2 --> state : Reads state / requests actions
-state --> apiclient : Invokes operations
-state --> model : Manages client data
-assembler --> model : Builds models
-state --> assembler : Maps request / response resources
-apiclient --> http : Sends requests
-http --> api : REST [HTTPS / JSON]
+
+Rel(user, view0, "Interacts")
+Rel(user, view1, "Interacts")
+Rel(user, view2, "Interacts")
+
+Rel(view0, state, "Reads state / requests actions")
+Rel(view1, state, "Reads state / requests actions")
+Rel(view2, state, "Reads state / requests actions")
+
+Rel(state, apiclient, "Invokes operations")
+Rel(state, model, "Manages client data")
+Rel(state, assembler, "Maps request / response resources")
+
+Rel(assembler, model, "Builds models")
+
+Rel(apiclient, http, "Sends requests")
+Rel(http, api, "Sends requests", "REST [HTTPS / JSON]")
+
 legend bottom
 C4 - Component view of the proposed architecture.
 Each view expands a single container.
 Contexts group responsibilities within the container.
 Client models do not replace the backend domain model.
 endlegend
+
 @enduml
