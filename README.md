@@ -325,30 +325,40 @@ En el siguiente cuadro se describe las acciones realizadas y enunciados de concl
   Aportó en la elaboración de artefactos en grupo.<br>
   TB1:<br>
   Asumió el desarrollo del registro de drones, sus vistas de detalle y la gestión de rutas, como parte de la distribución de funcionalidades del equipo.
+  <br>AV2:<br>
+  Asumió el desarrollo del backend de diagnósticos como parte de la distribución de responsabilidades de AV2, aportando el módulo asignado al trabajo conjunto del equipo.<br>
 
   <strong>Sunio Danilo Landa Sánchez</strong><br>
   AV1:<br>
   Promovió el uso de convenciones para el versionado del proyecto.<br>
   TB1:<br>
   Asumió el módulo de diagnósticos, con generación de datos estáticos y vistas de consulta, para integrar el seguimiento del cultivo en el avance del frontend.
+  <br>AV2:<br>
+  Asumió el desarrollo del backend de reportes y figuró como Team Leader en el Participant Performance Report de AV2. Su aporte combinó una responsabilidad técnica definida con el rol de liderazgo del equipo.<br>
 
   <strong>Cano Gomez Yam Antony Gabriel</strong><br>
   AV1:<br>
   Facilitó la realización de hitos durante el proyecto.<br>
   TB1:<br>
   Asumió el registro de cultivos y sus vistas de detalle, relacionando la información de los cultivos con las parcelas de SkyCrop.
+  <br>AV2:<br>
+  Asumió el desarrollo del backend de parcelas, contribuyendo desde su módulo al objetivo compartido de construir los servicios de SkyCrop para AV2.<br>
 
   <strong>Jonseck Choque Oliver</strong><br>
   AV1:<br>
   Ayudó en la elaboración de diagramas.<br>
   TB1:<br>
   Asumió el módulo de reportes, con listado y vistas de detalle, como parte de la implementación conjunta de las funcionalidades del sprint.
+  <br>AV2:<br>
+  Asumió el desarrollo del backend de IAM y notificaciones, aportando al trabajo conjunto en la gestión de identidad y acceso y en las notificaciones del sistema.<br>
 
   <strong>Luis Sebastián Rubio Ortiz</strong><br>
   AV1:<br>
   Aportó en el diseño de la solución.<br>
   TB1:<br>
   Asumió el registro de parcelas y sus vistas de detalle. Complementó este trabajo con la integración de la mock API, la configuración de despliegue y la actualización del informe.
+  <br>AV2:<br>
+  Asumió el desarrollo del backend de drones, notificaciones, rutas y vuelos. Su participación complementó la distribución de módulos del equipo e incluyó el área de notificaciones, también asignada a Oliver.<br>
   </td>
 
   <td>
@@ -356,6 +366,8 @@ En el siguiente cuadro se describe las acciones realizadas y enunciados de concl
   El grupo trabajó en equipo para proponer una solución y diseñarla de forma progresiva.
   <br><br> TB1: <br>
   La distribución de módulos permitió organizar el trabajo conjunto en parcelas, cultivos, drones, diagnósticos y reportes. Las contribuciones se relacionan con el objetivo compartido de presentar una primera versión del frontend y con las evidencias de desarrollo y ejecución del Sprint 2.
+  <br><br> AV2: <br>
+  En AV2, la distribución de responsabilidades permitió que cada integrante aportara al desarrollo del backend: diagnósticos, parcelas, IAM, notificaciones, reportes, drones, rutas y vuelos. Sunio Danilo Landa Sánchez figura como Team Leader. Estas responsabilidades técnicas y el rol de liderazgo sustentan la contribución individual al trabajo conjunto.
   </td>
   </tr>
 
@@ -368,30 +380,40 @@ En el siguiente cuadro se describe las acciones realizadas y enunciados de concl
   Facilitó el reparto de tareas.<br>
   TB1:<br>
   Participó en la distribución de módulos y tomó como responsabilidad el registro de drones, sus detalles y rutas, delimitando su parte del trabajo del Sprint 2.
+  <br>AV2:<br>
+  Desarrolló el backend de diagnósticos dentro del alcance asignado para AV2. El registro de desempeño señala que cumplió a tiempo, vinculando su responsabilidad individual con el plazo de la entrega conjunta.<br>
 
   <strong>Sunio Danilo Landa Sánchez</strong><br>
   AV1:<br>
   Proporcionó espacios de trabajo para distintas partes del proyecto.<br>
   TB1:<br>
   Trabajó en el módulo de diagnósticos con datos estáticos, de acuerdo con el alcance definido para esta entrega, diferenciando la simulación del análisis de imágenes del producto propuesto.
+  <br>AV2:<br>
+  Desarrolló el backend de reportes dentro de la distribución de tareas de AV2. El registro de desempeño señala que cumplió a tiempo, aportando al objetivo de completar los módulos asignados para la entrega.<br>
 
   <strong>Cano Gomez Yam Antony Gabriel</strong><br>
   AV1:<br>
   Propuso reuniones en equipo para la realización de partes del proyecto.<br>
   TB1:<br>
   Desarrolló las vistas de registro y consulta de cultivos dentro de la distribución acordada, aportando al objetivo de gestionar la información agrícola desde el frontend.
+  <br>AV2:<br>
+  Desarrolló el backend de parcelas como tarea delimitada dentro del trabajo del equipo. El registro de desempeño señala que cumplió a tiempo, contribuyendo al cumplimiento de la meta común de AV2.<br>
 
   <strong>Jonseck Choque Oliver</strong><br>
   AV1:<br>
   Aportó en la participación de reuniones.<br>
   TB1:<br>
   Trabajó en el listado y los detalles de reportes, completando su módulo dentro del conjunto de vistas seleccionado para el avance.
+  <br>AV2:<br>
+  Desarrolló el backend de IAM y notificaciones dentro del alcance asignado. El registro de desempeño señala que cumplió a tiempo; la responsabilidad de notificaciones aparece compartida con Luis Sebastián dentro de la distribución del equipo.<br>
 
   <strong>Luis Sebastián Rubio Ortiz</strong><br>
   AV1:<br>
   Promovió el trabajo en equipo durante la elaboración del proyecto.<br>
   TB1:<br>
   Organizó los cambios de parcelas y las correcciones del informe en ramas y commits. Incorporó las capturas de ejecución y la documentación de los servicios y del despliegue para relacionar el avance con sus evidencias.
+  <br>AV2:<br>
+  Desarrolló el backend de drones, notificaciones, rutas y vuelos conforme a las responsabilidades registradas para AV2. El registro de desempeño señala que cumplió a tiempo, aportando los módulos asignados a la entrega del equipo.<br>
   </td>
 
   <td>
@@ -399,6 +421,8 @@ En el siguiente cuadro se describe las acciones realizadas y enunciados de concl
   El grupo coopero en todo momento durante la elaboración del avance, aportando ideas entre sí y ayudandose unos entre otros.
   <br><br> TB1: <br>
   La planificación, el backlog y las evidencias de implementación vinculan las metas del sprint con entregables verificables. La publicación del frontend permite acceder a la primera versión de la aplicación. Las capturas documentan los estados visibles de las vistas y complementan el historial de desarrollo para evaluar el alcance presentado.
+  <br><br> AV2: <br>
+  El Participant Performance Report de AV2 identifica las tareas de los cinco integrantes y registra que todos cumplieron a tiempo. La asignación explícita de módulos y el cumplimiento del plazo respaldan la organización del trabajo y el logro de los objetivos de la entrega. Este registro aporta evidencia de responsabilidades y cumplimiento; la participación inclusiva se valora junto con las demás evidencias de colaboración del equipo.
   </td>
   </tr>
 </table>
