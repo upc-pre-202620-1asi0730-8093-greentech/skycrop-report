@@ -159,6 +159,30 @@ La captura de Contributors utiliza el filtro «Last 3 months» y presenta contri
 
 La captura corresponde al historial mostrado en `main`; no representa un conteo exclusivo del Sprint 2. Los cambios integrados en `develop` se consultan en su historial y en el Registro de Versiones. Las cifras de commits describen la actividad registrada y se complementan con los artefactos elaborados y las responsabilidades del equipo para evaluar la participación.
 
+**AV2: colaboración en el informe**
+
+Para AV2, el equipo amplió la documentación del Sprint 3, actualizó los diagramas de arquitectura y diseño, y registró las entrevistas de validación. Las siguientes capturas de GitHub permiten observar la actividad del repositorio y los aportes registrados por los integrantes durante la preparación de esta entrega.
+
+La captura de **Pulse** corresponde al período del **8 al 15 de noviembre de 2026**, con el filtro de una semana. Muestra **5 pull requests integrados**, ninguno abierto y ninguna incidencia activa. Excluyendo los merges, GitHub registra **5 autores y 107 commits en `main`**, así como 107 commits en todas las ramas. En `main` se modificaron **222 archivos**, con **11 959 adiciones y 72 eliminaciones**. Los cinco pull requests fueron integrados por dos personas.
+
+![Pulse del repositorio skycrop-report para AV2: del 8 al 15 de noviembre de 2026](resources/imgs/chapter_0/Insights-AV2.png)
+
+La captura de **Contributors** presenta las contribuciones de las cinco cuentas del equipo. Las tarjetas muestran los siguientes valores:
+
+| Cuenta de GitHub | Commits mostrados | Adiciones | Eliminaciones |
+|---|---:|---:|---:|
+| DanLandio | 70 | 5 677 | 2 029 |
+| DiegoPumahualcca | 35 | 6 849 | 2 009 |
+| Olizzy-upc | 25 | 1 464 | 56 |
+| Yam-1CG | 16 | 928 | 0 |
+| notoriussxd | 3 | 2 827 | 2 |
+
+![Contributors del repositorio skycrop-report para AV2](resources/imgs/chapter_0/Contributors-AV2.png)
+
+El recorte de Contributors no muestra el filtro temporal ni la rama seleccionada; por ello, sus cifras se describen de forma independiente del intervalo semanal de Pulse. Los valores de ambas capturas no se suman ni se interpretan como un mismo conteo. Asimismo, Pulse presenta actividad de `main`, mientras que los cambios del informe se organizan e integran en `develop`.
+
+Las evidencias muestran participación de las cinco cuentas y actividad de integración durante la preparación de AV2. El trabajo documentado comprende planificación del Sprint 3, revisión de diagramas, entrevistas de validación y evidencias de desarrollo y servicios. La cantidad de commits y líneas modificadas describe actividad registrada; la evaluación de la colaboración se complementa con los artefactos elaborados y la matriz de liderazgo y colaboración del Sprint 3.
+
 <div style="page-break-after: always;"></div>
 
 # Contenido 
