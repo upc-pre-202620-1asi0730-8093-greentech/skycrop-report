@@ -1,0 +1,129 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 120
+scale max 2800 width
+hide empty members
+left to right direction
+title SkyCrop - IAM — Identity and Access Management - Layered Class Design
+package "Interfaces / Presentation" as interfacesLayer {
+class AccountController <<controller>> {
+-service: IAccountApplicationService
++authenticate(request: AuthenticateRequest): AccessTokenResource
+}
+class AuthenticateRequest <<request>> {
+-username: String
+-password: String
+}
+class AccessTokenResource <<resource>> {
+-token: String
+-expiresAt: Timestamp
+}
+class AccessTokenIssuer <<token issuer>> {
++issue(accountId: Long): AccessTokenResource
+}
+}
+package "Application" as applicationLayer {
+class AuthenticateCommand <<command>> {
+-username: String
+-password: String
+}
+interface IAccountApplicationService {
++authenticate(command: AuthenticateCommand): AccessTokenResource
+}
+class AccountApplicationService <<application service>> {
+-repository: IAccountRepository
++authenticate(command: AuthenticateCommand): AccessTokenResource
+}
+}
+package "Domain" as domainLayer {
+class Account <<aggregate root>> {
+-id: Long
+-username: Username
+-passwordHash: PasswordHash
+-status: AccountStatus
++authenticate(): boolean
+}
+interface IAccountRepository <<repository contract>> {
++findByUsername(username: Username): Account [0..1]
++save(entity: Account): void
+}
+}
+package "Infrastructure" as infrastructureLayer {
+class AccountRepository <<repository>> {
+-dbContext: SkyCropDbContext
++findByUsername(username: Username): Account [0..1]
++save(entity: Account): void
+}
+class SkyCropDbContext <<EF Core>> {
++saveChanges(): int
+}
+}
+AccountController --> IAccountApplicationService : delegates
+AccountController ..> AuthenticateRequest : receives
+AccountController ..> AuthenticateCommand : builds
+AccountController ..> AccessTokenResource : responds
+AccountApplicationService ..|> IAccountApplicationService
+IAccountApplicationService ..> AuthenticateCommand : receives
+AccountApplicationService --> IAccountRepository : queries and persists
+AccountApplicationService ..> Account : executes operations
+AccountApplicationService ..> AccessTokenIssuer : transforms
+AccessTokenIssuer ..> AccessTokenResource : produces
+AccountRepository ..|> IAccountRepository
+IAccountRepository ..> Account : persistence contract
+AccountRepository --> SkyCropDbContext : data access
+package "Application" as applicationLayer {
+interface ICredentialVerifier <<integration contract>> {
++verify(password: String, passwordHash: PasswordHash): boolean
+}
+}
+package "Infrastructure" as infrastructureLayer {
+class PasswordHashVerifier <<adapter>> {
++verify(password: String, passwordHash: PasswordHash): boolean
+}
+}
+AccountApplicationService --> ICredentialVerifier : requests an operation
+PasswordHashVerifier ..|> ICredentialVerifier
+note bottom of PasswordHashVerifier
+Verifies credentials without returning the password or its hash.
+end note
+AccountController -[hidden]down-> AccountApplicationService
+AccountApplicationService -[hidden]down-> Account
+Account -[hidden]down-> AccountRepository
+legend bottom
+Proposed class architecture for the backend RESTful API.
+The view shows a context use case and credential verification.
+Aggregate attributes are detailed in the domain views.
+Infrastructure dependencies implement internal contracts.
+endlegend
+package "Domain" as domainLayer {
+class Username <<value object>> {
+-value: String {readOnly}
+}
+note right of Username
+Non-empty text after trimming outer whitespace.
+Preserves case; equality compares the stored value.
+Account uniqueness follows the identity policy.
+end note
+class PasswordHash <<value object>> {
+-encodedValue: String {readOnly}
+}
+note right of PasswordHash
+Non-empty encoded output of the credential hasher.
+Contains the algorithm parameters required by the verifier.
+Never stores plaintext or appears in HTTP responses.
+Equality compares the encoded representation.
+end note
+}
+Account "1" *-- "1" Username : username
+Account "1" *-- "1" PasswordHash : passwordHash
+note right of AuthenticateCommand
+HTTP input remains plain text. The use case constructs Username
+before querying the account and verifies the supplied password
+against the stored PasswordHash without returning it.
+end note
+interfacesLayer -[hidden]down-> applicationLayer
+applicationLayer -[hidden]down-> domainLayer
+domainLayer -[hidden]down-> infrastructureLayer
+@enduml

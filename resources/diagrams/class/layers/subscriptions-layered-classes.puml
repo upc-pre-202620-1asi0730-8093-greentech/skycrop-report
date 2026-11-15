@@ -1,0 +1,102 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 120
+scale max 2800 width
+hide empty members
+top to bottom direction
+title SkyCrop - Subscriptions and Payment Management - Layered Class Design
+package "Interfaces / Presentation" {
+class SubscriptionController <<controller>> {
+-service: ISubscriptionApplicationService
++acquire(request: AcquireSubscriptionRequest): SubscriptionResource
++getById(id: Long): SubscriptionResource
+}
+class AcquireSubscriptionRequest <<request>> {
+-userId: Long
+-type: SubscriptionType
+}
+class SubscriptionResource <<resource>> {
+-id: Long
+}
+class SubscriptionResourceAssembler <<assembler>> {
++toResource(entity: Subscription): SubscriptionResource
+}
+}
+package "Application" {
+class AcquireSubscriptionCommand <<command>> {
+-userId: Long
+-type: SubscriptionType
+}
+interface ISubscriptionApplicationService {
++acquire(command: AcquireSubscriptionCommand): SubscriptionResource
++getById(id: Long): SubscriptionResource
+}
+class SubscriptionApplicationService <<application service>> {
+-repository: ISubscriptionRepository
++acquire(command: AcquireSubscriptionCommand): SubscriptionResource
++getById(id: Long): SubscriptionResource
+}
+}
+package "Domain" {
+class Subscription <<aggregate root>> {
+-id: Long
+-period: SubscriptionPeriod
+-status: SubscriptionStatus
++activate(): void
+}
+interface ISubscriptionRepository <<repository contract>> {
++findById(id: Long): Subscription [0..1]
++save(entity: Subscription): void
+}
+}
+package "Infrastructure" {
+class SubscriptionRepository <<repository>> {
+-dbContext: SkyCropDbContext
++findById(id: Long): Subscription [0..1]
++save(entity: Subscription): void
+}
+class SkyCropDbContext <<EF Core>> {
++saveChanges(): int
+}
+}
+SubscriptionController --> ISubscriptionApplicationService : delegates
+SubscriptionController ..> AcquireSubscriptionRequest : receives
+SubscriptionController ..> AcquireSubscriptionCommand : builds
+SubscriptionController ..> SubscriptionResource : responds
+SubscriptionApplicationService ..|> ISubscriptionApplicationService
+ISubscriptionApplicationService ..> AcquireSubscriptionCommand : receives
+SubscriptionApplicationService --> ISubscriptionRepository : queries and persists
+SubscriptionApplicationService ..> Subscription : executes operations
+SubscriptionApplicationService ..> SubscriptionResourceAssembler : transforms
+SubscriptionResourceAssembler ..> Subscription : reads
+SubscriptionResourceAssembler ..> SubscriptionResource : produces
+SubscriptionRepository ..|> ISubscriptionRepository
+ISubscriptionRepository ..> Subscription : persistence contract
+SubscriptionRepository --> SkyCropDbContext : data access
+package "Application" {
+interface IPaymentGateway <<integration contract>> {
++authorize(subscriptionId: Long, amount: Money): boolean
+}
+}
+package "Infrastructure" {
+class PaymentGatewayAdapter <<adapter>> {
++authorize(subscriptionId: Long, amount: Money): boolean
+}
+}
+SubscriptionApplicationService --> IPaymentGateway : requests an operation
+PaymentGatewayAdapter ..|> IPaymentGateway
+note bottom of PaymentGatewayAdapter
+Requests transaction authorization from the payment gateway.
+end note
+SubscriptionController -[hidden]down-> SubscriptionApplicationService
+SubscriptionApplicationService -[hidden]down-> Subscription
+Subscription -[hidden]down-> SubscriptionRepository
+legend bottom
+Proposed class architecture for the backend RESTful API.
+The view shows a context use case and retrieval by identifier.
+Aggregate attributes are detailed in the domain views.
+Infrastructure dependencies implement internal contracts.
+endlegend
+@enduml

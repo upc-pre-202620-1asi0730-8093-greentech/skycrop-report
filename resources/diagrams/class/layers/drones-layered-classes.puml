@@ -1,0 +1,186 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 120
+scale max 2800 width
+hide empty members
+left to right direction
+title SkyCrop - Drone Management - Layered Class Design
+package "Interfaces / Presentation" as interfacesLayer {
+class DroneController <<controller>> {
+-service: IDroneApplicationService
++register(request: RegisterDroneRequest): DroneResource
++getById(id: Long): DroneResource
+}
+class RegisterDroneRequest <<request>> {
+-ownerId: Long
+-serialNumber: String
+-model: String
+}
+class DroneResource <<resource>> {
+-id: Long
+}
+class DroneResourceAssembler <<assembler>> {
++toResource(entity: Drone): DroneResource
+}
+}
+package "Application" as applicationLayer {
+class RegisterDroneCommand <<command>> {
+-ownerId: Long
+-serialNumber: String
+-model: String
+}
+interface IDroneApplicationService {
++register(command: RegisterDroneCommand): DroneResource
++getById(id: Long): DroneResource
+}
+class DroneApplicationService <<application service>> {
+-repository: IDroneRepository
++register(command: RegisterDroneCommand): DroneResource
++getById(id: Long): DroneResource
+}
+}
+package "Domain" as domainLayer {
+class Drone <<aggregate root>> {
+-id: Long
+-serialNumber: DroneSerialNumber
+-model: Name
+-status: DroneStatus
++configure(): void
+}
+interface IDroneRepository <<repository contract>> {
++findById(id: Long): Drone [0..1]
++save(entity: Drone): void
+}
+}
+package "Infrastructure" as infrastructureLayer {
+class DroneRepository <<repository>> {
+-dbContext: SkyCropDbContext
++findById(id: Long): Drone [0..1]
++save(entity: Drone): void
+}
+class SkyCropDbContext <<EF Core>> {
++saveChanges(): int
+}
+}
+DroneController --> IDroneApplicationService : delegates
+DroneController ..> RegisterDroneRequest : receives
+DroneController ..> RegisterDroneCommand : builds
+DroneController ..> DroneResource : responds
+DroneApplicationService ..|> IDroneApplicationService
+IDroneApplicationService ..> RegisterDroneCommand : receives
+DroneApplicationService --> IDroneRepository : queries and persists
+DroneApplicationService ..> Drone : executes operations
+DroneApplicationService ..> DroneResourceAssembler : transforms
+DroneResourceAssembler ..> Drone : reads
+DroneResourceAssembler ..> DroneResource : produces
+DroneRepository ..|> IDroneRepository
+IDroneRepository ..> Drone : persistence contract
+DroneRepository --> SkyCropDbContext : data access
+package "Application" as applicationLayer {
+interface IDroneGateway <<integration contract>> {
++connect(droneId: Long): boolean
+}
+}
+package "Infrastructure" as infrastructureLayer {
+class DroneGatewayAdapter <<adapter>> {
++connect(droneId: Long): boolean
+}
+}
+DroneApplicationService --> IDroneGateway : requests an operation
+DroneGatewayAdapter ..|> IDroneGateway
+note bottom of DroneGatewayAdapter
+Encapsulates communication with the registered device.
+end note
+DroneController -[hidden]down-> DroneApplicationService
+DroneApplicationService -[hidden]down-> Drone
+Drone -[hidden]down-> DroneRepository
+legend bottom
+Proposed class architecture for the backend RESTful API.
+The view shows a context use case and retrieval by identifier.
+Aggregate attributes are detailed in the domain views.
+Infrastructure dependencies implement internal contracts.
+endlegend
+package "Domain" as domainLayer {
+class DroneSerialNumber <<value object>> {
+-value: String {readOnly}
+}
+note right of DroneSerialNumber
+Non-empty text after trimming outer whitespace.
+Preserves case; equality compares the stored value.
+Uniqueness is checked by the registration use case.
+end note
+}
+Drone "1" *-- "1" DroneSerialNumber : serialNumber
+note right of RegisterDroneCommand
+The application service constructs DroneSerialNumber and Name
+before assigning the serial number and model to the aggregate.
+Invalid input must not be persisted.
+end note
+package "Domain" as domainLayer {
+class FlightParameters <<value object>> {
+-altitude: Altitude {readOnly}
+-speed: Speed {readOnly}
+}
+note right of FlightParameters
+Positive altitude in meters and speed in meters per second.
+Device limits are checked by the flight planning policy.
+Equality compares altitude and speed; updates replace both values.
+end note
+class ConnectionSettings <<value object>> {
+-endpoint: String {readOnly}
+-protocol: String {readOnly}
+}
+note right of ConnectionSettings
+Non-empty absolute endpoint and a supported protocol.
+The device adapter validates protocol and endpoint compatibility.
+Equality compares both values; credentials are not embedded.
+end note
+class SecuritySettings <<value object>> {
+-requiresAuthentication: boolean {readOnly}
+-requiresEncryptedTransport: boolean {readOnly}
+}
+note right of SecuritySettings
+Explicit device authentication and transport requirements.
+The connection policy rejects unsupported combinations.
+Stores no password or secret; equality compares both flags.
+end note
+class DroneConfiguration <<entity>> {
+-id: Long
+-connectionSettings: ConnectionSettings
+-flightSettings: FlightParameters
+-securitySettings: SecuritySettings
+}
+class Name <<value object>> {
+-value: String {readOnly}
+}
+note right of Name
+Non-empty text after trimming outer whitespace.
+Equality compares the stored text.
+end note
+class Altitude <<value object>> {
+-meters: Decimal {readOnly}
+}
+class Speed <<value object>> {
+-metersPerSecond: Decimal {readOnly}
+}
+note right of Altitude
+Non-negative meters; flight parameters require a positive value.
+Equality compares meters.
+end note
+note right of Speed
+Positive meters per second; equality compares this value.
+end note
+}
+Drone "1" *-- "1" Name : model
+Drone "1" *-- "1" DroneConfiguration : configuration
+DroneConfiguration "1" *-- "1" ConnectionSettings : connectionSettings
+DroneConfiguration "1" *-- "1" FlightParameters : flightSettings
+DroneConfiguration "1" *-- "1" SecuritySettings : securitySettings
+FlightParameters "1" *-- "1" Altitude : altitude
+FlightParameters "1" *-- "1" Speed : speed
+interfacesLayer -[hidden]down-> applicationLayer
+applicationLayer -[hidden]down-> domainLayer
+domainLayer -[hidden]down-> infrastructureLayer
+@enduml

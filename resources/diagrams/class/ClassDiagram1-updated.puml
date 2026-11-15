@@ -1,0 +1,250 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 150
+scale max 2200 width
+hide empty members
+legend bottom
+aggregate root: entry point to the aggregate's entities.
+external reference: identity of an object from another context.
+Dependencies labeled with Id represent references by identifier.
+All value objects have no identity and are immutable.
+Values are validated on construction; changes create a new value.
+Equality compares attributes, except for Timestamp (UTC instant).
+CalendarDate represents a valid date without a time or time zone.
+endlegend
+title SkyCrop - Users, Authentication and Subscriptions
+abstract class User <<aggregate root>> {
+-id: Long
+-name: Name
+-email: EmailAddress
+-createdAt: Timestamp
++register(): void
+
+}
+class UserProfile <<aggregate root>> {
+-userId: Long
+-id: Long
+-phone: PhoneNumber [0..1]
+-address: PostalAddress [0..1]
++updateInformation(): void
+}
+class Subscription <<aggregate root>> {
+-userId: Long
+-id: Long
+-period: SubscriptionPeriod
+-type: SubscriptionType
+-status: SubscriptionStatus
++activate(): void
++renew(): void
++cancel(): void
++isActive(): boolean
++hasFeature(feature: String): boolean
+}
+class Farmer  {
+
++managePlots(): void
++manageDrones(): void
++viewReports(): void
+}
+class Agronomist  {
+-professionalLicense: String
++analyzeCrop(): void
++managePlots(): void
++generateReport(): void
+}
+class Payment <<aggregate root>> {
+-subscriptionId: Long
+-id: Long
+-amount: Money
+-paymentDate: Timestamp
+-method: PaymentMethod
+-status: PaymentStatus
++initiate(): void
++authorize(): boolean
++reject(): void
++refund(): void
+}
+interface PaymentProcessor  {
+
++process(payment: Payment): boolean
++authorize(payment: Payment): boolean
+}
+class Account <<aggregate root>> {
+-userId: Long
+-id: Long
+-username: Username
+-passwordHash: PasswordHash
+-status: AccountStatus
++create(): void
++authenticate(): boolean
++deactivate(): void
+}
+interface AuthenticationService  {
+
++authenticate(account: Account): boolean
++verifyTwoFactor(code: String): boolean
++recoverAccount(code: String): boolean
+}
+interface EmailService  {
+
++sendVerificationCode(email: EmailAddress): void
++sendRecoveryCode(email: EmailAddress): void
+}
+class TwoFactorAuthentication  {
+-id: Long
+-enabled: boolean
+-verifiedAt: Timestamp [0..1]
++generateCode(): String
++verify(code: String): boolean
+}
+class RecoveryCode  {
+-id: Long
+-code: String
+-used: boolean
+-expiresAt: Timestamp
++generate(): String
++validate(): boolean
++use(): void
+}
+enum SubscriptionStatus {
+ACTIVE
+EXPIRED
+CANCELLED
+PENDING
+}
+enum SubscriptionType {
+BASIC
+PROFESSIONAL
+COOPERATIVE
+}
+enum PaymentMethod {
+CARD
+TRANSFER
+OTHER
+}
+enum PaymentStatus {
+PENDING
+AUTHORIZED
+REJECTED
+REFUNDED
+}
+enum AccountStatus {
+ACTIVE
+INACTIVE
+LOCKED
+}
+class EmailAddress <<value object>> {
+-value: String {readOnly}
+
+}
+class Money <<value object>> {
+-amount: Decimal {readOnly}
+-currency: String {readOnly}
++add(other: Money): Money
++subtract(other: Money): Money
+}
+note right of Money
+Immutable; equality compares amount and currency.
+add/subtract require the same currency
+and return a new Money value.
+end note
+User <|-- Farmer
+User <|-- Agronomist
+UserProfile ..> User : userId
+Subscription ..> User : userId
+Account ..> User : userId
+Payment ..> Subscription : subscriptionId
+Subscription --> SubscriptionStatus : status
+Subscription --> SubscriptionType : type
+Payment --> PaymentMethod : method
+Payment --> PaymentStatus : status
+PaymentProcessor ..> Payment : processes
+Account --> AccountStatus : status
+Account "1" *-- "0..1" TwoFactorAuthentication : uses
+Account "1" *-- "0..*" RecoveryCode : has
+AuthenticationService ..> Account : authenticates
+AuthenticationService ..> TwoFactorAuthentication : verifies
+AuthenticationService ..> RecoveryCode : recovers
+EmailService ..> TwoFactorAuthentication : sends code
+EmailService ..> RecoveryCode : sends code
+EmailService ..> EmailAddress
+User "1" *-- "1" EmailAddress : email
+Payment "1" *-- "1" Money : amount
+class Name <<value object>> {
+-value: String {readOnly}
+}
+note right of Name
+Non-empty text after trimming outer whitespace.
+Preserves the name's characters and original case.
+Does not require a specific word count.
+end note
+class Timestamp <<value object>> {
+-value: DateTimeOffset {readOnly}
+}
+note right of Timestamp
+Valid instant with an explicit time zone offset.
+Equality and ordering compare the UTC instant.
+end note
+User "1" *-- "1" Name : name
+User ..> Timestamp : temporal values
+Payment ..> Timestamp : temporal values
+TwoFactorAuthentication ..> Timestamp : temporal values
+RecoveryCode ..> Timestamp : temporal values
+class PhoneNumber <<value object>> {
+-value: String {readOnly}
+}
+note right of PhoneNumber
+International format: + followed by up to 15 digits.
+No whitespace or separators in the stored value.
+Syntax validation does not verify number ownership.
+end note
+class PostalAddress <<value object>> {
+-value: String {readOnly}
+}
+note right of PostalAddress
+Non-empty address text with outer whitespace removed.
+No required postal code or fixed address structure.
+end note
+class CalendarDate <<value object>> {
+-value: Date {readOnly}
+}
+class SubscriptionPeriod <<value object>> {
+-startDate: CalendarDate {readOnly}
+-endDate: CalendarDate {readOnly}
++contains(date: CalendarDate): boolean
+}
+note right of SubscriptionPeriod
+Valid dates; endDate > startDate.
+Interval [startDate, endDate).
+renew replaces the period with a new value.
+end note
+UserProfile "1" *-- "0..1" PhoneNumber : phone
+UserProfile "1" *-- "0..1" PostalAddress : address
+Subscription "1" *-- "1" SubscriptionPeriod : period
+SubscriptionPeriod "1" *-- "2" CalendarDate : boundaries
+note bottom of TwoFactorAuthentication
+verifiedAt may be absent before verification.
+RecoveryCode expires when now >= expiresAt.
+end note
+class Username <<value object>> {
+-value: String {readOnly}
+}
+note right of Username
+Non-empty text after trimming outer whitespace.
+Preserves case; equality compares the stored value.
+Account uniqueness follows the identity policy.
+end note
+class PasswordHash <<value object>> {
+-encodedValue: String {readOnly}
+}
+note right of PasswordHash
+Non-empty encoded output of the credential hasher.
+Contains the algorithm parameters required by the verifier.
+Never stores plaintext or appears in HTTP responses.
+Equality compares the encoded representation.
+end note
+Account "1" *-- "1" Username : username
+Account "1" *-- "1" PasswordHash : passwordHash
+@enduml

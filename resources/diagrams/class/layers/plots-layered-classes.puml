@@ -1,0 +1,117 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 120
+scale max 2800 width
+hide empty members
+top to bottom direction
+title SkyCrop - Agricultural Plot Management - Layered Class Design
+package "Interfaces / Presentation" {
+class AgriculturalPlotController <<controller>> {
+-service: IAgriculturalPlotApplicationService
++register(request: RegisterPlotRequest): AgriculturalPlotResource
++getById(id: Long): AgriculturalPlotResource
+}
+class RegisterPlotRequest <<request>> {
+-ownerId: Long
+-name: String
+-areaHectares: Decimal
+-location: String
+}
+class AgriculturalPlotResource <<resource>> {
+-id: Long
+}
+class AgriculturalPlotResourceAssembler <<assembler>> {
++toResource(entity: AgriculturalPlot): AgriculturalPlotResource
+}
+}
+package "Application" {
+class RegisterPlotCommand <<command>> {
+-ownerId: Long
+-name: String
+-areaHectares: Decimal
+-location: String
+}
+interface IAgriculturalPlotApplicationService {
++register(command: RegisterPlotCommand): AgriculturalPlotResource
++getById(id: Long): AgriculturalPlotResource
+}
+class AgriculturalPlotApplicationService <<application service>> {
+-repository: IAgriculturalPlotRepository
++register(command: RegisterPlotCommand): AgriculturalPlotResource
++getById(id: Long): AgriculturalPlotResource
+}
+}
+package "Domain" {
+class AgriculturalPlot <<aggregate root>> {
+-id: Long
+-name: Name
+-areaHectares: Area
+-location: Location
++register(): void
+}
+interface IAgriculturalPlotRepository <<repository contract>> {
++findById(id: Long): AgriculturalPlot [0..1]
++save(entity: AgriculturalPlot): void
+}
+}
+package "Infrastructure" {
+class AgriculturalPlotRepository <<repository>> {
+-dbContext: SkyCropDbContext
++findById(id: Long): AgriculturalPlot [0..1]
++save(entity: AgriculturalPlot): void
+}
+class SkyCropDbContext <<EF Core>> {
++saveChanges(): int
+}
+}
+AgriculturalPlotController --> IAgriculturalPlotApplicationService : delegates
+AgriculturalPlotController ..> RegisterPlotRequest : receives
+AgriculturalPlotController ..> RegisterPlotCommand : builds
+AgriculturalPlotController ..> AgriculturalPlotResource : responds
+AgriculturalPlotApplicationService ..|> IAgriculturalPlotApplicationService
+IAgriculturalPlotApplicationService ..> RegisterPlotCommand : receives
+AgriculturalPlotApplicationService --> IAgriculturalPlotRepository : queries and persists
+AgriculturalPlotApplicationService ..> AgriculturalPlot : executes operations
+AgriculturalPlotApplicationService ..> AgriculturalPlotResourceAssembler : transforms
+AgriculturalPlotResourceAssembler ..> AgriculturalPlot : reads
+AgriculturalPlotResourceAssembler ..> AgriculturalPlotResource : produces
+AgriculturalPlotRepository ..|> IAgriculturalPlotRepository
+IAgriculturalPlotRepository ..> AgriculturalPlot : persistence contract
+AgriculturalPlotRepository --> SkyCropDbContext : data access
+package "Application" {
+interface IPlotMapProvider <<integration contract>> {
++getMap(plotId: Long): ResourceUrl
+}
+}
+package "Infrastructure" {
+class PlotMapAdapter <<adapter>> {
++getMap(plotId: Long): ResourceUrl
+}
+}
+AgriculturalPlotApplicationService --> IPlotMapProvider : requests an operation
+PlotMapAdapter ..|> IPlotMapProvider
+note bottom of PlotMapAdapter
+Retrieves the plot's geographic representation.
+end note
+AgriculturalPlotController -[hidden]down-> AgriculturalPlotApplicationService
+AgriculturalPlotApplicationService -[hidden]down-> AgriculturalPlot
+AgriculturalPlot -[hidden]down-> AgriculturalPlotRepository
+legend bottom
+Proposed class architecture for the backend RESTful API.
+The view shows a context use case and retrieval by identifier.
+Aggregate attributes are detailed in the domain views.
+Infrastructure dependencies implement internal contracts.
+endlegend
+package "Domain" {
+class ResourceUrl <<value object>> {
+-value: String {readOnly}
+}
+note right of ResourceUrl
+Absolute HTTP or HTTPS URL with a host.
+Equality uses the complete stored URL, including path and query.
+A valid URL does not guarantee availability or access permission.
+end note
+}
+@enduml

@@ -1,0 +1,89 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 120
+scale max 2800 width
+hide empty members
+top to bottom direction
+title SkyCrop - Profiles and Preferences Management - Layered Class Design
+package "Interfaces / Presentation" {
+class UserProfileController <<controller>> {
+-service: IUserProfileApplicationService
++update(request: UpdateProfileRequest): UserProfileResource
++getById(id: Long): UserProfileResource
+}
+class UpdateProfileRequest <<request>> {
+-userId: Long
+-phone: String [0..1]
+-address: String [0..1]
+}
+class UserProfileResource <<resource>> {
+-id: Long
+}
+class UserProfileResourceAssembler <<assembler>> {
++toResource(entity: UserProfile): UserProfileResource
+}
+}
+package "Application" {
+class UpdateProfileCommand <<command>> {
+-userId: Long
+-phone: String [0..1]
+-address: String [0..1]
+}
+interface IUserProfileApplicationService {
++update(command: UpdateProfileCommand): UserProfileResource
++getById(id: Long): UserProfileResource
+}
+class UserProfileApplicationService <<application service>> {
+-repository: IUserProfileRepository
++update(command: UpdateProfileCommand): UserProfileResource
++getById(id: Long): UserProfileResource
+}
+}
+package "Domain" {
+class UserProfile <<aggregate root>> {
+-id: Long
+-phone: PhoneNumber [0..1]
+-address: PostalAddress [0..1]
++updateInformation(): void
+}
+interface IUserProfileRepository <<repository contract>> {
++findById(id: Long): UserProfile [0..1]
++save(entity: UserProfile): void
+}
+}
+package "Infrastructure" {
+class UserProfileRepository <<repository>> {
+-dbContext: SkyCropDbContext
++findById(id: Long): UserProfile [0..1]
++save(entity: UserProfile): void
+}
+class SkyCropDbContext <<EF Core>> {
++saveChanges(): int
+}
+}
+UserProfileController --> IUserProfileApplicationService : delegates
+UserProfileController ..> UpdateProfileRequest : receives
+UserProfileController ..> UpdateProfileCommand : builds
+UserProfileController ..> UserProfileResource : responds
+UserProfileApplicationService ..|> IUserProfileApplicationService
+IUserProfileApplicationService ..> UpdateProfileCommand : receives
+UserProfileApplicationService --> IUserProfileRepository : queries and persists
+UserProfileApplicationService ..> UserProfile : executes operations
+UserProfileApplicationService ..> UserProfileResourceAssembler : transforms
+UserProfileResourceAssembler ..> UserProfile : reads
+UserProfileResourceAssembler ..> UserProfileResource : produces
+UserProfileRepository ..|> IUserProfileRepository
+IUserProfileRepository ..> UserProfile : persistence contract
+UserProfileRepository --> SkyCropDbContext : data access
+UserProfileController -[hidden]down-> UserProfileApplicationService
+UserProfileApplicationService -[hidden]down-> UserProfile
+UserProfile -[hidden]down-> UserProfileRepository
+legend bottom
+Proposed class architecture for the backend RESTful API.
+The view shows a context use case and retrieval by identifier.
+Aggregate attributes are detailed in the domain views.
+Infrastructure dependencies implement internal contracts.
+endlegend
+@enduml

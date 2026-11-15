@@ -1,0 +1,51 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+skinparam shadowing false
+skinparam dpi 150
+skinparam defaultFontName SansSerif
+skinparam wrapWidth 220
+left to right direction
+
+title SkyCrop - Container Level Diagram
+
+
+Person(farmer, "Farmer", "Monitors plots and views information")
+Person(agronomist, "Agronomist" ,"Evaluate crops and consult diagnoses")
+
+System_Ext(payment, "Payment Processor", "Processes transactions")
+System_Ext(messaging, "Messaging service", "Sends mails and notifications")
+System_Ext(maps, "Map Service", "Provides maps using latitude and longitude")
+System_Ext(weather, "Weather Service", "Provides weather information given a location")
+
+System_Boundary(skycrop, "SkyCrop") {
+Container(landing, "Landing Page", "HTML5, CSS3", "Presents the proposal, benefits, plans, and contact information.")
+Container(web, "Web Application", "Vercel", "Serves the Single Page Application to a user's browser")
+Container(spa, "Single Page Application", "Vue, JavaScript. PrimeVue", "It runs in the browser and manages the interaction between farmers and agronomists.")
+Container(api, "RESTful API", "C#, ASP.NET", "Exposes domain operations and data access endpoints.")
+ContainerDb(db, "Relational Database", "MySQL", "Records accounts, plots, flights, and results.")
+}
+
+Rel(farmer, landing, "Visits using [HTTPS]")
+Rel(agronomist, landing, "Visits using [HTTPS]")
+
+Rel(farmer, web, "Visits using [HTTPS]")
+Rel(agronomist, web, "Visits using [HTTPS]")
+
+Rel(farmer, spa, "Interacts with")
+Rel(agronomist, spa, "Interacts with")
+
+Rel(web, spa, "Serves to the user's browser")
+
+Rel(landing, web, "Redirects to")
+
+Rel(spa, api, "Sends [HTTP] requests")
+
+Rel(api, db, "Queries and registers records")
+Rel(api, payment, "Requests payment processing")
+Rel(api, messaging, "Requests notifications")
+Rel(api, maps, "Requests map information")
+Rel(api, weather, "Requests weather information")
+
+@enduml

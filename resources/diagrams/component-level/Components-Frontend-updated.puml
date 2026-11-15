@@ -1,0 +1,64 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+skinparam shadowing false
+skinparam dpi 120
+skinparam defaultFontName SansSerif
+skinparam wrapWidth 180
+
+
+title SkyCrop - Component Diagram (Bounded Contexts)
+
+
+System_Ext(maps, "Map Service", "Provides maps using latitude and longitude")
+
+
+Container(web, "Web Application", "Vercel", "Serves the Single Page Application to a user's browser")
+Container(api, "RESTful API", "C#, ASP.NET", "Exposes domain operations and data access endpoints.")
+
+
+Container_Boundary(frontend, "Single Page Application") {
+    Component(diagnoses, "Diagnoses", "Vue, JavaScript", "Diagnoses, results map and history.")
+    Component(reports, "Reports", "Vue, JavaScript", "Reports, comparison and document downloads.")
+    Component(plots, "Plots", "Vue, JavaScript", "Plot registration, details, crops and collaboration.")
+    Component(drones, "Drones", "Vue, JavaScript", "Drone registration, configuration and flights.")
+    Component(subscriptions, "Subscriptions", "Vue, JavaScript", "Plans, payments and subscription status.")
+    Component(crops, "Crops", "Vue, JavaScript", "Crop information viewing and editing.")
+    Component(notifications, "Notifications", "Vue, JavaScript", "Notifications, details and read status.")
+    Component(iam, "IAM", "Vue, JavaScript", "Registration, sign-in and account recovery.")
+    Component(profiles, "Profiles", "Vue, JavaScript", "Accounts and profile information.")
+    Component(shared, "Shared", "Vue, JavaScript", "Value objects and presentation views")
+}
+
+
+Rel(web, frontend, "Serves")
+
+Rel(shared, diagnoses, "Renders diagnosis list and details")
+Rel(shared, reports, "Renders report list and details")
+Rel(shared, plots, "Renders plot form, list and information")
+Rel(shared, drones, "Renders drone linking form, list and details")
+Rel(shared, subscriptions, "Renders subscription plans and active plans")
+Rel(shared, crops, "Renders crop details")
+Rel(shared, iam, "Renders registration form and account details")
+Rel(shared, profiles, "Renders profile information view")
+
+Rel(crops, plots, "Gets plot information from")
+Rel(subscriptions, notifications, "Requests reminder notifications")
+Rel(drones, notifications, "Requests alert notifications")
+Rel(diagnoses, notifications, "Requests alert notifications")
+
+Rel(diagnoses, api, "Reads and writes diagnoses using [HTTPS/JSON]")
+Rel(reports, api, "Reads and writes reports using [HTTPS/JSON] ")
+Rel(plots, api, "Reads and writes plots using [HTTPS/JSON]")
+Rel(drones, api, "Reads and writes drones using [HTTPS/JSON]")
+Rel(subscriptions, api, "Reads and writes subscriptions using [HTTPS/JSON]")
+Rel(crops, api, "Reads and writes crop information using [HTTPS/JSON]")
+Rel(notifications, api, "Requests notifications using [HTTPS/JSON]")
+Rel(iam, api, "Signs users in and up using [HTTPS/JSON]")
+Rel(profiles, api, "Signs users in and up using [HTTPS/JSON]")
+
+Rel(plots, maps, "Gets map information using [HTTPS/JSON]")
+Rel(diagnoses, maps, "Gets map information using [HTTPS/JSON]")
+
+
+@enduml

@@ -1,0 +1,312 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 150
+scale max 2200 width
+hide empty members
+legend bottom
+aggregate root: entry point to the aggregate's entities.
+external reference: identity of an object from another context.
+Dependencies labeled with Id represent references by identifier.
+All value objects have no identity and are immutable.
+Values are validated on construction; changes create a new value.
+Equality compares attributes, except for Timestamp (UTC instant).
+CalendarDate represents a valid date without a time or time zone.
+endlegend
+title SkyCrop - Diagnoses, Analysis, Reports and Notifications
+class User <<external reference>> {
+-id: Long
+}
+class AgriculturalPlot <<external reference>> {
+-id: Long
+}
+class Crop <<external reference>> {
+-id: Long
+}
+class Report <<aggregate root>> {
+-plotId: Long
+-createdById: Long
+-diagnosisIds: Set<Long>
+-id: Long
+-title: Name
+-generatedAt: Timestamp
+-type: ReportType
+-content: String
++generate(): void
++export(): void
++saveToHistory(): void
+}
+class Diagnosis <<aggregate root>> {
+-plotId: Long
+-imageIds: Set<Long>
+-cropIds: Set<Long>
+-ruleIds: Set<Long>
+-id: Long
+-generatedAt: Timestamp
+-observations: String
+-status: DiagnosisStatus
++generate(): void
++analyzeData(): void
++detectAnomaly(): Anomaly
++saveToHistory(): void
+}
+class TerrainData  {
+-id: Long
+-humidity: Percentage
+-temperature: Temperature
+-nutrients: String
+-pH: PhLevel
++update(): void
+}
+class AerialImage <<external reference>> {
+-id: Long
+}
+class TerrainMap  {
+-id: Long
+-mapUrl: ResourceUrl
+-generatedAt: Timestamp
+-resolution: ImageResolution
++generate(): void
++display(): void
+}
+class Anomaly  {
+-id: Long
+-type: AnomalyType
+-severity: Severity
+-description: String
+-location: Location
++classify(): void
+}
+class AgronomicRule <<aggregate root>> {
+-id: Long
+-name: Name
+-description: String
+-condition: String
++evaluate(): boolean
+}
+class DiagnosticHistory  {
+-id: Long
+-savedAt: Timestamp
+-reference: String
++save(diagnosis: Diagnosis): void
++retrieve(): Diagnosis
+}
+class Notification <<aggregate root>> {
+-recipientId: Long
+-diagnosisId: Long [0..1]
+-anomalyId: Long [0..1]
+-id: Long
+-message: String
+-createdAt: Timestamp
+-type: NotificationType
+-status: NotificationStatus
++create(): void
++send(): void
++markAsRead(): void
+}
+interface CloudStorageService  {
+
++saveDiagnosis(diagnosis: Diagnosis): ResourceUrl
++saveReport(report: Report): ResourceUrl
++retrieveHistory(): String
+}
+interface ImageAnalysisService  {
+
++process(imageId: Long): Diagnosis
++analyzeTerrain(data: TerrainData): Diagnosis
++applyRules(diagnosis: Diagnosis): void
+}
+interface MapService  {
+
++generateTerrainMap(data: TerrainData): TerrainMap
+}
+interface WeatherService  {
+
++getWeather(location: Location): WeatherData
+}
+interface NotificationService  {
+
++createNotification(diagnosisId: Long, anomalyId: Long, recipientId: Long): Notification
++route(notification: Notification): void
+}
+interface NotificationChannel  {
+
++send(notification: Notification): void
+}
+class SMSNotificationChannel  {
+
++send(notification: Notification): void
+}
+class EmailNotificationChannel  {
+
++send(notification: Notification): void
+}
+enum ReportType {
+DIAGNOSTIC
+SEASONAL
+}
+enum DiagnosisStatus {
+PENDING
+PROCESSING
+COMPLETED
+FAILED
+}
+enum Severity {
+LOW
+MEDIUM
+HIGH
+CRITICAL
+}
+enum AnomalyType {
+WATER_STRESS
+PEST
+FERTILIZER_DEFICIENCY
+OTHER
+}
+enum NotificationType {
+ANOMALY_DETECTED
+REPORT_READY
+SYSTEM_ALERT
+}
+enum NotificationStatus {
+PENDING
+SENT
+READ
+}
+class Location <<value object>> {
+-value: String {readOnly}
+
+}
+class WeatherData <<value object>> {
+-temperature: Temperature {readOnly}
+-humidity: Percentage {readOnly}
+-precipitation: Precipitation {readOnly}
+-recordedAt: Timestamp {readOnly}
+
+}
+Report ..> User : createdById
+Notification ..> User : recipientId
+Anomaly "1" *-- "1" Location : location
+Report --> ReportType : type
+Report ..> Diagnosis : diagnosisIds
+Diagnosis ..> AgriculturalPlot : plotId
+Report ..> AgriculturalPlot : plotId
+Diagnosis "1" *-- "0..1" TerrainMap : resultMap
+
+Diagnosis "1" *-- "0..1" TerrainData : analyzed
+Diagnosis ..> AerialImage : imageIds
+Diagnosis ..> Crop : cropIds
+Diagnosis "1" *-- "0..*" Anomaly : detects
+Diagnosis ..> AgronomicRule : ruleIds
+Diagnosis "1" *-- "0..1" DiagnosticHistory : historyEntry
+Diagnosis --> DiagnosisStatus : status
+Anomaly --> Severity : severity
+Anomaly --> AnomalyType : type
+Notification ..> Diagnosis : diagnosisId / anomalyId
+Notification --> NotificationType : type
+Notification --> NotificationStatus : status
+CloudStorageService ..> Report : stores
+CloudStorageService ..> Diagnosis : stores
+CloudStorageService ..> DiagnosticHistory : stores
+ImageAnalysisService ..> TerrainData : analyzes
+ImageAnalysisService ..> AerialImage : processes
+ImageAnalysisService ..> Diagnosis : generates
+
+ImageAnalysisService ..> AgronomicRule : applies
+ImageAnalysisService ..> TerrainMap : uses
+MapService ..> TerrainMap : generates
+WeatherService ..> WeatherData : obtains
+WeatherService ..> Location
+WeatherData ..> TerrainData : provides data
+NotificationService ..> Diagnosis : diagnosisId / anomalyId
+NotificationService ..> Notification : creates
+NotificationService ..> NotificationChannel : routes
+NotificationChannel <|.. SMSNotificationChannel
+NotificationChannel <|.. EmailNotificationChannel
+note bottom of WeatherData
+Immutable snapshot without an identifier.
+Equality compares all attributes.
+The service returns the value; it does not own it.
+end note
+class Name <<value object>> {
+-value: String {readOnly}
+}
+note right of Name
+Non-empty text after trimming outer whitespace.
+Preserves the name's characters and original case.
+Does not require a specific word count.
+end note
+class Timestamp <<value object>> {
+-value: DateTimeOffset {readOnly}
+}
+note right of Timestamp
+Valid instant with an explicit time zone offset.
+Equality and ordering compare the UTC instant.
+end note
+AgronomicRule "1" *-- "1" Name : name
+Report ..> Timestamp : temporal values
+Diagnosis ..> Timestamp : temporal values
+TerrainMap ..> Timestamp : temporal values
+DiagnosticHistory ..> Timestamp : temporal values
+Notification ..> Timestamp : temporal values
+class Percentage <<value object>> {
+-value: Decimal {readOnly}
+}
+note right of Percentage
+Value in [0, 100], expressed as a percentage.
+Equality compares the numeric value.
+Minimum battery and flight overlap policies are defined separately.
+end note
+class ImageResolution <<value object>> {
+-widthPixels: Integer {readOnly}
+-heightPixels: Integer {readOnly}
+}
+note right of ImageResolution
+Both dimensions are positive integers in pixels.
+Equality compares width and height in that order.
+end note
+class ResourceUrl <<value object>> {
+-value: String {readOnly}
+}
+note right of ResourceUrl
+Absolute HTTP or HTTPS URL with a host.
+Equality uses the complete stored URL, including path and query.
+A valid URL does not guarantee availability or access permission.
+end note
+class Temperature <<value object>> {
+-celsius: Decimal {readOnly}
+}
+note right of Temperature
+Temperature expressed in degrees Celsius.
+Equality compares celsius; negative values are allowed.
+Agronomic thresholds are defined by the applicable rule.
+end note
+class Precipitation <<value object>> {
+-millimeters: Decimal {readOnly}
+}
+note right of Precipitation
+Non-negative accumulated precipitation in millimeters
+for the reporting interval supplied by the weather provider.
+Equality compares millimeters.
+end note
+Report "1" *-- "1" Name : title
+TerrainData "1" *-- "1" Percentage : humidity
+TerrainData "1" *-- "1" Temperature : temperature
+WeatherData "1" *-- "1" Percentage : humidity
+WeatherData "1" *-- "1" Temperature : temperature
+WeatherData "1" *-- "1" Precipitation : precipitation
+WeatherData ..> Timestamp : recordedAt
+TerrainMap "1" *-- "1" ResourceUrl : mapUrl
+TerrainMap "1" *-- "1" ImageResolution : resolution
+CloudStorageService ..> ResourceUrl : stored resource location
+class PhLevel <<value object>> {
+-value: Decimal {readOnly}
+}
+note right of PhLevel
+Finite dimensionless value in [0, 14] for the soil model.
+Equality compares the numeric value; updates create a new value.
+Crop-specific thresholds belong to AgronomicRule.
+end note
+TerrainData "1" *-- "1" PhLevel : pH
+@enduml

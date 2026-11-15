@@ -1,0 +1,59 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+skinparam shadowing false
+skinparam dpi 150
+skinparam defaultFontName SansSerif
+skinparam wrapWidth 220
+left to right direction
+
+title SkyCrop - C4 - Diagnoses Generation - Backend
+
+Container(web, "Frontend Web Application", "Vue", "Requests context operations.")
+ContainerDb(db, "Relational Database", "MySQL Server or PostgreSQL", "Stores application data.")
+
+Container_Boundary(diagnoses, "Diagnoses") {
+        Boundary(interfaces, "Interfaces") {
+            Component(controller, "Rest", "ASP.NET Core", "DiagnosesController receives requests, builds commands with assemblers and returns resources.")
+            Component(acl, "ACL", "ASP.NET Core", "Exposes IDiagnosesContextFacade.")
+            Component(events, "Events", "ASP.NET Core", "AgronomicAnomalyDetectedIntegrationEvent, DiagnosisFailedIntegrationEvent, DiagnosisGeneratedIntegrationEvent")
+        }
+
+        Boundary(application, "Application") {
+            Component(commands, "CommandServices", "C# interface", "Integration contract used by the use case.")
+            Component(queries, "QueryServices", "C#", "Requests analysis and stores diagnoses and anomalies.")
+        }
+
+        Boundary(domainLayer, "Domain") {
+            Component(domain, "Model", "C#", "Diagnosis aggregate root, anomaly entity, value objects, events, commands and queries.")
+            Component(repositoryContract, "Repositories", "C#", "IDiagnosisRepository, defines diagnosis aggregate persistence independently")
+        }
+
+        Boundary(infrastructure, "Infrastructure") {
+            Component(adapter, "ImageAnalysis", "C#", "Generates diagnoses and anomalies.")
+            Component(persistence, "Persistence", "C#, EF Core", "Diagnoses model builder extensions and repository implementation")
+        }
+}
+
+Rel(web, controller, "Sends requests", "REST [HTTPS / JSON]")
+
+Rel(controller, commands, "Delegates operations")
+Rel(controller, queries, "Delegates operations")
+
+Rel(commands, domain, "Applies rules")
+Rel(commands, repositoryContract, "Queries and persists through a contract")
+
+
+
+Rel(persistence, domain, "Reconstructs aggregates")
+Rel(persistence, db, "Reads and writes", "EF Core / SQL")
+
+
+legend bottom
+C4 - Component view of the proposed architecture.
+Each view expands a single container.
+Contexts group responsibilities within the container.
+Application uses internal contracts; Infrastructure implements them.
+endlegend
+
+@enduml

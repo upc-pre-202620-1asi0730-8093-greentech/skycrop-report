@@ -1,0 +1,106 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 120
+scale max 2800 width
+hide empty members
+top to bottom direction
+title SkyCrop - Notification Service - Layered Class Design
+package "Interfaces / Presentation" {
+class NotificationController <<controller>> {
+-service: INotificationApplicationService
++send(request: SendNotificationRequest): NotificationResource
++getById(id: Long): NotificationResource
+}
+class SendNotificationRequest <<request>> {
+-recipientId: Long
+-message: String
+-diagnosisId: Long [0..1]
+-anomalyId: Long [0..1]
+}
+class NotificationResource <<resource>> {
+-id: Long
+}
+class NotificationResourceAssembler <<assembler>> {
++toResource(entity: Notification): NotificationResource
+}
+}
+package "Application" {
+class SendNotificationCommand <<command>> {
+-recipientId: Long
+-message: String
+-diagnosisId: Long [0..1]
+-anomalyId: Long [0..1]
+}
+interface INotificationApplicationService {
++send(command: SendNotificationCommand): NotificationResource
++getById(id: Long): NotificationResource
+}
+class NotificationApplicationService <<application service>> {
+-repository: INotificationRepository
++send(command: SendNotificationCommand): NotificationResource
++getById(id: Long): NotificationResource
+}
+}
+package "Domain" {
+class Notification <<aggregate root>> {
+-id: Long
+-message: String
+-status: NotificationStatus
++markAsRead(): void
+}
+interface INotificationRepository <<repository contract>> {
++findById(id: Long): Notification [0..1]
++save(entity: Notification): void
+}
+}
+package "Infrastructure" {
+class NotificationRepository <<repository>> {
+-dbContext: SkyCropDbContext
++findById(id: Long): Notification [0..1]
++save(entity: Notification): void
+}
+class SkyCropDbContext <<EF Core>> {
++saveChanges(): int
+}
+}
+NotificationController --> INotificationApplicationService : delegates
+NotificationController ..> SendNotificationRequest : receives
+NotificationController ..> SendNotificationCommand : builds
+NotificationController ..> NotificationResource : responds
+NotificationApplicationService ..|> INotificationApplicationService
+INotificationApplicationService ..> SendNotificationCommand : receives
+NotificationApplicationService --> INotificationRepository : queries and persists
+NotificationApplicationService ..> Notification : executes operations
+NotificationApplicationService ..> NotificationResourceAssembler : transforms
+NotificationResourceAssembler ..> Notification : reads
+NotificationResourceAssembler ..> NotificationResource : produces
+NotificationRepository ..|> INotificationRepository
+INotificationRepository ..> Notification : persistence contract
+NotificationRepository --> SkyCropDbContext : data access
+package "Application" {
+interface INotificationDelivery <<integration contract>> {
++send(recipientId: Long, message: String): boolean
+}
+}
+package "Infrastructure" {
+class MessageDeliveryAdapter <<adapter>> {
++send(recipientId: Long, message: String): boolean
+}
+}
+NotificationApplicationService --> INotificationDelivery : requests an operation
+MessageDeliveryAdapter ..|> INotificationDelivery
+note bottom of MessageDeliveryAdapter
+Delivers the notification through the recipient's channel.
+end note
+NotificationController -[hidden]down-> NotificationApplicationService
+NotificationApplicationService -[hidden]down-> Notification
+Notification -[hidden]down-> NotificationRepository
+legend bottom
+Proposed class architecture for the backend RESTful API.
+The view shows a context use case and retrieval by identifier.
+Aggregate attributes are detailed in the domain views.
+Infrastructure dependencies implement internal contracts.
+endlegend
+@enduml

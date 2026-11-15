@@ -1,0 +1,52 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+skinparam shadowing false
+skinparam dpi 150
+skinparam defaultFontName SansSerif
+skinparam wrapWidth 220
+
+
+title SkyCrop - Landing Page Component Diagram
+
+Person(farmer, "Farmer", "Monitors plots and views information")
+Person(agronomist, "Agronomist" ,"Evaluate crops and consult diagnoses")
+
+Container(web, "Web Application", "Vercel", "Serves the Single Page Application to a user's browser")
+
+
+
+Container_Boundary(landing_page, "Landing Page") {
+    Component(navigation, "Navigation Bar", "HTML5, CSS3, JavaScript", "Adaptable menu to access sections")
+    Component(content, "Features and Benefits", "HTML5, CSS3, JavaScript", "Value proposition and benefits by segment")
+    Component(plans, "Plans", "HTML5, CSS3, JavaScript", "Illustrative features and prices")
+    Component(contact, "Contact Form", "HTML5, CSS3, JavaScript", "Capture and validate form data")
+    Component(footer, "Footer", "HTML5, CSS3, JavaScript", "Institutional information and policies")
+    Component(language, "Language Switcher", "HTML5, CSS3, JavaScript", "Texts using en_US y es_419")
+    Component(cta, "Call to Action", "HTML5, CSS3, JavaScript", "Access to web application")
+}
+
+
+Rel(farmer, navigation, "Visits using [HTTPS]", "")
+Rel(agronomist, navigation, "Visits using [HTTPS]", "")
+
+Rel(navigation, content, "Access", "")
+Rel(navigation, plans, "Access", "")
+Rel(navigation, contact, "Access", "")
+Rel(navigation, footer, "Access", "")
+
+Rel(content, cta, "Includes", "")
+Rel(plans, cta, "Includes", "")
+
+Rel(cta, web, "Redirects to")
+
+
+Rel(language, navigation, "Localizes", "")
+Rel(language, content, "Localizes", "")
+Rel(language, plans, "Localizes", "")
+Rel(language, contact, "Localizes", "")
+Rel(language, footer, "Localizes", "")
+Rel(language, cta, "Localizes", "")
+
+@enduml

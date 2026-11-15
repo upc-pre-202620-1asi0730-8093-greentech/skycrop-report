@@ -1,0 +1,62 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+skinparam shadowing false
+skinparam dpi 150
+skinparam defaultFontName SansSerif
+skinparam wrapWidth 220
+left to right direction
+
+title SkyCrop - C4 - Diagnoses Generation - Frontend
+
+Person(user, "Farmer / Agronomist", "Interacts with the frontend application")
+
+Container(api, "Backend RESTful API", "C# / ASP.NET Core", "Exposes the context's API contracts.")
+
+Container_Boundary(diagnoses, "Diagnoses") {
+    Boundary(presentation, "Presentation") {
+        Component(view0, "diagnosis-list", "Vue / PrimeVue", "Diagnoses, results map and history.")
+        Component(view1, "diagnosis-details", "Vue / PrimeVue", "View interaction and data.")
+        Component(view2, "diagnosis-map", "Vue / PrimeVue", "View anomaly location and severity.")
+        Component(view2, "diagnoses-grid", "Vue / PrimeVue", "Diagnoses summary grid.")
+    }
+    Boundary(application, "Application") {
+        Component(state, "Diagnoses Store", "Pinia / JavaScript", "Coordinates context actions, data, loading and errors.")
+    }
+    Boundary(domain, "Domain") {
+        Component(model, "Context Models", "JavaScript", "Represents diagnosis and anomaly entity data independently.")
+    }
+    Boundary(infrastructure, "Infrastructure") {
+        Component(apiclient, "Diagnosis API Client", "JavaScript", "Exposes the context's remote operations.")
+        Component(assembler, "Diagnosis Assembler", "JavaScript", "Transforms HTTP resources into application models.")
+    }
+    Boundary(sharedInfra, "Shared Infrastructure") {
+        Component(http, "Shared HTTP Client", "JavaScript", "Base URL and HTTP response handling.")
+    }
+}
+
+Rel(user, view0, "Interacts")
+Rel(user, view1, "Interacts")
+Rel(user, view2, "Interacts")
+
+Rel(view0, state, "Reads state / requests actions")
+Rel(view1, state, "Reads state / requests actions")
+Rel(view2, state, "Reads state / requests actions")
+
+Rel(state, apiclient, "Invokes operations")
+Rel(state, model, "Manages client data")
+Rel(state, assembler, "Maps request / response resources")
+
+Rel(assembler, model, "Builds models")
+
+Rel(apiclient, http, "Sends requests")
+Rel(http, api, "Sends requests", "REST [HTTPS / JSON]")
+
+legend bottom
+C4 - Component view of the proposed architecture.
+Each view expands a single container.
+Contexts group responsibilities within the container.
+Client models do not replace the backend domain model.
+endlegend
+
+@enduml
